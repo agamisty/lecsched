@@ -157,7 +157,7 @@ export default function DepartmentsPage() {
       <div className="dash-topbar">
         <div className="dash-search">
           <Search size={15} color="var(--text-light)" />
-          <input type="text" placeholder="Search departments..." />
+          <input type="text" placeholder="Search departments..." value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }} />
         </div>
         <div className="dash-topbar-right">
           <button className="dash-notif-btn">

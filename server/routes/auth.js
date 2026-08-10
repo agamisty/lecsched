@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
       JWT_SECRET,
       { expiresIn: JWT_EXPIRES_IN }
     );
-    res.status(201).json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role, department: user.department } });
+    res.status(201).json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role, department: user.department, avatar: user.avatar || '' } });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
       JWT_SECRET,
       { expiresIn: JWT_EXPIRES_IN }
     );
-    res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role, department: user.department, departments: user.departments } });
+    res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role, department: user.department, departments: user.departments, avatar: user.avatar || '' } });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -55,9 +55,10 @@ router.put('/me', auth, async (req, res) => {
   try {
     const user = await User.findByPk(req.user.id);
     if (!user) return res.status(404).json({ error: 'User not found' });
-    const { name, email, password, currentPassword } = req.body;
+    const { name, email, password, currentPassword, avatar } = req.body;
     if (name) user.name = name;
     if (email) user.email = email;
+    if (typeof avatar === 'string') user.avatar = avatar;
     if (password) {
       if (!currentPassword) return res.status(400).json({ error: 'Current password is required' });
       const valid = await bcrypt.compare(currentPassword, user.password);
@@ -65,7 +66,7 @@ router.put('/me', auth, async (req, res) => {
       user.password = await bcrypt.hash(password, 10);
     }
     await user.save();
-    res.json({ id: user.id, name: user.name, email: user.email, role: user.role, department: user.department, departments: user.departments });
+    res.json({ id: user.id, name: user.name, email: user.email, role: user.role, department: user.department, departments: user.departments, avatar: user.avatar || '' });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

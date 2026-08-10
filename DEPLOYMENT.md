@@ -67,20 +67,27 @@ vercel --prod
 
 Or push to GitHub and import the repo into Vercel — the `vercel.json` build settings are picked up automatically.
 
-## Step 4 — Seed the database (one-time)
+## Step 4 — Prepare the database (one-time)
 
-Run the demo seed **once** to create admin, lecturers, faculties, departments, programs, levels, buildings, classrooms, time slots, course offerings and a generated timetable:
+The app starts empty — the admin creates all data (faculties, departments, programs, years, courses, classrooms, etc.) through the UI. Two things are set up automatically on first boot:
+
+- **Default time slots** — five standard class blocks are created by `server/seed.js`'s `ensureDefaultTimeSlots()`.
+- **Admin account** — run the seed once to create `admin@lec.com` / `pass123`:
 
 ```bash
 # Local machine, using the production DATABASE_URL so the data lands in Neon/Supabase:
 # (Windows PowerShell)
 $env:DATABASE_URL = "postgresql://USER:PASSWORD@.../neondb?sslmode=require"
-npm run seed:demo
+npm run seed
 ```
 
-The demo login is `admin@lec.com` / `pass123`.
+The admin login is `admin@lec.com` / `pass123`.
 
-> `seed-demo.js` runs `sequelize.sync({ force: true })` — it **drops and recreates all tables**. Use it only on a fresh database.
+> There is no demo/seed data anymore. To wipe everything and start fresh (keeps the admin user and default time slots), run:
+> ```powershell
+> $env:DATABASE_URL = "postgresql://USER:PASSWORD@.../neondb?sslmode=require"
+> node server/clear-demo.js
+> ```
 
 ## Environment variables summary
 

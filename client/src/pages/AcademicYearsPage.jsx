@@ -48,7 +48,7 @@ export default function AcademicYearsPage() {
   return (
     <Layout>
       <div className="dash-topbar">
-        <div className="dash-search"><Search size={15} color="var(--text-light)" /><input type="text" placeholder="Search academic years..." /></div>
+        <div className="dash-search"><Search size={15} color="var(--text-light)" /><input type="text" placeholder="Search academic years..." value={search} onChange={e => { setSearch(e.target.value); setPage(1); }} /></div>
         <div className="dash-topbar-right"><button className="dash-notif-btn"><Bell size={18} /><span className="dash-notif-dot" /></button><div className="dash-divider" /><div className="dash-admin"><div className="dash-avatar-img" style={{ borderRadius: '50%', background: 'var(--accent)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.85rem' }}>AU</div><div className="dash-admin-info"><span className="dash-admin-name">Admin User</span><span className="dash-admin-role">University Admin</span></div></div></div>
       </div>
       <div className="co-breadcrumb"><a href="#">Dashboard</a><span className="co-breadcrumb-sep">/</span><span className="co-breadcrumb-current">Academic Years</span></div>

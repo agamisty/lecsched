@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 import Layout from '../components/Layout';
 import { useAuth } from '../context/AuthContext';
 import { authAPI } from '../services/api';
 import {
-  Search,
   Bell,
   User,
   Shield,
@@ -42,16 +41,18 @@ const THEMES = [
 ];
 
 export default function SettingsPage() {
-  const { user } = useAuth();
+  const { user, updateUser } = useAuth();
   const [activeNav, setActiveNav] = useState('profile');
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'default');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [avatar, setAvatar] = useState(user?.avatar || '');
   const [hasChanges, setHasChanges] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [saving, setSaving] = useState(false);
   const [pwd, setPwd] = useState({ current: '', next: '', confirm: '' });
+  const avatarInputRef = useRef(null);
 
   useEffect(() => {
     if (user) {
@@ -59,6 +60,7 @@ export default function SettingsPage() {
       setFirstName(parts[0] || '');
       setLastName(parts.slice(1).join(' ') || '');
       setEmail(user.email || '');
+      setAvatar(user.avatar || '');
     }
   }, [user]);
 
@@ -78,10 +80,12 @@ export default function SettingsPage() {
     if (saving) return;
     setSaving(true);
     try {
-      await authAPI.updateProfile({
+      const res = await authAPI.updateProfile({
         name: [firstName, lastName].filter(Boolean).join(' '),
         email,
+        avatar,
       });
+      if (res.data) updateUser(res.data);
       setHasChanges(false);
       toast.success('Settings saved successfully');
     } catch (err) {
@@ -89,6 +93,23 @@ export default function SettingsPage() {
     } finally {
       setSaving(false);
     }
+  };
+
+  const handleAvatarChange = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      setAvatar(String(reader.result || ''));
+      setHasChanges(true);
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  };
+
+  const handleAvatarRemove = () => {
+    setAvatar('');
+    setHasChanges(true);
   };
 
   const handleUpdatePassword = async (e) => {
@@ -118,6 +139,7 @@ export default function SettingsPage() {
     setFirstName('');
     setLastName('');
     setEmail('');
+    setAvatar(user?.avatar || '');
     setHasChanges(false);
     toast.success('Changes reset');
   };
@@ -126,10 +148,6 @@ export default function SettingsPage() {
     <Layout>
       {/* Topbar */}
       <div className="dash-topbar">
-        <div className="dash-search">
-          <Search size={15} color="var(--text-light)" />
-          <input type="text" placeholder="Search for courses, lecturers, or schedules..." />
-        </div>
         <div className="dash-topbar-right">
           <button className="dash-notif-btn">
             <Bell size={18} />
@@ -244,18 +262,23 @@ export default function SettingsPage() {
 
             {/* Avatar Row */}
             <div className="set-avatar-row">
-              <div className="set-avatar-circle">
-                <span>JA</span>
+              <div className="set-avatar-circle" style={{ overflow: 'hidden' }}>
+                {avatar ? (
+                  <img src={avatar} alt="Profile" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+                ) : (
+                  <span>{(user?.name || 'AU').split(' ').map((w) => w[0]).filter(Boolean).slice(0, 2).join('').toUpperCase()}</span>
+                )}
               </div>
               <div className="set-avatar-actions">
-                <button className="set-btn set-btn-blue" onClick={() => toast.success('Upload dialog opened')}>
+                <button className="set-btn set-btn-blue" onClick={() => avatarInputRef.current?.click()}>
                   <Camera size={14} />
                   Change Photo
                 </button>
-                <button className="set-btn set-btn-outline" onClick={() => toast.success('Photo removed')}>
+                <button className="set-btn set-btn-outline" onClick={handleAvatarRemove} disabled={!avatar}>
                   <X size={14} />
                   Remove
                 </button>
+                <input ref={avatarInputRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={handleAvatarChange} />
               </div>
             </div>
 

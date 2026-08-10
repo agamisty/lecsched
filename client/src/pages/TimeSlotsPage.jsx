@@ -47,6 +47,7 @@ const STATUS_COLORS = {
 
 export default function TimeSlotsPage() {
   const [slots, setSlots] = useState([]);
+  const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -75,8 +76,15 @@ export default function TimeSlotsPage() {
 
   useEffect(() => { load(); }, []);
 
-  const totalPages = Math.max(1, Math.ceil(slots.length / perPage));
-  const visibleRows = slots.slice((page - 1) * perPage, page * perPage);
+  const filtered = slots.filter((s) => {
+    if (!search) return true;
+    const q = search.toLowerCase();
+    return (s.name || '').toLowerCase().includes(q) ||
+      (s.startTime || '').toLowerCase().includes(q) ||
+      (s.endTime || '').toLowerCase().includes(q);
+  });
+  const totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+  const visibleRows = filtered.slice((page - 1) * perPage, page * perPage);
 
   const activeCount = slots.filter((s) => s.active !== false).length;
   const inactiveCount = slots.filter((s) => s.active === false).length;
@@ -217,7 +225,7 @@ export default function TimeSlotsPage() {
       <div className="dash-topbar">
         <div className="dash-search">
           <Search size={15} color="var(--text-light)" />
-          <input type="text" placeholder="Search slots, times, schedules..." />
+          <input type="text" placeholder="Search slots, times, schedules..." value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }} />
         </div>
         <div className="dash-topbar-right">
           <button className="dash-notif-btn">
@@ -424,7 +432,7 @@ export default function TimeSlotsPage() {
         {/* Pagination */}
         <div className="co-pagination">
           <span className="co-page-info">
-            Showing {((page - 1) * perPage) + 1}–{Math.min(page * perPage, slots.length)} of {slots.length} slots
+            Showing {((page - 1) * perPage) + 1}–{Math.min(page * perPage, filtered.length)} of {filtered.length} slots
           </span>
           <div className="co-page-controls">
             <button className="co-page-btn" disabled={page === 1} onClick={() => setPage((p) => p - 1)}>

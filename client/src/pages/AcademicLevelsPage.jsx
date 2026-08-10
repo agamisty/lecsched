@@ -23,6 +23,7 @@ export default function AcademicLevelsPage() {
   const [programs, setPrograms] = useState([]);
   const [selectedProgram, setSelectedProgram] = useState('');
   const [levels, setLevels] = useState([]);
+  const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [editing, setEditing] = useState(null);
   const [viewing, setViewing] = useState(null);
@@ -54,6 +55,12 @@ export default function AcademicLevelsPage() {
 
   const programObj = programs.find((p) => String(p.id) === String(selectedProgram));
   const duration = Number(programObj?.duration) || 0;
+
+  const filteredLevels = levels.filter((l) => {
+    if (!search) return true;
+    const q = search.toLowerCase();
+    return (l.name || '').toLowerCase().includes(q) || String(l.level).includes(q);
+  });
 
   const totalOfferings = levels.reduce((s, l) => s + (l.offerings?.length || 0), 0);
 
@@ -128,7 +135,7 @@ export default function AcademicLevelsPage() {
       <div className="dash-topbar">
         <div className="dash-search">
           <Search size={15} color="var(--text-light)" />
-          <input type="text" placeholder="Search academic levels..." />
+          <input type="text" placeholder="Search academic levels..." value={search} onChange={(e) => setSearch(e.target.value)} />
         </div>
         <div className="dash-topbar-right">
           <button className="dash-notif-btn">
@@ -218,7 +225,7 @@ export default function AcademicLevelsPage() {
           <div className="cr-table-header" style={{ gridTemplateColumns: '1.2fr 0.8fr 1fr 1.2fr 0.7fr' }}>
             <span>Year</span><span>Level #</span><span>Course Offerings</span><span>Courses</span><span>Actions</span>
           </div>
-          {levels.map((l) => (
+          {filteredLevels.map((l) => (
             <div key={l.id} className="cr-table-row" style={{ gridTemplateColumns: '1.2fr 0.8fr 1fr 1.2fr 0.7fr' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600, fontSize: '0.85rem' }}>
                 <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, borderRadius: 8, background: '#e8f4ff', color: '#4facfe' }}>
@@ -247,11 +254,13 @@ export default function AcademicLevelsPage() {
               </div>
             </div>
           ))}
-          {levels.length === 0 && (
+          {filteredLevels.length === 0 && (
             <div style={{ padding: '3rem 1rem', textAlign: 'center', color: 'var(--text-muted)' }}>
-              {selectedProgram
-                ? <>No years defined yet. Use <b>Auto-Generate Year 1–{duration}</b> or <b>Add Year</b> to create the programme years.</>
-                : 'Select a programme to view or manage its years.'}
+              {levels.length === 0
+                ? (selectedProgram
+                    ? <>No years defined yet. Use <b>Auto-Generate Year 1–{duration}</b> or <b>Add Year</b> to create the programme years.</>
+                    : 'Select a programme to view or manage its years.')
+                : 'No years match your search.'}
             </div>
           )}
         </div>

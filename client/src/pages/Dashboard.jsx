@@ -6,7 +6,6 @@ import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import { dashboardAPI } from '../services/api';
 import {
-  Search,
   Bell,
   Calendar,
   Play,
@@ -118,10 +117,6 @@ export default function Dashboard() {
     <Layout>
       {/* Top Bar */}
       <div className="dash-topbar">
-        <div className="dash-search">
-          <Search size={16} color="#999" />
-          <input placeholder="Search for courses, lecturers, or schedules..." />
-        </div>
         <div className="dash-topbar-right">
           <button className="dash-notif-btn">
             <Bell size={20} />

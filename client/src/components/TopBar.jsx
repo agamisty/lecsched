@@ -1,17 +1,12 @@
-import { Search, Bell } from 'lucide-react';
+import { Bell } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-
-const ADMIN_AVATAR = 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&crop=face';
 
 export default function TopBar() {
   const { user } = useAuth();
+  const initials = (user?.name || 'AU').split(' ').map((w) => w[0]).filter(Boolean).slice(0, 2).join('').toUpperCase();
 
   return (
     <div className="dash-topbar">
-      <div className="dash-search">
-        <Search size={16} />
-        <input placeholder="Search for courses, lecturers, or schedules..." />
-      </div>
       <div className="dash-topbar-right">
         <button type="button" className="dash-notif-btn" aria-label="Notifications">
           <Bell size={20} />
@@ -23,7 +18,13 @@ export default function TopBar() {
             <span className="dash-admin-name">{user?.name || 'Admin User'}</span>
             <span className="dash-admin-role">University Admin</span>
           </div>
-          <img src={ADMIN_AVATAR} alt="" className="dash-avatar-img" />
+          {user?.avatar ? (
+            <img src={user.avatar} alt="" className="dash-avatar-img" style={{ objectFit: 'cover' }} />
+          ) : (
+            <div className="dash-avatar-img" style={{ borderRadius: '50%', background: 'var(--accent)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.85rem' }}>
+              {initials}
+            </div>
+          )}
         </div>
       </div>
     </div>

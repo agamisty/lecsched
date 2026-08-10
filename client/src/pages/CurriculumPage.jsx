@@ -12,6 +12,7 @@ export default function CurriculumPage() {
   const [levels, setLevels] = useState([]);
   const [selectedLevel, setSelectedLevel] = useState(null);
   const [offerings, setOfferings] = useState([]);
+  const [search, setSearch] = useState('');
   const [allCourses, setAllCourses] = useState([]);
   const [allSemesters, setAllSemesters] = useState([]);
   const [allLecturers, setAllLecturers] = useState([]);
@@ -79,10 +80,18 @@ export default function CurriculumPage() {
 
   const programObj = programs.find(p => String(p.id) === String(selectedProgram));
 
+  const filteredOfferings = offerings.filter(o => {
+    if (!search) return true;
+    const q = search.toLowerCase();
+    return (o.course?.code || '').toLowerCase().includes(q) ||
+      (o.course?.name || '').toLowerCase().includes(q) ||
+      (o.lecturer?.name || '').toLowerCase().includes(q);
+  });
+
   return (
     <Layout>
       <div className="dash-topbar">
-        <div className="dash-search"><Search size={15} color="var(--text-light)" /><input type="text" placeholder="Search curriculum..." /></div>
+        <div className="dash-search"><Search size={15} color="var(--text-light)" /><input type="text" placeholder="Search curriculum..." value={search} onChange={e => setSearch(e.target.value)} /></div>
         <div className="dash-topbar-right"><button className="dash-notif-btn"><Bell size={18} /><span className="dash-notif-dot" /></button><div className="dash-divider" /><div className="dash-admin"><div className="dash-avatar-img" style={{ borderRadius: '50%', background: 'var(--accent)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.85rem' }}>AU</div><div className="dash-admin-info"><span className="dash-admin-name">Admin User</span><span className="dash-admin-role">University Admin</span></div></div></div>
       </div>
       <div className="co-breadcrumb"><a href="#">Dashboard</a><span className="co-breadcrumb-sep">/</span><span className="co-breadcrumb-current">Curriculum</span></div>
@@ -130,7 +139,7 @@ export default function CurriculumPage() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 1.25rem', borderBottom: '1px solid var(--border)' }}>
                 <div>
                   <h3 style={{ fontSize: '0.95rem', fontWeight: 700 }}>{programObj?.name} — {selectedLevel.name}</h3>
-                  <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{offerings.length} course offerings</p>
+                  <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{search ? `${filteredOfferings.length} of ${offerings.length} course offerings` : `${offerings.length} course offerings`}</p>
                 </div>
                 <button className="btn btn-primary btn-sm" onClick={() => { setOfferingForm({ courseId: '', semesterId: '', lecturerId: '', numStudents: '', levelId: selectedLevel.id }); setShowOfferingModal(true); }}><Plus size={14} /> Add Course</button>
               </div>
@@ -138,7 +147,7 @@ export default function CurriculumPage() {
                 <div className="cr-table-header" style={{ gridTemplateColumns: '0.8fr 1.5fr 1fr 0.7fr 1fr 0.7fr 0.7fr' }}>
                   <span>Code</span><span>Course</span><span>Semester</span><span>Credits</span><span>Lecturer</span><span>Students</span><span>Actions</span>
                 </div>
-                {offerings.map(o => (
+                {filteredOfferings.map(o => (
                   <div key={o.id} className="cr-table-row" style={{ gridTemplateColumns: '0.8fr 1.5fr 1fr 0.7fr 1fr 0.7fr 0.7fr' }}>
                     <span style={{ fontWeight: 600, fontFamily: 'monospace', color: 'var(--accent)', fontSize: '0.85rem' }}>{o.course?.code}</span>
                     <span style={{ fontSize: '0.85rem' }}>{o.course?.name}</span>
@@ -149,7 +158,7 @@ export default function CurriculumPage() {
                     <div className="cr-td-actions"><button className="co-action-btn co-action-danger" onClick={() => handleDeleteOffering(o.id)}><Trash2 size={14} /></button></div>
                   </div>
                 ))}
-                {offerings.length === 0 && <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>No courses offered at this level</div>}
+                {filteredOfferings.length === 0 && <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>{offerings.length === 0 ? 'No courses offered at this level' : 'No courses match your search'}</div>}
               </div>
             </>
           ) : (

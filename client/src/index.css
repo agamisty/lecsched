@@ -8819,9 +8819,8 @@ td {
   .tv-grid-wrapper {
     overflow-x: auto;
   }
-  .tv-v-corner {
-    width: 64px;
-    min-width: 64px;
+  .tv-v-grid {
+    min-width: 860px;
   }
 
   .page-header h1,

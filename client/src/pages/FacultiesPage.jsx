@@ -60,7 +60,7 @@ export default function FacultiesPage() {
   return (
     <Layout>
       <div className="dash-topbar">
-        <div className="dash-search"><Search size={15} color="var(--text-light)" /><input type="text" placeholder="Search faculties..." /></div>
+        <div className="dash-search"><Search size={15} color="var(--text-light)" /><input type="text" placeholder="Search faculties..." value={search} onChange={e => { setSearch(e.target.value); setPage(1); }} /></div>
         <div className="dash-topbar-right">
           <button className="dash-notif-btn"><Bell size={18} /><span className="dash-notif-dot" /></button>
           <div className="dash-divider" />
