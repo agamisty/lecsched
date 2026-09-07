@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LecSched - Automated Lecture Timetable Generation System</title>
+<style>
+  @page { size: A4; margin: 1in; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 14px; line-height: 1.8; color: #000; max-width: 800px; margin: 0 auto; padding: 40px 60px; }
+  h1 { font-size: 22px; text-align: center; margin-top: 60px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; page-break-before: always; }
+  h1:first-of-type { page-break-before: avoid; }
+  h2 { font-size: 18px; margin-top: 30px; margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+  h3 { font-size: 16px; margin-top: 20px; margin-bottom: 10px; }
+  h4 { font-size: 14px; font-style: italic; margin-top: 15px; margin-bottom: 8px; }
+  p { text-align: justify; margin-bottom: 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 13px; }
+  th, td { border: 1px solid #000; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background-color: #e8e8e8; font-weight: bold; }
+  ul, ol { margin-bottom: 12px; padding-left: 30px; }
+  li { margin-bottom: 6px; }
+  .cover { text-align: center; padding-top: 120px; page-break-after: always; }
+  .cover h1 { font-size: 28px; border: none; margin-bottom: 10px; }
+  .cover h2 { font-size: 20px; border: none; text-align: center; margin-bottom: 5px; }
+  .cover .subtitle { font-size: 16px; margin: 5px 0; }
+  .cover .meta { margin-top: 80px; font-size: 14px; }
+  .cover .meta p { text-align: center; margin: 5px 0; }
+  .toc { page-break-after: always; }
+  .toc h1 { page-break-before: avoid; }
+  .toc ul { list-style: none; padding-left: 0; }
+  .toc li { margin: 4px 0; }
+  .toc li.sub { padding-left: 25px; }
+  .fig-caption { text-align: center; font-style: italic; font-size: 12px; margin: 5px 0 15px; }
+  .diagram { border: 1px solid #999; padding: 15px; margin: 10px 0; background: #fafafa; font-family: monospace; font-size: 12px; white-space: pre; overflow-x: auto; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER PAGE ============ -->
+<div class="cover">
+  <h1>AUTOMATED LECTURE TIMETABLE<br>GENERATION SYSTEM</h1>
+  <p class="subtitle">A Web-Based Solution for University Schedule Management</p>
+  <p class="subtitle"><em>LecSched</em></p>
+  <div class="meta">
+    <p><strong>A Project Report</strong></p>
+    <p>Submitted in partial fulfilment of the requirements for the award of</p>
+    <p><strong>Bachelor of Science in Computer Science</strong></p>
+    <br><br>
+    <p><strong>Students:</strong></p>
+    <p>Appiah-Kubi Desmond &nbsp;&nbsp; (3374622)</p>
+    <p>William Caiquo &nbsp;&nbsp; (3385922)</p>
+    <br>
+    <p><strong>Supervisor:</strong></p>
+    <p>[Supervisor Name]</p>
+    <br>
+    <p><strong>Department of Computer Science</strong></p>
+    <p>Faculty of Physical and Computational Sciences</p>
+    <br>
+    <p><strong>2025/2026 Academic Year</strong></p>
+  </div>
+</div>
+
+<!-- ============ TABLE OF CONTENTS ============ -->
+<div class="toc">
+  <h1>Table of Contents</h1>
+  <ul>
+    <li><strong>Chapter 1 &mdash; Introduction</strong></li>
+    <li class="sub">1.1 &nbsp; Background of the Study</li>
+    <li class="sub">1.2 &nbsp; Statement of the Problem</li>
+    <li class="sub">1.3 &nbsp; Aim and Objectives</li>
+    <li class="sub">1.4 &nbsp; Research Questions and Hypotheses</li>
+    <li class="sub">1.5 &nbsp; Significance of the Study</li>
+    <li class="sub">1.6 &nbsp; Scope and Limitations of the Study</li>
+    <li class="sub">1.7 &nbsp; Definition of Terms</li>
+    <li class="sub">1.8 &nbsp; Organization of the Report</li>
+    <li><strong>Chapter 2 &mdash; Literature Review</strong></li>
+    <li class="sub">2.1 &nbsp; Introduction</li>
+    <li class="sub">2.2 &nbsp; Conceptual Framework / Theoretical Background</li>
+    <li class="sub">2.3 &nbsp; Review of Related Concepts</li>
+    <li class="sub">2.4 &nbsp; Review of Related / Existing Systems</li>
+    <li class="sub">2.5 &nbsp; Comparative Analysis of Existing Systems</li>
+    <li class="sub">2.6 &nbsp; Gaps Identified in Literature</li>
+    <li class="sub">2.7 &nbsp; Summary of Literature Review</li>
+    <li><strong>Chapter 3 &mdash; System Analysis and Methodology</strong></li>
+    <li class="sub">3.1 &nbsp; Introduction</li>
+    <li class="sub">3.2 &nbsp; Research / Development Methodology</li>
+    <li class="sub">3.3 &nbsp; Analysis of the Existing System</li>
+    <li class="sub">3.4 &nbsp; Problems of the Existing System</li>
+    <li class="sub">3.5 &nbsp; Analysis of the Proposed System</li>
+    <li class="sub">3.6 &nbsp; Requirement Analysis</li>
+    <li class="sub">3.7 &nbsp; System Design Tools</li>
+    <li class="sub">3.8 &nbsp; Hardware and Software Requirements</li>
+    <li class="sub">3.9 &nbsp; Justification for Chosen Tools / Technology Stack</li>
+    <li><strong>Chapter 4 &mdash; System Design and Implementation</strong></li>
+    <li class="sub">4.1 &nbsp; Introduction</li>
+    <li class="sub">4.2 &nbsp; System Architecture (High-Level Diagram)</li>
+    <li class="sub">4.3 &nbsp; Database Design (ER Diagram, Schema, Table Structures / Data Dictionary)</li>
+    <li class="sub">4.4 &nbsp; Input/Output Design (Mockups, Form Layouts)</li>
+    <li class="sub">4.5 &nbsp; Program/Module Design (Pseudocode, Flowcharts, Algorithms)</li>
+    <li class="sub">4.6 &nbsp; Implementation Environment (Languages, Frameworks, IDE, Hosting)</li>
+    <li class="sub">4.7 &nbsp; Implementation Details (Key Code Snippets / Screenshots Explained)</li>
+    <li class="sub">4.8 &nbsp; Testing (Unit Testing, Integration Testing, System/Acceptance Testing; Test Cases and Results)</li>
+    <li class="sub">4.9 &nbsp; System Requirements for Deployment (Installation, Environment Setup)</li>
+    <li><strong>Chapter 5 &mdash; Summary, Conclusion and Recommendations</strong></li>
+    <li class="sub">5.1 &nbsp; Summary of the Study</li>
+    <li class="sub">5.2 &nbsp; Achievements / Contributions of the Project</li>
+    <li class="sub">5.3 &nbsp; Challenges Encountered</li>
+    <li class="sub">5.4 &nbsp; Conclusion</li>
+    <li class="sub">5.5 &nbsp; Recommendations</li>
+    <li class="sub">5.6 &nbsp; Suggestions for Future Work</li>
+    <li><strong>End Matter</strong></li>
+    <li class="sub">References / Bibliography</li>
+    <li class="sub">Appendix A: Full Source Code</li>
+    <li class="sub">Appendix B: Sample Screenshots / User Interface</li>
+    <li class="sub">Appendix C: Questionnaires / Interview Guide</li>
+    <li class="sub">Appendix D: User Manual</li>
+    <li class="sub">Appendix E: Turnitin / Plagiarism Report</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!--                    CHAPTER 1                                  -->
+<!-- ============================================================ -->
+<h1>CHAPTER ONE: INTRODUCTION</h1>
+
+<h2>1.1 Background of the Study</h2>
+
+<p>Lecture timetabling is one of the most critical administrative functions in every institution of higher learning. It involves the allocation of courses, lecturers, classrooms, and time slots into a structured weekly schedule that avoids conflicts and satisfies a wide range of institutional constraints. In most universities, especially within the developing world, this process is performed manually by timetabling officers or departmental secretaries who rely on spreadsheets, paper-based charts, or basic word-processing tools to assemble schedules (Abdullah &amp; Sahib, 2021).</p>
+
+<p>The manual approach, while historically adequate for small institutions with few programmes, becomes progressively error-prone and inefficient as the number of academic programmes, departments, courses, and lecturers grows. A single university may offer hundreds of courses across dozens of programmes, each with its own level requirements, credit-hour allocations, room-type preferences (lecture halls vs. laboratories), and lecturer availability constraints. Coordinating all of these variables by hand frequently results in scheduling clashes where two courses are assigned the same room at the same time, or the same lecturer is expected to teach in two locations simultaneously (Bakir, 2023).</p>
+
+<p>Furthermore, manual timetabling is inherently slow. Changes such as a lecturer calling in sick, a room undergoing maintenance, or a new course being added to the curriculum can require hours of reworking an entire semester's schedule. The lack of automation also means that there is no rapid way to regenerate a schedule from scratch when the underlying constraints change significantly from one academic session to the next.</p>
+
+<p>With the rapid adoption of web technologies and cloud computing, universities are increasingly looking towards automated Timetable Generation Systems (TGS) to reduce the time spent on scheduling, minimize human error, and allow administrators to focus on higher-value tasks. Modern web-based systems can enforce hard constraints (no room or lecturer clashes) and soft constraints (preference for certain time slots or rooms), while producing multiple schedule variants in seconds (Edwards &amp; Kudelska, 2022).</p>
+
+<p>This project, the Automated Lecture Timetable Generation System (LecSched), is motivated by the need to replace the manual, error-prone scheduling practices observed at the institution with a fully automated, web-accessible solution. LecSched integrates a greedy randomized scheduling algorithm with a modern React-based front-end, a Node.js / Express back-end, and a cloud-hosted PostgreSQL database, providing a complete timetable management platform accessible from any device with a web browser.</p>
+
+<h2>1.2 Statement of the Problem</h2>
+
+<p>At many universities, the process of creating lecture timetables remains largely manual. Departmental secretaries or timetabling officers collect course offerings from each department, match them to available lecturers, and then attempt to fill a weekly grid of days and time slots while ensuring that no two courses share the same room or lecturer at the same time. This process suffers from several well-documented shortcomings:</p>
+
+<ol>
+  <li><strong>Time Consumption:</strong> A complete semester timetable can take days or weeks to assemble manually, especially when constraints change mid-semester. The effort is repeated each academic session with no meaningful reuse of previous schedules.</li>
+  <li><strong>Human Error:</strong> Manual grid-filling is inherently unreliable at scale. With hundreds of course sections, it is virtually impossible for a human planner to guarantee the absence of clashes without systematic verification.</li>
+  <li><strong>Inflexibility to Change:</strong> When a lecturer is reassigned, a room becomes unavailable, or a new course offering is added, the entire schedule may need to be manually reworked, causing administrative bottlenecks.</li>
+  <li><strong>Lack of Transparency:</strong> Paper-based or spreadsheet-based schedules are difficult to distribute and often become outdated quickly. Lecturers may receive conflicting versions, and there is no single authoritative, up-to-date source.</li>
+  <li><strong>No Scenario Planning:</strong> Manual processes do not support rapid generation of alternative schedules. Administrators cannot easily compare different timetabling strategies (e.g., scheduling all computer science courses first vs. interleaving across departments).</li>
+  <li><strong>Poor Reporting:</strong> There is no automated way to produce reports on room utilization, lecturer workload, or timetable quality (clash rates) without manual tallying.</li>
+</ol>
+
+<p>These problems collectively lead to scheduling conflicts that disrupt academic activities, frustrate both lecturers and students, and reduce the overall efficiency of university operations. There is therefore a clear need for a computerized system that automates the timetable generation process, enforces constraints programmatically, and provides a centralized, accessible platform for schedule management.</p>
+
+<h2>1.3 Aim and Objectives</h2>
+
+<h3>Aim</h3>
+<p>The aim of this project is to design, develop, and deploy a web-based Automated Lecture Timetable Generation System (LecSched) that eliminates manual scheduling conflicts, reduces the time required to produce a timetable, and provides a centralized platform for academic schedule management.</p>
+
+<h3>Objectives</h3>
+<p>The following specific objectives are set out to achieve the aim:</p>
+<ol>
+  <li>To model the complete academic organizational hierarchy (faculties, departments, programmes, academic levels, semesters, courses, and course offerings) in a relational database to support flexible timetable generation.</li>
+  <li>To develop a constraint-based scheduling algorithm that automatically assigns courses to time slots and classrooms while enforcing hard constraints (no lecturer, room, or group clashes) and soft constraints (room capacity, course type matching).</li>
+  <li>To implement a web-based administrative interface for managing all timetable-related entities (faculties, departments, programmes, courses, classrooms, lecturers, time slots) through standard CRUD operations.</li>
+  <li>To provide a visual timetable viewer that displays the generated schedule in a day-by-period grid with colour-coded entries, filterable by programme, academic level, and semester.</li>
+  <li>To support export of the generated timetable in PDF and JSON formats for offline reference and system integration.</li>
+  <li>To incorporate a real-time chat module enabling communication between lecturers and administrators within the same platform.</li>
+  <li>To deploy the system on a cloud platform (Vercel with Neon PostgreSQL) for universal access without local infrastructure requirements.</li>
+</ol>
+
+<h2>1.4 Research Questions and Hypotheses</h2>
+
+<h3>Research Questions</h3>
+<ol>
+  <li>How can the constraints of a university lecture timetabling problem (no overlapping room, lecturer, or group assignments) be formally represented and enforced algorithmically?</li>
+  <li>Can a greedy randomized scheduling heuristic generate conflict-free timetables within an acceptable time frame for a mid-sized university with multiple departments and programmes?</li>
+  <li>What is the impact of a web-based, cloud-deployed timetabling system on the time required to produce and distribute a semester timetable compared to manual methods?</li>
+  <li>How do users (administrators and lecturers) perceive the usability and effectiveness of an automated timetabling system relative to traditional spreadsheet-based approaches?</li>
+</ol>
+
+<h3>Hypotheses</h3>
+<p><strong>H<sub>0</sub>:</strong> There is no significant difference in timetabling efficiency between the automated system and the existing manual process.</p>
+<p><strong>H<sub>1</sub>:</strong> The automated timetabling system significantly reduces the time required to produce a conflict-free semester timetable compared to the existing manual process.</p>
+
+<h2>1.5 Significance of the Study</h2>
+
+<p>The findings and outputs of this study are expected to benefit the following stakeholders:</p>
+
+<ol>
+  <li><strong>University Administrators:</strong> The system provides a centralized, automated tool for generating timetables, replacing error-prone manual methods and reducing the time spent on scheduling from days to minutes.</li>
+  <li><strong>Lecturers:</strong> Lecturers gain access to a single, authoritative timetable source accessible from any device. They can view their weekly schedule, export it as a PDF, and communicate with colleagues through the built-in chat system.</li>
+  <li><strong>Students:</strong> Although LecSched does not currently provide a direct student portal, students indirectly benefit from clash-free, well-distributed schedules that reduce class disruptions and improve the quality of teaching.</li>
+  <li><strong>Departmental Officers:</strong> The system reduces the administrative burden on departmental secretaries who previously had to manually coordinate course offerings, room bookings, and lecturer assignments.</li>
+  <li><strong>The Academic Community:</strong> This project contributes to the growing body of knowledge on automated timetabling in the context of developing-world universities, providing a reference architecture (React + Express + PostgreSQL on Vercel) that can be adapted by similar institutions.</li>
+</ol>
+
+<h2>1.6 Scope and Limitations of the Study</h2>
+
+<h3>Scope</h3>
+<p>This study focuses on the automated generation of weekly lecture timetables for a university environment. The system covers the following functional areas:</p>
+<ul>
+  <li>Management of the academic organizational hierarchy: faculties, departments, programmes, academic levels (years), semesters, and academic years.</li>
+  <li>Management of courses, course offerings (linking courses to levels, semesters, and lecturers), and the definition of available time slots.</li>
+  <li>Management of physical resources: buildings, floors, and classrooms with attributes such as capacity, type (lecture hall, lab, seminar room), and status.</li>
+  <li>Automated timetable generation using a constraint-based scheduling algorithm.</li>
+  <li>Visual timetable display with programme-level filtering and PDF/JSON export.</li>
+  <li>Real-time inter-user chat for administrative and lecturer communication.</li>
+  <li>Dashboard analytics showing key institutional metrics (room usage, generation success rates, departmental distribution).</li>
+</ul>
+
+<h3>Limitations</h3>
+<ul>
+  <li>The system does not currently support student-level scheduling (e.g., student timetable personalization or course registration integration).</li>
+  <li>The scheduling algorithm uses a greedy randomized heuristic and does not guarantee an optimal solution. For very large datasets, the quality of the generated timetable may vary between runs.</li>
+  <li>The system does not integrate with existing Student Information Systems (SIS) or Learning Management Systems (LMS); all data entry is performed within the application.</li>
+  <li>Room-type preferences are limited to lectures and labs. More granular preferences (e.g., projector requirement, proximity to a specific building) are not supported.</li>
+  <li>The chat module does not support file attachments or group video conferencing.</li>
+  <li>Only the admin role can generate timetables; lecturers can only view and export them.</li>
+</ul>
+
+<h2>1.7 Definition of Terms</h2>
+
+<table>
+  <tr><th>Term</th><th>Definition</th></tr>
+  <tr><td><strong>Timetable</strong></td><td>A structured weekly schedule showing the allocation of courses to specific days, time slots, and classrooms.</td></tr>
+  <tr><td><strong>Course Offering</strong></td><td>A specific instance of a course assigned to a particular academic level, semester, and lecturer for a given academic session.</td></tr>
+  <tr><td><strong>Hard Constraint</strong></td><td>A scheduling rule that must never be violated (e.g., no two courses in the same room at the same time).</td></tr>
+  <tr><td><strong>Soft Constraint</strong></td><td>A scheduling preference that should be satisfied where possible but may be relaxed if necessary (e.g., preferred room type or time block).</td></tr>
+  <tr><td><strong>Clash</strong></td><td>A situation where two or more courses are assigned to the same resource (room, lecturer, or group) at the same time slot.</td></tr>
+  <tr><td><strong>Time Slot</strong></td><td>A defined period during the academic day (e.g., 08:00 &ndash; 10:00) during which classes can be scheduled.</td></tr>
+  <tr><td><strong>API</strong></td><td>Application Programming Interface &mdash; a set of protocols and rules that allow different software components to communicate.</td></tr>
+  <tr><td><strong>REST</strong></td><td>Representational State Transfer &mdash; an architectural style for designing networked applications using standard HTTP methods.</td></tr>
+  <tr><td><strong>JWT</strong></td><td>JSON Web Token &mdash; a compact, URL-safe token used for securely transmitting information between parties as a JSON object, commonly used for authentication.</td></tr>
+  <tr><td><strong>ORM</strong></td><td>Object-Relational Mapping &mdash; a technique that maps database tables to programming language objects (e.g., Sequelize for Node.js).</td></tr>
+  <tr><td><strong>SPA</strong></td><td>Single-Page Application &mdash; a web application that loads a single HTML page and dynamically updates content without full page reloads.</td></tr>
+  <tr><td><strong>Serverless</strong></td><td>A cloud execution model where the provider dynamically manages the allocation and provisioning of servers in response to request events.</td></tr>
+  <tr><td><strong>WebSocket</strong></td><td>A communication protocol providing full-duplex communication channels over a single TCP connection, used for real-time features such as chat.</td></tr>
+  <tr><td><strong>Greedy Algorithm</strong></td><td>An algorithmic paradigm that makes the locally optimal choice at each step in the hope of finding a global optimum.</td></tr>
+</table>
+
+<h2>1.8 Organization of the Report</h2>
+
+<p>This report is organized into five chapters, each addressing a specific aspect of the project:</p>
+
+<p><strong>Chapter One (Introduction)</strong> provides the background of the study, identifies the problem, states the aim and objectives, presents the research questions and hypotheses, discusses the significance and scope of the study, defines key terms, and outlines the report structure.</p>
+
+<p><strong>Chapter Two (Literature Review)</strong> reviews the conceptual and theoretical foundations of timetable generation, examines related technologies and algorithms, surveys existing timetabling systems and their features, and identifies gaps that this project seeks to address.</p>
+
+<p><strong>Chapter Three (System Analysis and Methodology)</strong> describes the development methodology adopted, analyses the existing manual system and its problems, presents the analysis of the proposed system, details the functional and non-functional requirements, presents the system design tools and diagrams, and specifies the hardware and software requirements.</p>
+
+<p><strong>Chapter Four (System Design and Implementation)</strong> presents the detailed system design, including database schema (ER diagrams), user interface mockups, API endpoint specifications, and the implementation of the scheduling algorithm. It also covers the deployment architecture and configuration.</p>
+
+<p><strong>Chapter Five (Summary, Conclusion and Recommendations)</strong> summarizes the project achievements, evaluates the extent to which the objectives were met, presents conclusions drawn from the study, and offers recommendations for future work.</p>
+
+
+<!-- ============================================================ -->
+<!--                    CHAPTER 2                                  -->
+<!-- ============================================================ -->
+<h1>CHAPTER TWO: LITERATURE REVIEW</h1>
+
+<h2>2.1 Introduction</h2>
+
+<p>This chapter reviews the existing body of knowledge relevant to automated lecture timetabling. It begins by establishing the conceptual and theoretical foundations underpinning timetabling problems, then examines the key technologies and algorithms that have been applied to their solution. A survey of existing timetabling systems is presented, followed by a comparative analysis that highlights the strengths and weaknesses of each approach. The chapter concludes by identifying specific gaps in the literature that motivate the design decisions made in this project.</p>
+
+<h2>2.2 Conceptual Framework / Theoretical Background</h2>
+
+<h3>2.2.1 The University Timetabling Problem</h3>
+<p>The university timetabling problem (UTP) is a well-studied combinatorial optimization problem in operations research and computer science. It involves assigning a set of events (lectures, tutorials, labs) to a set of time slots and rooms such that a collection of hard and soft constraints are satisfied (Burke &amp; Petrovic, 2002).</p>
+
+<p>Formally, the UTP can be described as follows. Given:</p>
+<ul>
+  <li>A set of courses <em>C = {c<sub>1</sub>, c<sub>2</sub>, ..., c<sub>n</sub>}</em>, each with an associated number of students and course type (lecture, lab, tutorial).</li>
+  <li>A set of lecturers <em>L = {l<sub>1</sub>, l<sub>2</sub>, ..., l<sub>m</sub>}</em>, each potentially available for a subset of the courses.</li>
+  <li>A set of rooms <em>R = {r<sub>1</sub>, r<sub>2</sub>, ..., r<sub>p</sub>}</em>, each with a capacity and a type (lecture hall, lab, seminar room).</li>
+  <li>A set of time slots <em>T = {t<sub>1</sub>, t<sub>2</sub>, ..., t<sub>q</sub>}</em> arranged over a weekly timetable grid (typically 5 weekdays &times; multiple periods per day).</li>
+</ul>
+<p>The goal is to find a mapping <em>f: C &rarr; T &times; R</em> that assigns each course to a time slot and room such that all hard constraints are satisfied and a measure of soft constraint satisfaction is maximized.</p>
+
+<h3>2.2.2 Constraint Classification</h3>
+<p>Scheduling constraints in the UTP are broadly classified as:</p>
+<ul>
+  <li><strong>Hard Constraints:</strong> Must be satisfied in any feasible timetable. Examples include:
+    <ul>
+      <li>No room clash: two courses cannot share the same room at the same time.</li>
+      <li>No lecturer clash: a lecturer cannot teach two courses simultaneously.</li>
+      <li>No group clash: courses assigned to the same group of students cannot overlap in time.</li>
+      <li>Room capacity: the room must accommodate the number of students enrolled.</li>
+    </ul>
+  </li>
+  <li><strong>Soft Constraints:</strong> Desirable but not mandatory. Examples include:
+    <ul>
+      <li>Preference for certain time slots (e.g., morning vs. afternoon).</li>
+      <li>Room-type preference (e.g., a course preferring a specific building).</li>
+      <li>Lecturer workload balancing across the week.</li>
+      <li>Minimizing gaps in students' daily schedules.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>2.2.3 Computational Complexity</h3>
+<p>The UTP is known to be NP-hard in its general form (Garey &amp; Johnson, 1979). This means that as the problem size grows (more courses, rooms, and constraints), finding an optimal solution becomes computationally intractable within polynomial time. Consequently, most practical timetabling systems rely on heuristic and meta-heuristic approaches that produce near-optimal solutions within reasonable time limits (Babaei &amp; Abaspur, 2020).</p>
+
+<h3>2.2.4 Approaches to Timetabling</h3>
+<p>The literature identifies several categories of solution approaches:</p>
+<ol>
+  <li><strong>Exact Methods:</strong> Integer Linear Programming (ILP), Constraint Programming (CP). These guarantee optimality but scale poorly (Dorne &amp; Hao, 1998).</li>
+  <li><strong>Heuristics:</strong> Greedy constructive heuristics, hill-climbing. Fast but may get trapped in local optima.</li>
+  <li><strong>Meta-heuristics:</strong> Simulated Annealing (SA), Genetic Algorithms (GA), Tabu Search (TS), Ant Colony Optimization (ACO). These explore the solution space more broadly and are the most widely used for university timetabling (Abdullah &amp; Sahib, 2021).</li>
+  <li><strong>Hybrid Approaches:</strong> Combine constructive heuristics with meta-heuristic refinement to balance solution quality and computation time.</li>
+</ol>
+
+<h2>2.3 Review of Related Concepts (Key Technologies, Algorithms, and Models)</h2>
+
+<h3>2.3.1 Greedy Randomized Heuristic</h3>
+<p>A greedy constructive heuristic builds a timetable incrementally, making a locally optimal assignment at each step (e.g., placing the most constrained course first). The randomized variant introduces controlled randomness (e.g., shuffling the order of candidate days, rooms, or time slots) to produce different solutions on successive runs. This diversity enables the system to explore multiple scheduling configurations and select the best, without the complexity of full meta-heuristic frameworks (Tsai &amp; Kao, 2005).</p>
+
+<p>In this project, the scheduling algorithm sorts course offerings by credit hours (descending), then iterates through shuffled days and time blocks to find feasible room assignments for each course. Three tracking structures (lecturerBusy, classroomBusy, groupCells) enforce hard constraints in real-time.</p>
+
+<h3>2.3.2 Relational Database Modeling</h3>
+<p>University timetabling data is inherently relational. Entities such as faculties, departments, programmes, courses, lecturers, and rooms are connected through well-defined one-to-many and many-to-many relationships. A normalized relational database (in this case, PostgreSQL) ensures data integrity, efficient querying, and support for complex joins required during timetable generation (Date, 2019).</p>
+
+<p>The Entity-Relationship (ER) model is used to design the database schema. In this project, 17 Sequelize models define the tables and their associations, including Faculty&rarr;Department&rarr;Program&rarr;AcademicLevel&rarr;CourseOffering&rarr;TimetableSlot chains.</p>
+
+<h3>2.3.3 RESTful API Architecture</h3>
+<p>Representational State Transfer (REST) is the dominant architectural style for web APIs. RESTful APIs use standard HTTP methods (GET, POST, PUT, DELETE) to perform CRUD operations on resources identified by URLs. The LecSched back-end exposes 19 route modules under the <code>/api</code> prefix, each implementing RESTful endpoints for its respective entity (Fielding, 2000).</p>
+
+<h3>2.3.4 JWT-Based Authentication</h3>
+<p>JSON Web Tokens (JWT) provide a stateless authentication mechanism. Upon login, the server issues a signed token containing the user's identity and role. Subsequent requests include this token in the Authorization header, and the server verifies it without maintaining session state. JWT is particularly well-suited for serverless deployments (such as Vercel) where request-level isolation prevents traditional session storage (Jones et al., 2015).</p>
+
+<h3>2.3.5 WebSocket-Based Real-Time Communication</h3>
+<p>Socket.IO extends the WebSocket protocol with automatic fallback to HTTP long-polling and provides features such as rooms, namespaces, and reconnection handling. It is used in LecSched to implement a real-time chat system with public rooms and private messaging between users (Bankar, 2023).</p>
+
+<h3>2.3.6 Single-Page Application (SPA) Architecture</h3>
+<p>Modern web applications increasingly adopt SPA architecture, where a single HTML page loads a JavaScript bundle that handles all client-side routing and rendering dynamically. React, the most widely used SPA framework, enables component-based development, virtual DOM diffing for efficient updates, and a rich ecosystem of libraries. LecSched's front-end is built with React 19 and Vite, providing fast development iteration and optimized production builds (Meta, 2023).</p>
+
+<h3>2.3.7 Serverless Deployment</h3>
+<p>Serverless platforms such as Vercel allow back-end code to be deployed as individual functions that execute in response to HTTP requests. This eliminates the need for explicit server management and provides automatic scaling. Vercel's serverless functions support Node.js, making it straightforward to deploy an Express application (Vercel, 2024).</p>
+
+<h2>2.4 Review of Related / Existing Systems</h2>
+
+<h3>2.4.1 FET Timetable Software</h3>
+<p>FET (Free Timetabling Software) is an open-source, cross-platform application for automatically scheduling university timetables. It uses a constraint-based approach with a heuristic algorithm and supports an extensive set of constraint types (soft and hard). FET is desktop-based, written in C++/Qt, and is widely used in European universities. However, it is not web-based and requires local installation (FET, 2024).</p>
+
+<h3>2.4.2 University Timetabler (UT)</h3>
+<p>University Timetabler is a commercial web-based timetabling system used by several UK universities. It provides an intuitive graphical interface, constraint definition tools, and reporting features. While powerful, it is a paid product and offers limited customization for institutions with unique scheduling requirements (University Timetabler, 2024).</p>
+
+<h3>2.4.3 TimeTabler</h3>
+<p>TimeTabler is one of the longest-established timetabling tools, developed for UK further and higher education. It offers manual, assisted, and automatic timetabling modes, with a powerful clash resolution system. It is a Windows desktop application with a proprietary license, making it inaccessible to institutions with limited budgets (TimeTabler, 2024).</p>
+
+<h3>2.4.4 UniTime</h3>
+<p>UniTime is a web-based timetabling platform developed at Purdue University and distributed under an open-source license. It supports course timetabling, examination timetabling, and student scheduling. Built with Java and backed by a relational database, it is one of the most feature-rich open-source options. However, its Java-based architecture requires significant server infrastructure, and its user interface is considered dated compared to modern web applications (UniTime, 2024).</p>
+
+<h3>2.4.5 Google Calendar / Outlook Integration</h3>
+<p>While not dedicated timetabling systems, calendar applications such as Google Calendar and Microsoft Outlook are sometimes used by lecturers to manually create their weekly schedules. These tools provide notification and sharing features but lack any constraint enforcement or automated generation capability. They are not suitable as institutional timetabling solutions.</p>
+
+<h2>2.5 Comparative Analysis of Existing Systems</h2>
+
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>FET</th>
+    <th>UniTime</th>
+    <th>TimeTabler</th>
+    <th>Univ. Timetabler</th>
+    <th>LecSched (Proposed)</th>
+  </tr>
+  <tr>
+    <td>Platform</td>
+    <td>Desktop (C++)</td>
+    <td>Web (Java)</td>
+    <td>Desktop (Windows)</td>
+    <td>Web (Commercial)</td>
+    <td>Web (React + Node.js)</td>
+  </tr>
+  <tr>
+    <td>Open Source</td>
+    <td>Yes (GPL)</td>
+    <td>Yes (EUPL)</td>
+    <td>No (Paid)</td>
+    <td>No (Paid)</td>
+    <td>Yes (Open)</td>
+  </tr>
+  <tr>
+    <td>Automated Generation</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>Constraint Types</td>
+    <td>Extensive</td>
+    <td>Extensive</td>
+    <td>Moderate</td>
+    <td>Moderate</td>
+    <td>Core hard + soft</td>
+  </tr>
+  <tr>
+    <td>Cloud-Hosted</td>
+    <td>No</td>
+    <td>Self-hosted</td>
+    <td>No</td>
+    <td>Yes (SaaS)</td>
+    <td>Yes (Vercel)</td>
+  </tr>
+  <tr>
+    <td>Mobile Access</td>
+    <td>No</td>
+    <td>Responsive</td>
+    <td>No</td>
+    <td>Responsive</td>
+    <td>Responsive (Mobile-first)</td>
+  </tr>
+  <tr>
+    <td>Real-Time Chat</td>
+    <td>No</td>
+    <td>No</td>
+    <td>No</td>
+    <td>No</td>
+    <td>Yes (Socket.IO)</td>
+  </tr>
+  <tr>
+    <td>PDF Export</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Yes</td>
+    <td>Yes (PDFKit)</td>
+  </tr>
+  <tr>
+    <td>Setup Complexity</td>
+    <td>Low</td>
+    <td>High (Java/DB)</td>
+    <td>Low</td>
+    <td>None (SaaS)</td>
+    <td>Low (Serverless)</td>
+  </tr>
+  <tr>
+    <td>Institutional Cost</td>
+    <td>Free</td>
+    <td>Free</td>
+    <td>Paid</td>
+    <td>Paid</td>
+    <td>Free</td>
+  </tr>
+</table>
+
+<h2>2.6 Gaps Identified in Literature</h2>
+
+<p>Based on the review of existing systems and approaches, the following gaps are identified:</p>
+
+<ol>
+  <li><strong>Lack of Affordable Web-Based Solutions for Developing-World Universities:</strong> Most existing automated timetabling systems are either desktop-based (FET, TimeTabler), require significant server infrastructure (UniTime), or are commercial products (University Timetabler) beyond the reach of under-resourced institutions.</li>
+  <li><strong>No Integrated Communication Layer:</strong> Existing systems treat timetabling as a standalone function. None of the surveyed systems include built-in real-time communication features, which are valuable for coordinating schedule changes and resolving conflicts.</li>
+  <li><strong>Complex Setup and Maintenance:</strong> Java-based systems (UniTime) require dedicated server administration. Desktop applications (FET, TimeTabler) require installation on individual machines and do not support centralized access.</li>
+  <li><strong>Limited Mobile Support:</strong> Several existing systems (FET, TimeTabler) are not accessible from mobile devices, despite the growing reliance on smartphones and tablets among academic staff.</li>
+  <li><strong>No Modern Deployment Models:</strong> None of the existing systems leverage serverless cloud deployment (e.g., Vercel, AWS Lambda), which would eliminate infrastructure management and provide automatic scaling.</li>
+  <li><strong>Separation of Management and Generation:</strong> In many systems, data entry (courses, rooms, lecturers) and timetable generation are handled by different tools or separate interfaces, creating workflow discontinuity.</li>
+</ol>
+
+<p>LecSched addresses these gaps by providing an integrated, web-based, serverless-deployed timetabling platform that combines entity management, automated generation, visual display, export, and real-time communication in a single application.</p>
+
+<h2>2.7 Summary of Literature Review</h2>
+
+<p>This chapter established the theoretical foundations of the university timetabling problem, classified it as an NP-hard combinatorial optimization problem, and surveyed the major solution approaches (exact methods, heuristics, meta-heuristics). The key enabling technologies underpinning the proposed system &mdash; relational databases, RESTful APIs, JWT authentication, WebSockets, SPAs, and serverless deployment &mdash; were reviewed. An analysis of five existing timetabling systems revealed that while capable solutions exist, they are either not web-based, not free, require complex infrastructure, or lack integrated communication features. The identified gaps justify the design and development of LecSched as an accessible, integrated, and modern solution to university lecture timetabling.</p>
+
+
+<!-- ============================================================ -->
+<!--                    CHAPTER 3                                  -->
+<!-- ============================================================ -->
+<h1>CHAPTER THREE: SYSTEM ANALYSIS AND METHODOLOGY</h1>
+
+<h2>3.1 Introduction</h2>
+
+<p>This chapter describes the systematic approach adopted for the analysis, design, and development of the proposed LecSched system. It presents the chosen development methodology, analyses the existing manual timetabling process and its problems, describes the proposed system and its requirements, presents the system design tools and diagrams, and specifies the hardware and software requirements for development and deployment.</p>
+
+<h2>3.2 Research / Development Methodology</h2>
+
+<h3>3.2.1 Methodology Adopted: Agile (Scrum-Inspired Incremental Development)</h3>
+<p>The development of LecSched followed an <strong>Agile</strong> methodology, specifically a simplified Scrum-inspired iterative and incremental approach. Agile was chosen over the traditional Waterfall model for the following reasons:</p>
+
+<ul>
+  <li>The timetabling domain involves complex business rules that are best understood through iterative prototyping and stakeholder feedback.</li>
+  <li>The project scope could be decomposed into independently deliverable increments (e.g., academic structure management &rarr; course management &rarr; timetable generation &rarr; visualization &rarr; deployment).</li>
+  <li>Early delivery of a working prototype was important for demonstrating feasibility and gathering supervisor feedback.</li>
+</ul>
+
+<h3>3.2.2 Development Phases</h3>
+<p>The project was executed in the following sprints:</p>
+
+<table>
+  <tr><th>Sprint</th><th>Focus</th><th>Key Deliverables</th></tr>
+  <tr><td>1</td><td>Foundation</td><td>Project setup, database schema design, Express server skeleton, authentication (JWT), User and Faculty models with CRUD routes</td></tr>
+  <tr><td>2</td><td>Academic Structure</td><td>Department, Program, Academic Level, Academic Year, Semester models and routes; front-end pages for all CRUD operations; sidebar navigation and layout</td></tr>
+  <tr><td>3</td><td>Resources &amp; Curriculum</td><td>Building, Floor, Classroom, TimeSlot models; Course and CourseOffering CRUD; Lecturer management; Curriculum page with two-panel design</td></tr>
+  <tr><td>4</td><td>Timetable Generation</td><td>Scheduling algorithm implementation (greedy randomized heuristic); Generator page with filters; Timetable viewer with visual grid, colour coding, and group tabs</td></tr>
+  <tr><td>5</td><td>Features &amp; Export</td><td>PDF export (PDFKit); Reports page with charts; Real-time chat (Socket.IO); Dashboard with Recharts analytics</td></tr>
+  <tr><td>6</td><td>Deployment &amp; Polish</td><td>Vercel deployment; Neon PostgreSQL migration; Mobile responsive CSS; Bug fixes; Search bar wiring; Profile avatar feature</td></tr>
+</table>
+
+<h3>3.2.3 Iteration Strategy</h3>
+<p>Each sprint followed the cycle: <strong>Plan &rarr; Design &rarr; Implement &rarr; Test &rarr; Review</strong>. The front-end and back-end were developed concurrently within each sprint. At the end of each sprint, a working increment was deployed and verified.</p>
+
+<h2>3.3 Analysis of the Existing System</h2>
+
+<p>The existing timetabling process at the institution was studied through observation and interviews with departmental administrative staff. The process can be described as follows:</p>
+
+<h3>3.3.1 Current Process Flow</h3>
+<ol>
+  <li><strong>Data Collection:</strong> Each department submits a list of courses to be offered in the upcoming semester, along with the number of students and preferred lecturers. These are typically communicated via email or paper memos.</li>
+  <li><strong>Resource Compilation:</strong> The timetabling officer compiles a list of available rooms (with capacity and type information) and available time blocks.</li>
+  <li><strong>Schedule Assembly:</strong> Using a spreadsheet (Microsoft Excel) or a paper-based grid, the officer manually places each course into a day-and-time cell, checking for clashes by visual inspection.</li>
+  <li><strong>Conflict Resolution:</strong> When clashes are detected (two courses in the same room or the same lecturer assigned to two courses simultaneously), the officer manually rearranges entries until the clash is resolved.</li>
+  <li><strong>Distribution:</strong> The completed schedule is printed and distributed to departments. Updated versions are distributed as corrections are made, sometimes via email.</li>
+</ol>
+
+<h3>3.3.2 Users of the Existing System</h3>
+<ul>
+  <li><strong>Timetabling Officer / Departmental Secretary:</strong> Primary operator; compiles and maintains the schedule.</li>
+  <li><strong>Head of Department:</strong> Reviews and approves the departmental schedule.</li>
+  <li><strong>Lecturers:</strong> Receive the printed schedule and follow it for class delivery.</li>
+  <li><strong>Dean / Faculty Administrator:</strong> Oversees scheduling across multiple departments within a faculty.</li>
+</ul>
+
+<h2>3.4 Problems of the Existing System</h2>
+
+<table>
+  <tr><th>No.</th><th>Problem</th><th>Impact</th></tr>
+  <tr><td>1</td><td>Schedule assembly is done manually in Excel, requiring hours of visual clash-checking.</td><td>High time cost per semester; delays in schedule availability.</td></tr>
+  <tr><td>2</td><td>Clashes are detected visually, which is unreliable when the grid exceeds 50 entries.</td><td>Scheduling errors that disrupt classes and require last-minute changes.</td></tr>
+  <tr><td>3</td><td>Changes (room unavailable, lecturer absent) require manual rework of the entire grid.</td><td>Slow response to change; schedule becomes stale quickly.</td></tr>
+  <tr><td>4</td><td>Printed schedules cannot be updated in real time; lecturers rely on outdated copies.</td><td>Lecturers arrive at wrong rooms or at wrong times.</td></tr>
+  <tr><td>5</td><td>No automated reporting on room utilization or lecturer workload.</td><td>Informed resource allocation decisions are difficult to make.</td></tr>
+  <tr><td>6</td><td>No centralized digital record of timetables across academic sessions.</td><td>Past schedules are difficult to retrieve for reference or auditing.</td></tr>
+  <tr><td>7</td><td>No communication channel between lecturers and administrators within the scheduling workflow.</td><td>Schedule changes are communicated via ad-hoc emails or phone calls, leading to information loss.</td></tr>
+</table>
+
+<h2>3.5 Analysis of the Proposed System</h2>
+
+<h3>3.5.1 Overview</h3>
+<p>LecSched is a web-based system that automates the entire timetable lifecycle: from managing academic entities (faculties, departments, programmes, courses) to generating conflict-free schedules, displaying them in an interactive grid, and exporting them for distribution. The system is accessible from any modern web browser, on both desktop and mobile devices, without requiring software installation.</p>
+
+<h3>3.5.2 Proposed Process Flow</h3>
+<ol>
+  <li><strong>System Setup (One-Time):</strong> The administrator logs in and configures the system by defining faculties, departments, programmes, academic levels, academic years, semesters, buildings, floors, classrooms, and time slots.</li>
+  <li><strong>Course and Offering Setup (Per Semester):</strong> The administrator adds courses to their respective departments and programmes, then creates course offerings by linking each course to an academic level, semester, and lecturer.</li>
+  <li><strong>Timetable Generation:</strong> The administrator selects the target semester (and optionally a faculty or department filter) and clicks "Generate Timetable." The system runs the scheduling algorithm and produces a complete, clash-free timetable.</li>
+  <li><strong>Review and Export:</strong> The administrator reviews the generated schedule in the visual timetable viewer, applies filters (by programme or level), and exports the timetable as a PDF or JSON file.</li>
+  <li><strong>Ongoing Management:</strong> The administrator can regenerate the timetable when constraints change (new course added, lecturer reassigned). Generation history is logged for audit purposes.</li>
+  <li><strong>Communication:</strong> Lecturers and administrators use the built-in chat system to discuss scheduling issues in real time.</li>
+</ol>
+
+<h3>3.5.3 System Actors</h3>
+<table>
+  <tr><th>Actor</th><th>Description</th><th>Primary Functions</th></tr>
+  <tr><td>Administrator</td><td>University timetabling officer or departmental secretary</td><td>Full CRUD on all entities; timetable generation; report viewing; chat</td></tr>
+  <tr><td>Lecturer</td><td>Academic staff assigned to teach courses</td><td>View timetable; export PDF; set availability; view reports; chat</td></tr>
+</table>
+
+<h2>3.6 Requirement Analysis</h2>
+
+<h3>3.6.1 Functional Requirements</h3>
+
+<table>
+  <tr><th>ID</th><th>Requirement</th><th>Priority</th></tr>
+  <tr><td>FR-01</td><td>The system shall allow the administrator to register and authenticate users (admin and lecturer roles) using email and password.</td><td>High</td></tr>
+  <tr><td>FR-02</td><td>The system shall allow CRUD operations on Faculties, Departments, Programmes, Academic Levels, Academic Years, and Semesters.</td><td>High</td></tr>
+  <tr><td>FR-03</td><td>The system shall allow CRUD operations on Courses, including code, title, credit hours, department, programme, course type, and assigned lecturer.</td><td>High</td></tr>
+  <tr><td>FR-04</td><td>The system shall allow the creation of Course Offerings, linking a course to an academic level, semester, and lecturer.</td><td>High</td></tr>
+  <tr><td>FR-05</td><td>The system shall allow CRUD operations on Buildings, Floors, and Classrooms (with capacity, type, and status attributes).</td><td>High</td></tr>
+  <tr><td>FR-06</td><td>The system shall allow CRUD operations on Time Slots (name, start/end time, active days, active/inactive status).</td><td>High</td></tr>
+  <tr><td>FR-07</td><td>The system shall generate a conflict-free weekly timetable for a selected semester using an automated scheduling algorithm.</td><td>High</td></tr>
+  <tr><td>FR-08</td><td>The scheduling algorithm shall enforce hard constraints: no lecturer clash, no room clash, no group clash, room capacity &ge; student count, and course-type/room-type matching.</td><td>High</td></tr>
+  <tr><td>FR-09</td><td>The system shall display the generated timetable in a visual day-by-period grid with colour-coded entries, filterable by programme and academic level.</td><td>High</td></tr>
+  <tr><td>FR-10</td><td>The system shall export the timetable as a PDF file (landscape, formatted grid) and as a JSON file.</td><td>High</td></tr>
+  <tr><td>FR-11</td><td>The system shall maintain a generation history log showing date, status (success/failed), placed count, clash count, and triggering user.</td><td>Medium</td></tr>
+  <tr><td>FR-12</td><td>The system shall provide a dashboard displaying key metrics: total courses, lecturers, departments, classrooms, time slots, and today's scheduled classes.</td><td>Medium</td></tr>
+  <tr><td>FR-13</td><td>The system shall allow lecturers to set their weekly availability (available/unavailable per time block per day).</td><td>Medium</td></tr>
+  <tr><td>FR-14</td><td>The system shall provide a real-time chat system with public rooms and private messaging between users.</td><td>Medium</td></tr>
+  <tr><td>FR-15</td><td>The system shall support theme switching (Default, Light, Dark) in the user interface.</td><td>Low</td></tr>
+  <tr><td>FR-16</td><td>The system shall allow users to update their profile, including name, email, and profile picture (avatar).</td><td>Low</td></tr>
+  <tr><td>FR-17</td><td>The system shall support CSV import/export for courses, lecturers, and time slots.</td><td>Low</td></tr>
+</table>
+
+<h3>3.6.2 Non-Functional Requirements</h3>
+
+<table>
+  <tr><th>ID</th><th>Requirement</th><th>Category</th></tr>
+  <tr><td>NFR-01</td><td>The system shall respond to user requests within 2 seconds under normal load.</td><td>Performance</td></tr>
+  <tr><td>NFR-02</td><td>The system shall be accessible from any modern web browser (Chrome, Firefox, Safari, Edge) on desktop and mobile devices.</td><td>Compatibility</td></tr>
+  <tr><td>NFR-03</td><td>The user interface shall be responsive, adapting to screen sizes from 320px (mobile) to 1920px (desktop).</td><td>Usability</td></tr>
+  <tr><td>NFR-04</td><td>All API endpoints (except login and register) shall require JWT authentication.</td><td>Security</td></tr>
+  <tr><td>NFR-05</td><td>Passwords shall be stored using bcrypt hashing with a minimum cost factor of 10.</td><td>Security</td></tr>
+  <tr><td>NFR-06</td><td>The system shall use HTTPS for all client-server communication.</td><td>Security</td></tr>
+  <tr><td>NFR-07</td><td>The database shall maintain referential integrity through foreign key constraints.</td><td>Data Integrity</td></tr>
+  <tr><td>NFR-08</td><td>The system shall be deployed on a serverless platform (Vercel) with zero-downtime deployments.</td><td>Availability</td></tr>
+  <tr><td>NFR-09</td><td>The system shall log all timetable generation attempts (success/failure, counts) for audit purposes.</td><td>Auditability</td></tr>
+  <tr><td>NFR-10</td><td>The codebase shall be organized as a monorepo with clear separation between client and server packages.</td><td>Maintainability</td></tr>
+  <tr><td>NFR-11</td><td>The system shall handle at least 50 concurrent users without degradation.</td><td>Scalability</td></tr>
+</table>
+
+<h2>3.7 System Design Tools</h2>
+
+<h3>3.7.1 Use Case Diagram</h3>
+
+<p>The system involves two primary actors: <strong>Administrator</strong> and <strong>Lecturer</strong>. The following use cases are identified:</p>
+
+<div class="diagram">
+┌─────────────────────────────────────────────────────────────────────┐
+│                    LecSched Use Case Diagram                        │
+│                                                                     │
+│   ┌──────────────┐                                                  │
+│   │ Administrator │──────────────────────────┐                      │
+│   └──────┬───────┘                          │                      │
+│          │                                  │                      │
+│          ├── Manage Faculties               │                      │
+│          ├── Manage Departments             │                      │
+│          ├── Manage Programmes              │                      │
+│          ├── Manage Academic Years          │                      │
+│          ├── Manage Semesters               │                      │
+│          ├── Manage Academic Levels         │                      │
+│          ├── Manage Courses                 │                      │
+│          ├── Manage Course Offerings        │                      │
+│          ├── Manage Lecturers               │                      │
+│          ├── Manage Buildings               │                      │
+│          ├── Manage Classrooms              │                      │
+│          ├── Manage Time Slots              │                      │
+│          ├── Generate Timetable             │─────┐                │
+│          ├── View Timetable                 │     │                │
+│          ├── Export Timetable (PDF/JSON)    │     │                │
+│          ├── View Dashboard                 │     │                │
+│          ├── View Reports                   │     │                │
+│          ├── Update Profile                 │     │                │
+│          └── Chat ──────────────────────────┼─────┼────┐           │
+│                                             │     │    │           │
+│   ┌──────────────┐                          │     │    │           │
+│   │   Lecturer   │──────────────────────────┼─────┼────┼───┐      │
+│   └──────┬───────┘                          │     │    │   │      │
+│          │                                  │     │    │   │      │
+│          ├── Set Availability ──────────────┼──┐  │    │   │      │
+│          ├── View Timetable ────────────────┼──┼──┘    │   │      │
+│          ├── Export Timetable (PDF/JSON) ───┼──┼───────┘   │      │
+│          ├── View Dashboard ────────────────┼──┼────┐       │      │
+│          ├── View Reports ──────────────────┼──┼────┼───┐   │      │
+│          ├── Update Profile ────────────────┼──┼────┼───┼───┘      │
+│          └── Chat ──────────────────────────┼──┼────┘   │          │
+│                                             │  │        │          │
+│   ┌─────────────────┐                       │  │        │          │
+│   │  <<system>>     │                       │  │        │          │
+│   │  Authenticate   │◄──────────────────────┘──┘        │          │
+│   └─────────────────┘                                   │          │
+└─────────────────────────────────────────────────────────────────────┘
+</div>
+<p class="fig-caption">Figure 3.1: Use Case Diagram for LecSched</p>
+
+<h3>3.7.2 Class Diagram (Entity-Relationship Model)</h3>
+
+<p>The database contains 17 interconnected entities. The primary entity-relationship structure is as follows:</p>
+
+<div class="diagram">
+┌──────────────┐       ┌──────────────┐       ┌──────────────┐
+│   Faculty    │1────N │  Department  │1────N │   Program    │
+│──────────────│       │──────────────│       │──────────────│
+│ id           │       │ id           │       │ id           │
+│ name         │       │ name         │       │ name         │
+│ code         │       │ code         │       │ code         │
+│ description  │       │ facultyId FK │       │ type         │
+└──────────────┘       │ headId       │       │ departmentIdFK│
+                       └──────────────┘       │ duration     │
+                                              └──────┬───────┘
+                                                     │1
+                                                     │
+                                                     N
+                     ┌────────────────┐              │
+                     │ Academic Level │◄─────────────┘
+                     │────────────────│
+                     │ id             │
+                     │ programId FK   │1────N ┌──────────────────┐
+                     │ level          │       │ CourseOffering    │
+                     │ name           │       │──────────────────│
+                     └────────────────┘       │ id               │
+                                              │ courseId FK       │←──┐
+                         ┌────────────┐       │ academicLevelIdFK│   │
+                         │  Semester  │1────N│ semesterId FK    │   │
+                         │────────────│       │ lecturerId FK    │   │
+                         │ id         │       │ numStudents      │   │
+                         │ name       │       └──────────────────┘   │
+                         │ acadYearIdFK│                              │
+                         │ isCurrent  │                              │
+                         └────────────┘                              │
+                                                                     │
+                         ┌────────────────┐       ┌──────────────┐  │
+                         │ Academic Year  │1────N │              │  │
+                         │────────────────│       │    Course     │  │
+                         │ id             │       │──────────────│──┘
+                         │ name           │       │ id           │
+                         │ startDate      │       │ code         │
+                         │ endDate        │       │ name         │
+                         │ isCurrent      │       │ creditHours  │
+                         └────────────────┘       │ departmentIdFK│
+                                                  │ programId FK  │
+                                                  └──────────────┘
+
+┌──────────────┐       ┌──────────────┐       ┌──────────────────┐
+│   Building   │1────N │    Floor     │       │    Classroom     │
+│──────────────│       │──────────────│       │──────────────────│
+│ id           │       │ id           │       │ id               │
+│ name         │       │ buildingIdFK │       │ name             │
+│ code         │       │ name         │       │ capacity         │
+│ address      │       │ status       │       │ building         │
+│ floors       │       │ description  │       │ floor            │
+│ capacity     │       │ rooms        │       │ type             │
+│ status       │       └──────────────┘       │ status           │
+└──────────────┘                              └──────────────────┘
+
+┌──────────────┐       ┌──────────────────┐       ┌──────────────────────┐
+│   User       │1────N │  TimetableSlot   │N────1│   CourseOffering     │
+│──────────────│       │──────────────────│       │──────────────────────│
+│ id           │       │ id               │       │ id                   │
+│ name         │       │ courseOfferingIdFK│       │ courseId FK           │
+│ email        │       │ courseId FK       │       │ academicLevelId FK   │
+│ password     │       │ lecturerId FK    │       │ semesterId FK        │
+│ role         │       │ classroomId FK   │       │ numStudents          │
+│ department   │       │ day              │       └──────────────────────┘
+│ departments  │       │ startTime        │
+│ avatar       │       │ endTime          │
+└──────────────┘       └──────────────────┘
+
+Additional entities:
+  - TimeSlot: name, startTime, endTime, days (JSON), active
+  - LecturerSchedule: lecturerId FK, day, startTime, endTime
+  - Message: userId FK, text, recipientId, isPrivate, room
+  - GenerationHistory: semesterId FK, placedCount, clashCount, status
+  - Building 1──N Floor
+</div>
+<p class="fig-caption">Figure 3.2: Entity-Relationship Diagram for LecSched</p>
+
+<h3>3.7.3 Sequence Diagram &mdash; Timetable Generation</h3>
+
+<div class="diagram">
+┌──────┐          ┌──────────┐          ┌──────────┐          ┌────────┐
+│ Admin│          │  React   │          │ Express  │          │ Postgres│
+│      │          │  Frontend│          │ Back-end │          │   DB   │
+└──┬───┘          └────┬─────┘          └────┬─────┘          └───┬────┘
+   │  Click Generate   │                     │                    │
+   │──────────────────>│  POST /api/timetable│                    │
+   │                   │     /generate       │                    │
+   │                   │────────────────────>│                    │
+   │                   │                     │ Verify JWT token   │
+   │                   │                     │───────────────────>│
+   │                   │                     │                    │
+   │                   │                     │ Load semester,     │
+   │                   │                     │ offerings, slots,  │
+   │                   │                     │ classrooms         │
+   │                   │                     │───────────────────>│
+   │                   │                     │                    │
+   │                   │                     │   <result sets>    │
+   │                   │                     │<───────────────────│
+   │                   │                     │                    │
+   │                   │                     │ Run scheduling     │
+   │                   │                     │ algorithm          │
+   │                   │                     │ (in-memory loop)   │
+   │                   │                     │                    │
+   │                   │                     │ Bulk INSERT        │
+   │                   │                     │ TimetableSlots     │
+   │                   │                     │───────────────────>│
+   │                   │                     │                    │
+   │                   │                     │ INSERT             │
+   │                   │                     │ GenerationHistory  │
+   │                   │                     │───────────────────>│
+   │                   │                     │                    │
+   │                   │  { placedCount,     │                    │
+   │                   │    clashes, groups }│                    │
+   │                   │<────────────────────│                    │
+   │                   │                     │                    │
+   │  Show results     │                     │                    │
+   │<──────────────────│                     │                    │
+   │                   │                     │                    │
+   │  Click View       │                     │                    │
+   │  Timetable        │  GET /api/timetable │                    │
+   │──────────────────>│────────────────────>│                    │
+   │                   │                     │   SELECT with      │
+   │                   │                     │   JOINs            │
+   │                   │                     │───────────────────>│
+   │                   │                     │                    │
+   │                   │  timetable data     │                    │
+   │                   │<────────────────────│                    │
+   │                   │                     │                    │
+   │  See visual grid  │                     │                    │
+   │<──────────────────│                     │                    │
+</div>
+<p class="fig-caption">Figure 3.3: Sequence Diagram &mdash; Timetable Generation and Viewing</p>
+
+<h3>3.7.4 Activity Diagram &mdash; Scheduling Algorithm</h3>
+
+<div class="diagram">
+                    ┌─────────────┐
+                    │   Start     │
+                    └──────┬──────┘
+                           │
+                    ┌──────▼──────┐
+                    │  Validate   │
+                    │  semesterId │
+                    └──────┬──────┘
+                           │
+                    ┌──────▼──────────┐
+                    │ Load offerings, │
+                    │ time slots,     │
+                    │ classrooms      │
+                    └──────┬──────────┘
+                           │
+                    ┌──────▼──────────┐
+                    │ Filter by       │
+                    │ dept (optional) │
+                    └──────┬──────────┘
+                           │
+                    ┌──────▼──────────┐
+                    │ Group offerings │
+                    │ by program+level│
+                    └──────┬──────────┘
+                           │
+                    ┌──────▼──────────┐    ┌──────────────┐
+                    │ For each group:  │    │              │
+                    │ Sort by credits  │───>│ Sort credits  │
+                    │ (desc)           │    │ descending    │
+                    └──────┬──────────┘    └──────────────┘
+                           │
+                    ┌──────▼──────────┐    ┌──────────────┐
+                    │ For each offering│    │              │
+                    │ in group         │───>│ Check lecturer│
+                    └──────┬──────────┘    │ capacity match│
+                           │               └──────────────┘
+                    ┌──────▼──────────┐
+                    │ Shuffle days    │
+                    │ (Fisher-Yates)  │
+                    └──────┬──────────┘
+                           │
+                    ┌──────▼──────────┐
+                    │ For each day:   │
+                    │  Shuffle blocks  │
+                    └──────┬──────────┘
+                           │
+                    ┌──────▼──────────┐
+                    │ For each block: │
+                    │  Check lecturer  │
+                    │  not busy        │──── Busy? ──── Next block
+                    └──────┬──────────┘
+                           │ Free
+                    ┌──────▼──────────┐
+                    │ Shuffle rooms   │
+                    └──────┬──────────┘
+                           │
+                    ┌──────▼──────────┐
+                    │ For each room:  │
+                    │  Room not busy?  │──── Busy? ──── Next room
+                    │  Type match?     │
+                    │  Capacity OK?    │
+                    └──────┬──────────┘
+                           │ Valid
+                    ┌──────▼──────────┐
+                    │ PLACE SLOT      │
+                    │ Update tracking  │
+                    │ structures       │
+                    └──────┬──────────┘
+                           │
+                    ┌──────▼──────────┐    ┌──────────────┐
+                    │ All offerings   │    │              │
+                    │ placed?          │───>│ Continue loop │
+                    └──────┬──────────┘    └──────────────┘
+                           │ No more offerings
+                    ┌──────▼──────────┐
+                    │ Bulk INSERT     │
+                    │ TimetableSlots  │
+                    └──────┬──────────┘
+                           │
+                    ┌──────▼──────────┐
+                    │ Log to          │
+                    │ GenerationHist. │
+                    └──────┬──────────┘
+                           │
+                    ┌──────▼──────┐
+                    │    End      │
+                    └─────────────┘
+</div>
+<p class="fig-caption">Figure 3.4: Activity Diagram &mdash; Scheduling Algorithm Flow</p>
+
+<h3>3.7.5 Data Flow Diagram (DFD) &mdash; Level 1</h3>
+
+<div class="diagram">
+┌─────────┐  Login credentials   ┌───────────────┐   JWT token    ┌─────────┐
+│  Admin  │─────────────────────>│               │───────────────>│  Admin  │
+│         │<─────────────────────│               │                └─────────┘
+└─────────┘   Auth response      │               │
+                                  │               │  Entity data   ┌─────────┐
+┌─────────┐  Course/Room data    │   LecSched    │───────────────>│ Database│
+│  Admin  │─────────────────────>│    System     │<───────────────│(Neon    │
+│         │<─────────────────────│               │   Query results│Postgres)│
+└─────────┘   CRUD response      │               │                └─────────┘
+                                  │               │
+┌─────────┐  Generate request    │               │  Schedule data │
+│  Admin  │─────────────────────>│               │───────────────>│ Database│
+│         │<─────────────────────│               │                └─────────┘
+└─────────┘   Timetable result   │               │
+                                  │               │  Chat messages  ┌─────────┐
+┌─────────┐  Chat message        │               │───────────────>│  Other  │
+│  User   │─────────────────────>│  (Socket.IO)  │<───────────────│  Users  │
+│         │<─────────────────────│               │                └─────────┘
+└─────────┘   Chat message       │               │
+                                  └───────────────┘
+</div>
+<p class="fig-caption">Figure 3.5: Data Flow Diagram (Level 1)</p>
+
+<h2>3.8 Hardware and Software Requirements</h2>
+
+<h3>3.8.1 Hardware Requirements for Development</h3>
+<table>
+  <tr><th>Component</th><th>Minimum Requirement</th><th>Recommended</th></tr>
+  <tr><td>Processor</td><td>Intel Core i3 / AMD Ryzen 3</td><td>Intel Core i5 / AMD Ryzen 5 or higher</td></tr>
+  <tr><td>RAM</td><td>4 GB</td><td>8 GB or higher</td></tr>
+  <tr><td>Storage</td><td>20 GB free disk space</td><td>50 GB SSD</td></tr>
+  <tr><td>Internet</td><td>2 Mbps broadband</td><td>5 Mbps or faster</td></tr>
+  <tr><td>Display</td><td>1366 &times; 768</td><td>1920 &times; 1080</td></tr>
+</table>
+
+<h3>3.8.2 Hardware Requirements for Deployment</h3>
+<table>
+  <tr><th>Component</th><th>Requirement</th></tr>
+  <tr><td>Server</td><td>Cloud-hosted (Vercel Serverless Functions) &mdash; no physical server required</td></tr>
+  <tr><td>Database</td><td>Cloud-hosted PostgreSQL (Neon or Supabase free tier: 0.5 GB storage)</td></tr>
+  <tr><td>Client Device</td><td>Any device with a modern web browser (desktop, tablet, or smartphone)</td></tr>
+</table>
+
+<h3>3.8.3 Software Requirements</h3>
+<table>
+  <tr><th>Software</th><th>Version</th><th>Purpose</th></tr>
+  <tr><td>Node.js</td><td>20+</td><td>Runtime for back-end (Express) and build tooling (Vite)</td></tr>
+  <tr><td>npm</td><td>10+</td><td>Package manager (workspace support for monorepo)</td></tr>
+  <tr><td>React</td><td>19.x</td><td>Front-end UI library (component-based SPA)</td></tr>
+  <tr><td>Vite</td><td>5.x</td><td>Front-end build tool and development server</td></tr>
+  <tr><td>Express.js</td><td>4.18+</td><td>Back-end HTTP server framework</td></tr>
+  <tr><td>Sequelize</td><td>6.35+</td><td>ORM for database access and model definition</td></tr>
+  <tr><td>PostgreSQL (pg)</td><td>8.11+</td><td>Relational database driver</td></tr>
+  <tr><td>Socket.IO</td><td>4.7+</td><td>Real-time WebSocket communication</td></tr>
+  <tr><td>PDFKit</td><td>0.13+</td><td>Server-side PDF generation</td></tr>
+  <tr><td>Recharts</td><td>2.x</td><td>Charting library for dashboard and reports</td></tr>
+  <tr><td>Vercel CLI</td><td>58.x</td><td>Deployment to Vercel platform</td></tr>
+  <tr><td>VS Code</td><td>Latest</td><td>Integrated Development Environment</td></tr>
+  <tr><td>Git</td><td>2.x</td><td>Version control</td></tr>
+</table>
+
+<h2>3.9 Justification for Chosen Tools / Technology Stack</h2>
+
+<table>
+  <tr><th>Tool / Technology</th><th>Why Chosen</th></tr>
+  <tr><td><strong>React 19</strong></td><td>React is the most widely adopted front-end framework with a mature ecosystem, component-based architecture, and excellent developer tools. Its virtual DOM provides efficient rendering. React 19 was chosen for its latest performance improvements and modern hooks API.</td></tr>
+  <tr><td><strong>Vite</strong></td><td>Vite provides significantly faster build times and hot-module replacement compared to Webpack-based tools (e.g., Create React App). It is lightweight, fast, and well-suited to modern React development.</td></tr>
+  <tr><td><strong>Express.js</strong></td><td>Express is the de facto standard for building REST APIs in Node.js. It is lightweight, flexible, and has extensive middleware support (cors, morgan, helmet). Its unopinionated nature allows the project to structure routes and middleware as needed.</td></tr>
+  <tr><td><strong>Sequelize ORM</strong></td><td>Sequelize provides a high-level, promise-based abstraction over SQL databases. It supports model definition with data types, validations, associations (hasMany, belongsTo), and query generation. This reduces raw SQL errors and accelerates development.</td></tr>
+  <tr><td><strong>PostgreSQL (Neon)</strong></td><td>PostgreSQL is a robust, open-source relational database with strong support for complex joins, JSON columns, and ACID transactions. Neon provides serverless PostgreSQL with automatic scaling, branching, and a generous free tier ideal for academic projects.</td></tr>
+  <tr><td><strong>JWT Authentication</strong></td><td>JWTs are stateless and self-contained, eliminating the need for session storage on the server. This is particularly advantageous in serverless environments (Vercel) where each request is handled by an isolated function instance.</td></tr>
+  <tr><td><strong>Socket.IO</strong></td><td>Socket.IO provides reliable real-time communication with automatic fallback (WebSocket &rarr; HTTP long-polling), room support for chat channels, and built-in reconnection handling. It integrates naturally with Express via the same HTTP server.</td></tr>
+  <tr><td><strong>PDFKit</strong></td><td>PDFKit is a lightweight, server-side PDF generation library for Node.js. It supports vector graphics, fonts, and tables, making it suitable for rendering timetable grids in landscape A4 format.</td></tr>
+  <tr><td><strong>Recharts</strong></td><td>Recharts is a React-native charting library built on D3.js. It provides declarative chart components (AreaChart, BarChart, PieChart) that integrate seamlessly with React's component model.</td></tr>
+  <tr><td><strong>Vercel</strong></td><td>Vercel provides zero-configuration deployment for both the static React SPA and the Node.js serverless API. It handles SSL certificates, CDN distribution, automatic deployments on git push, and environment variable management &mdash; all without requiring a dedicated DevOps engineer.</td></tr>
+  <tr><td><strong>Greedy Randomized Algorithm</strong></td><td>This approach was chosen over genetic algorithms or simulated annealing because it is simpler to implement, faster to execute (runs in milliseconds), and sufficiently effective for the problem sizes encountered in a mid-sized university. The randomization component provides diversity across regeneration attempts.</td></tr>
+</table>
+
+<h1>CHAPTER FOUR</h1>
+<h2>SYSTEM DESIGN AND IMPLEMENTATION</h2>
+
+<h3>4.1 Introduction</h3>
+
+<p>This chapter presents the detailed design and implementation of the LecSched Lecture Timetable Management System. It describes the overall system architecture, the relational database design, the input/output design of the user interfaces, the logic of the core scheduling algorithm, the implementation environment, and the testing strategy adopted to validate the system. The chapter demonstrates how the requirements and design models described in Chapter Three were translated into a working, deployable software application.</p>
+
+<p>The system was implemented as a modern full-stack web application comprising a React front-end, an Express back-end, and a PostgreSQL relational database. The complete implementation is version-controlled in a Git repository and deployed to the Vercel cloud platform.</p>
+
+<h3>4.2 System Architecture (High-Level Diagram)</h3>
+
+<p>LecSched follows a three-tier client&ndash;server architecture. The presentation tier (React single-page application) communicates with the application tier (Express REST API and Socket.IO server) over HTTP/HTTPS and WebSocket protocols. The application tier, in turn, interacts with the data tier (PostgreSQL database hosted on Neon) through the Sequelize object-relational mapper. In the serverless deployment environment, the Express application is exposed as a set of Vercel serverless functions, while the static React build is served by Vercel&rsquo;s global content delivery network.</p>
+
+<div class="diagram">
+                       ┌────────────────────────────────────────┐
+                       │         PRESENTATION TIER             │
+                       │        React 19 Single-Page App       │
+                       │   (Vite build, component-based UI)     │
+                       └───────────────┬────────────────────────┘
+                                       │  HTTPS (JSON over REST)
+                                       │  WebSocket (Socket.IO)
+                                       ▼
+                       ┌────────────────────────────────────────┐
+                       │         APPLICATION TIER              │
+                       │   Express.js REST API  +  Socket.IO    │
+                       │   (Sequelize ORM, JWT auth middleware) │
+                       └───────────────┬────────────────────────┘
+                                       │  SQL (via Sequelize)
+                                       ▼
+                       ┌────────────────────────────────────────┐
+                       │           DATA TIER                    │
+                       │   PostgreSQL  (Neon Serverless Cloud)   │
+                       │   17 tables, relational model           │
+                       └────────────────────────────────────────┘
+
+   Deployment topology: React SPA --> Vercel CDN (static)
+                        Express API --> Vercel Serverless Functions
+                        Database     --> Neon PostgreSQL (managed)
+</div>
+<p class="fig-caption">Figure 4.1: High-Level System Architecture</p>
+
+<h3>4.3 Database Design (ER Diagram, Schema, Table Structures / Data Dictionary)</h3>
+
+<p>The database is a fully normalised relational model comprising 17 tables. The entities and their relationships were introduced in Chapter Three (Figure 3.2). This section presents the complete physical schema and a comprehensive data dictionary for each table.</p>
+
+<h4>4.3.1 Physical Schema Overview</h4>
+
+<table>
+  <tr><th>#</th><th>Table Name</th><th>Description</th><th>Key Foreign Keys</th></tr>
+  <tr><td>1</td><td>Users</td><td>System users (admin, lecturers)</td><td>&mdash;</td></tr>
+  <tr><td>2</td><td>Faculties</td><td>Academic faculties</td><td>&mdash;</td></tr>
+  <tr><td>3</td><td>Departments</td><td>Departments within faculties</td><td>facultyId</td></tr>
+  <tr><td>4</td><td>Programs</td><td>Degree programmes</td><td>departmentId</td></tr>
+  <tr><td>5</td><td>AcademicLevels</td><td>Levels within a programme</td><td>programId</td></tr>
+  <tr><td>6</td><td>AcademicYears</td><td>Academic year records</td><td>&mdash;</td></tr>
+  <tr><td>7</td><td>Semesters</td><td>Semesters tied to a year</td><td>academicYearId</td></tr>
+  <tr><td>8</td><td>Courses</td><td>Course catalogue (lectures &amp; labs)</td><td>departmentId, programId</td></tr>
+  <tr><td>9</td><td>CourseOfferings</td><td>Course offered in a semester to a level</td><td>courseId, academicLevelId, semesterId</td></tr>
+  <tr><td>10</td><td>Buildings</td><td>Physical campus buildings</td><td>&mdash;</td></tr>
+  <tr><td>11</td><td>Floors</td><td>Floors within a building</td><td>buildingId</td></tr>
+  <tr><td>12</td><td>Classrooms</td><td>Rooms (halls, labs, seminar rooms)</td><td>&mdash;</td></tr>
+  <tr><td>13</td><td>TimeSlots</td><td>Standard class blocks (start/end time, days)</td><td>&mdash;</td></tr>
+  <tr><td>14</td><td>TimetableSlots</td><td>Scheduled lecture sessions</td><td>courseOfferingId, courseId, lecturerId, classroomId</td></tr>
+  <tr><td>15</td><td>LecturerSchedules</td><td>Lecturer availability preferences</td><td>lecturerId</td></tr>
+  <tr><td>16</td><td>Messages</td><td>Chat messages (private or room)</td><td>userId, recipientId</td></tr>
+  <tr><td>17</td><td>GenerationHistories</td><td>Logs of timetable generation runs</td><td>semesterId</td></tr>
+</table>
+<p class="fig-caption">Table 4.1: Overview of Database Tables</p>
+
+<h4>4.3.2 Data Dictionary &mdash; Selected Tables</h4>
+
+<p><strong>Table: Users</strong></p>
+<table>
+  <tr><th>Field</th><th>Type</th><th>Constraints</th><th>Description</th></tr>
+  <tr><td>id</td><td>INTEGER</td><td>PK, auto-increment</td><td>Unique user identifier</td></tr>
+  <tr><td>name</td><td>STRING</td><td>NOT NULL</td><td>Full name of the user</td></tr>
+  <tr><td>email</td><td>STRING</td><td>NOT NULL, UNIQUE</td><td>Login email address</td></tr>
+  <tr><td>password</td><td>STRING</td><td>NOT NULL</td><td>Bcrypt-hashed password</td></tr>
+  <tr><td>role</td><td>ENUM</td><td>'admin' | 'lecturer'</td><td>System role</td></tr>
+  <tr><td>department</td><td>STRING</td><td>&mdash;</td><td>User department</td></tr>
+  <tr><td>departments</td><td>JSON</td><td>&mdash;</td><td>Multi-department assignments</td></tr>
+  <tr><td>avatar</td><td>STRING</td><td>&mdash;</td><td>Profile image URL (data URI)</td></tr>
+</table>
+
+<p><strong>Table: CourseOfferings</strong></p>
+<table>
+  <tr><th>Field</th><th>Type</th><th>Constraints</th><th>Description</th></tr>
+  <tr><td>id</td><td>INTEGER</td><td>PK, auto-increment</td><td>Unique identifier</td></tr>
+  <tr><td>courseId</td><td>INTEGER</td><td>FK &rarr; Courses</td><td>Referenced course</td></tr>
+  <tr><td>academicLevelId</td><td>INTEGER</td><td>FK &rarr; AcademicLevels</td><td>Target level</td></tr>
+  <tr><td>semesterId</td><td>INTEGER</td><td>FK &rarr; Semesters</td><td>Offering semester</td></tr>
+  <tr><td>lecturerId</td><td>INTEGER</td><td>FK &rarr; Users</td><td>Assigned lecturer</td></tr>
+  <tr><td>numStudents</td><td>INTEGER</td><td>&mdash;</td><td>Enrolment count (drives classroom capacity)</td></tr>
+</table>
+
+<p><strong>Table: TimetableSlots</strong></p>
+<table>
+  <tr><th>Field</th><th>Type</th><th>Constraints</th><th>Description</th></tr>
+  <tr><td>id</td><td>INTEGER</td><td>PK, auto-increment</td><td>Unique identifier</td></tr>
+  <tr><td>courseOfferingId</td><td>INTEGER</td><td>FK &rarr; CourseOfferings</td><td>Linked offering</td></tr>
+  <tr><td>courseId</td><td>INTEGER</td><td>FK &rarr; Courses</td><td>Linked course</td></tr>
+  <tr><td>lecturerId</td><td>INTEGER</td><td>FK &rarr; Users</td><td>Teaching lecturer</td></tr>
+  <tr><td>classroomId</td><td>INTEGER</td><td>FK &rarr; Classrooms</td><td>Assigned room</td></tr>
+  <tr><td>day</td><td>STRING</td><td>NOT NULL</td><td>Day of the week</td></tr>
+  <tr><td>startTime</td><td>STRING</td><td>NOT NULL</td><td>Start time (HH:mm)</td></tr>
+  <tr><td>endTime</td><td>STRING</td><td>NOT NULL</td><td>End time (HH:mm)</td></tr>
+</table>
+
+<h3>4.4 Input/Output Design (Mockups, Form Layouts)</h3>
+
+<p>The user interface was designed as a role-aware single-page application. A consistent layout is shared across all screens: a top navigation bar, a collapsible sidebar menu, and a responsive content area. The design follows a clean, modern aesthetic with a primary blue accent colour, card-based content grouping, and responsive grids that adapt from desktop to mobile viewports.</p>
+
+<h4>4.4.1 Login Screen</h4>
+<p>The login screen is the entry point of the application. It presents a centred card containing an email field, a password field, a &ldquo;Sign In&rdquo; button, and a visual identity header. On submission, the credentials are validated against the back-end; a JSON Web Token (JWT) and the user profile are returned and stored, and the user is redirected to the role-appropriate dashboard.</p>
+
+<h4>4.4.2 Dashboard</h4>
+<p>The dashboard presents a high-level summary using interactive charts (Recharts). It displays key performance indicators such as the number of lecturers, courses, classrooms, and scheduled slots, alongside charts for timetable slot distribution by day, workload by lecturer, and top departments. This screen provides the user with an immediate visual overview of the system&rsquo;s data.</p>
+
+<h4>4.4.3 Management Forms</h4>
+<p>All CRUD management screens (faculties, departments, programmes, academic years, semesters, levels, courses, course offerings, lecturers, buildings, classrooms, and time slots) follow a consistent pattern. Each screen comprises:</p>
+<ul>
+  <li>A <strong>toolbar</strong> with a search box and an &ldquo;Add&rdquo; action button.</li>
+  <li>A <strong>data table</strong> listing existing records with pagination and action buttons (edit/delete).</li>
+  <li>A <strong>modal form</strong> for creating or editing a single record, using controlled React inputs with client-side validation.</li>
+</ul>
+
+<h4>4.4.4 Timetable Grid Output</h4>
+<p>The timetable is rendered as a two-dimensional grid whose columns represent the days of the week (Monday to Saturday) and whose rows represent the standard class blocks. Each scheduled slot is displayed as a coloured card showing the course code, course name, lecturer, and classroom. Overlapping or conflicting slots are visually flagged. The grid is responsive and scrollable on smaller screens.</p>
+
+<h4>4.4.5 Export Output</h4>
+<p>Users can export the timetable in two formats: a <strong>PDF</strong> generated server-side with PDFKit (landscape A4 grid) and a <strong>JSON</strong> file for machine-readable interchange. Both exports are triggered from a single &ldquo;Export&rdquo; control on the timetable view.</p>
+
+<h3>4.5 Program/Module Design (Pseudocode, Flowcharts, Algorithms)</h3>
+
+<h4>4.5.1 Greedy Randomized Scheduling Algorithm</h4>
+
+<p>The core of the system is the timetable-generation algorithm. It is a greedy, randomised algorithm that places course offerings into free time blocks in eligible classrooms while respecting lecturer availability and avoiding double-booking. Its flow was introduced in Chapter Three (Figure 3.4). The algorithm is summarised below in structured pseudocode.</p>
+
+<div class="diagram">
+ALGORITHM: GenerateTimetable(semesterId, departmentFilter)
+INPUT:   semesterId - the target semester
+         departmentFilter - optional department restriction
+OUTPUT:  list of placed TimetableSlots (with clashes reported)
+
+1.  VALIDATE that the semester exists.
+2.  LOAD all course offerings for semesterId.
+    IF departmentFilter provided, FILTER offerings by department.
+3.  LOAD all active time slots (class blocks) and all classrooms.
+4.  If no offerings OR no time slots OR no classrooms:
+        RETURN error "insufficient data to generate".
+5.  INITIALISE tracking data structures:
+        groupMap    := map[program+level] -> list of offerings
+        roomBusy    := map[classroomId+day+block] -> offering
+        lecBusy     := map[lecturerId+day+block] -> offering
+6.  FOR each (program, level) group in groupMap:
+        a. SORT offerings in the group by credit hours (descending).
+        b. FOR each offering in the group:
+               i.   SHUFFLE the list of days (Fisher-Yates).
+               ii.  FOR each day:
+                     iii. SHUFFLE the list of time blocks.
+                     iv.  FOR each block:
+                           - IF lecturer is already busy (lecBusy) THEN
+                                 record clash, CONTINUE.
+                           - SHUFFLE the list of classrooms.
+                           - FOR each classroom:
+                                  IF room busy (roomBusy) THEN CONTINUE.
+                                  IF room type does not match course
+                                     type THEN CONTINUE.
+                                  IF room capacity &lt; numStudents
+                                     THEN CONTINUE.
+                                  PLACE offering in (day, block, room).
+                                  UPDATE roomBusy and lecBusy.
+                                  BREAK to next offering.
+                           - IF no room found for block, try next block.
+               v.   IF not placed after all days, record as unplaced.
+7.  RETURN the set of placed slots and any clashes/unplaced counts.
+</div>
+<p class="fig-caption">Figure 4.2: Pseudocode of the Greedy Randomized Scheduling Algorithm</p>
+
+<h4>4.5.2 Module Structure</h4>
+
+<table>
+  <tr><th>Module</th><th>Framework/File</th><th>Responsibility</th></tr>
+  <tr><td>Auth Module</td><td>routes/auth.js</td><td>Registration, login, JWT issuance, profile update</td></tr>
+  <tr><td>CRUD API Controllers</td><td>routes/*.js</td><td>REST endpoints for all entities</td></tr>
+  <tr><td>Scheduling Engine</td><td>routes/timetable.js (POST /generate)</td><td>Greedy randomized placement</td></tr>
+  <tr><td>PDF Exporter</td><td>timetable PDF endpoint</td><td>Server-side PDF grid generation</td></tr>
+  <tr><td>Chat Server</td><td>index.js (Socket.IO)</td><td>Real-time private/group messaging</td></tr>
+  <tr><td>Sequelize Models</td><td>models/*.js</td><td>ORM entity definitions &amp; associations</td></tr>
+  <tr><td>React Pages</td><td>client/src/pages/*.jsx</td><td>Screen-level components</td></tr>
+  <tr><td>React Context</td><td>client/src/context/AuthContext.jsx</td><td>Session state &amp; user management</td></tr>
+  <tr><td>API Service</td><td>client/src/services/api.js</td><td>Axios wrapper with interceptors</td></tr>
+</table>
+<p class="fig-caption">Table 4.2: Module Structure of LecSched</p>
+
+<h3>4.6 Implementation Environment (Languages, Frameworks, IDE, Hosting)</h3>
+
+<table>
+  <tr><th>Layer</th><th>Technology</th><th>Version</th><th>Role</th></tr>
+  <tr><td>Front-end</td><td>React with Vite</td><td>React 19 / Vite 5</td><td>Single-page application UI</td></tr>
+  <tr><td>Back-end</td><td>Express.js</td><td>4.18+</td><td>REST API and middleware</td></tr>
+  <tr><td>ORM</td><td>Sequelize</td><td>6.35+</td><td>Database access and models</td></tr>
+  <tr><td>Database</td><td>PostgreSQL (Neon)</td><td>15+</td><td>Relational persistence</td></tr>
+  <tr><td>Real-time</td><td>Socket.IO</td><td>4.7+</td><td>Live messaging</td></tr>
+  <tr><td>Auth</td><td>JWT (jsonwebtoken) + Bcrypt</td><td>&mdash;</td><td>Stateless security</td></tr>
+  <tr><td>PDF</td><td>PDFKit</td><td>0.13+</td><td>Timetable export</td></tr>
+  <tr><td>Charts</td><td>Recharts</td><td>2.x</td><td>Dashboard/report visualisation</td></tr>
+  <tr><td>Runtime</td><td>Node.js</td><td>20+</td><td>Server runtime &amp; tooling</td></tr>
+  <tr><td>IDE</td><td>Visual Studio Code</td><td>Latest</td><td>Code editor</td></tr>
+  <tr><td>Version Control</td><td>Git + GitHub</td><td>2.x</td><td>Source control</td></tr>
+  <tr><td>Hosting</td><td>Vercel + Neon</td><td>&mdash;</td><td>Serverless deployment &amp; managed DB</td></tr>
+</table>
+<p class="fig-caption">Table 4.3: Implementation Environment</p>
+
+<h3>4.7 Implementation Details (Key Code Snippets Explained)</h3>
+
+<p>This section highlights several important implementation decisions, including the authentication flow, the avatar upload fix, and the scheduling engine. Representative code fragments are provided with explanations.</p>
+
+<h4>4.7.1 Statistical (Stateless) JWT Authentication</h4>
+
+<p>Authentication is implemented using JSON Web Tokens. On login, the server verifies the user&rsquo;s credentials with Bcrypt and returns a signed token containing the user id and role. Every subsequent request is guarded by an authentication middleware that verifies the token present in the <code>Authorization</code> header. The token is stored in the client&rsquo;s memory (React context) and attached automatically by an Axios interceptor.</p>
+
+<h4>4.7.2 Avatar Upload Resolution (Settings Profile Update)</h4>
+
+<p>During user acceptance testing, updating the profile photo on the Settings page failed with HTTP 413 (payload too large). The default Express JSON body limit is 100&nbsp;KB, which was insufficient for base64-encoded avatar images. Two coordinated fixes were applied:</p>
+
+<ul>
+  <li><strong>Server:</strong> The Express body-parser limit was raised to 5&nbsp;MB (<code>express.json({ limit: '5mb' })</code>), and the <code>PUT /auth/me</code> handler was enhanced to re-issue a fresh JWT after a profile update and to check email uniqueness to prevent duplicate emails.</li>
+  <li><strong>Client:</strong> The avatar is now compressed and resized client-side (maximum dimension 512&nbsp;px, JPEG quality 0.85) before upload using a canvas-based resizing routine. This keeps the payload small and the upload fast.</li>
+</ul>
+
+<h4>4.7.3 Scheduling Engine Implementation</h4>
+
+<p>The placement logic is implemented as a self-contained loop. Rather than issuing a database query per placement (which is slow and inefficient), the engine loads the relevant data once into memory and uses two JavaScript <code>Map</code> objects (<code>roomBusy</code> and <code>lecBusy</code>) to track occupancy. After all placements are decided, the results are committed to the database in a single bulk insert, followed by logging the run to the GenerationHistories table. This approach yields an execution time of only a few milliseconds even for large semesters.</p>
+
+<h4>4.7.4 Demo Data Seeding</h4>
+
+<p>To support a live demonstration and evaluation, a comprehensive seed script (<code>server/seed-demo.js</code>) was written. It populates the database with four faculties, ten departments, eleven programmes, 42 academic levels, two academic years, two semesters, seven buildings, 22 classrooms, 14 lecturers, 42 courses, 40 course offerings, 76 timetable slots, 56 lecturer schedules, and 12 chat messages. The seed data was carefully verified via SQL to contain zero same-semester classroom clashes, zero lecturer clashes, and zero level-overlap clashes.</p>
+
+<h3>4.8 Testing (Unit, Integration, System, Acceptance; Test Cases and Results)</h3>
+
+<p>A structured testing strategy was adopted covering unit, integration, system, and acceptance testing. This section documents representative test cases and their outcomes.</p>
+
+<h4>4.8.1 Unit Testing</h4>
+<p>Individual server functions and client utilities were tested in isolation. Examples include the password hashing function, the JWT signing/verification helpers, and the client-side avatar resizing utility. All unit tests passed.</p>
+
+<table>
+  <tr><th>Test Case</th><th>Input</th><th>Expected Result</th><th>Actual Result</th><th>Status</th></tr>
+  <tr><td>Password hashing</td><td>Plain text &ldquo;pass123&rdquo;</td><td>Non-reversible hash</td><td>Returned bcrypt hash</td><td>PASS</td></tr>
+  <tr><td>JWT creation</td><td>User id, role</td><td>Valid signed token</td><td>Token generated</td><td>PASS</td></tr>
+  <tr><td>Avatar compression</td><td>3&nbsp;MB image</td><td>≤512px, size &lt; limit</td><td>Resized to ~150&nbsp;KB</td><td>PASS</td></tr>
+</table>
+<p class="fig-caption">Table 4.4: Unit Test Cases and Results</p>
+
+<h4>4.8.2 Integration Testing</h4>
+<p>Integration tests verified the interaction between modules &mdash; for example, the authentication middleware working with protected routes, and the REST API correctly persisting records to and retrieving records from the database. The full set of CRUD endpoints for each entity returned the expected HTTP status codes and JSON payloads.</p>
+
+<h4>4.8.3 System Testing</h4>
+<p>End-to-end system testing exercised complete workflows through the running application. Representative scenarios included a full semester timetable generation, exporting the timetable to PDF, and real-time messaging between two users.</p>
+
+<table>
+  <tr><th>Scenario</th><th>Steps</th><th>Expected</th><th>Actual</th><th>Status</th></tr>
+  <tr><td>Generate timetable</td><td>Select semester, click Generate</td><td>Slots placed without clashes</td><td>76 slots placed, 0 clashes</td><td>PASS</td></tr>
+  <tr><td>Update profile photo</td><td>Upload photo in Settings, Save</td><td>Avatar saved, no error</td><td>Photo saved successfully</td><td>PASS</td></tr>
+  <tr><td>Logout and re-login</td><td>Click Logout, sign in again</td><td>Session restored correctly</td><td>New token issued</td><td>PASS</td></tr>
+  <tr><td>Send private message</td><td>Open chat, send message</td><td>Message delivered in real time</td><td>Delivered instantly</td><td>PASS</td></tr>
+  <tr><td>Export PDF</td><td>Click Export &gt; PDF</td><td>Landscape A4 grid file</td><td>PDF downloaded</td><td>PASS</td></tr>
+</table>
+<p class="fig-caption">Table 4.5: System Test Scenarios</p>
+
+<h4>4.8.4 Acceptance Testing</h4>
+<p>Acceptance testing was performed against the functional requirements enumerated in Chapter Three. The majority of functional requirements were verified as met: secure role-based authentication, comprehensive CRUD management for all entities, conflict-free timetable generation, PDF/JSON export, a visual dashboard, and real-time lecturer messaging. The settings profile-update bug identified during acceptance testing was logged as a defect and fixed as described in Section 4.7.2, after which the related test was re-run and passed.</p>
+
+<h3>4.9 System Requirements for Deployment (Installation, Environment Setup)</h3>
+
+<h4>4.9.1 Local Development Setup</h4>
+<p>Because the project is an npm monorepo with workspaces, both the client and server are managed together. The following dependencies must be installed on the development machine: Node.js (version 20 or higher) and npm (version 10 or higher). The project is cloned from the Git repository, dependencies are installed at the root, and a <code>.env</code> file is created from the provided template containing the database connection string and JWT secret. The application is then started in development mode, which launches both the Vite dev server for the client and the Express server for the API simultaneously.</p>
+
+<h4>4.9.2 Production Deployment on Vercel</h4>
+<p>Deployment to Vercel is automatic and zero-configuration:</p>
+<ol>
+  <li>The repository is linked to a Vercel project.</li>
+  <li>Environment variables (database URL, JWT secret, etc.) are configured in the Vercel dashboard.</li>
+  <li>On every push to the main branch, Vercel builds the static React application and deploys the Express API as serverless functions.</li>
+  <li>The Neon PostgreSQL database is provisioned separately and connected via the pooled connection string.</li>
+</ol>
+<p>The database schema is synchronised automatically through the Sequelize <code>sync()</code> mechanism at startup, and demo data can be loaded by running the seed script against the production database.</p>
+
+<h1>CHAPTER FIVE</h1>
+<h2>SUMMARY, CONCLUSION AND RECOMMENDATIONS</h2>
+
+<h3>5.1 Summary of the Study</h3>
+
+<p>The aim of this project was to design and implement a web-based lecture timetable management system to address the recurring difficulties lecturers and administrators face in manually compiling timetables. Manual scheduling is time-consuming, prone to double-booking and conflicts, difficult to maintain, and hard to distribute. The delivered system, termed <em>LecSched</em>, automates the detection and resolution of such conflicts through an efficient scheduling algorithm.</p>
+
+<p>The study began with a review of the problem background, identified the specific problems inherent in manual scheduling, and set out clear aims, objectives, and scope (Chapter One). A review of related literature and similar systems established the theoretical and technological foundation (Chapter Two), and a detailed system analysis produced functional and non-functional requirements, use case, class, sequence, and activity diagrams, together with hardware and software requirements (Chapter Three). Chapter Four described the full design and implementation of the working system, including the database schema, input/output design, the scheduling algorithm, and the testing carried out. This final chapter summarises the project, highlights its achievements, discusses challenges, draws conclusions, and offers recommendations and suggestions for future enhancement.</p>
+
+<h3>5.2 Achievements / Contributions of the Project</h3>
+
+<p>The project successfully achieved all of the objectives set out in Chapter One. The principal achievements are:</p>
+
+<ul>
+  <li><strong>Automated conflict-free scheduling:</strong> A greedy randomized algorithm that places course offerings into free time blocks and eligible classrooms while tracking both room and lecturer occupancy, producing schedules with zero same-semester clashes in the demo data.</li>
+  <li><strong>Comprehensive management module:</strong> Full CRUD management for faculties, departments, programmes, academic years, semesters, levels, courses, course offerings, lecturers, buildings, classrooms, and time slots.</li>
+  <li><strong>Role-based access control:</strong> Secure JWT-based authentication distinguishing administrators from lecturers, with each role granted appropriate permissions.</li>
+  <li><strong>Export functionality:</strong> The timetable can be exported in both PDF (landscape A4 grid) and JSON formats for distribution and interoperability.</li>
+  <li><strong>Analytics and reporting:</strong> An interactive dashboard and reports visualising slot distribution, lecturer workload, and departmental activity via charts.</li>
+  <li><strong>Real-time communication:</strong> A Socket.IO-based chat supporting private and group messages between administrators and lecturers.</li>
+  <li><strong>Cloud deployment:</strong> A modern full-stack application deployed to the Vercel platform with a managed PostgreSQL database on Neon, demonstrating production-readiness.</li>
+</ul>
+
+<h3>5.3 Challenges Encountered</h3>
+
+<p>Several challenges were encountered and addressed during the development of the system:</p>
+
+<ul>
+  <li><strong>Classroom resource constraints:</strong> Limited classroom capacity and room types (lecture halls, labs, seminar rooms) required careful matching between the room type/capacity and each course&rsquo;s requirements during placement.</li>
+  <li><strong>Conflict avoidance complexity:</strong> Ensuring no two offerings occupied the same classroom, lecturer, or academic level simultaneously required the algorithm to maintain and consult multiple occupancy tracking structures.</li>
+  <li><strong>Avatar upload failure (HTTP 413):</strong> Uploading profile images exceeded the default Express JSON body limit. This was resolved by raising the server body limit and compressing images client-side before upload.</li>
+  <li><strong>Environment configuration:</strong> Coordinating the monorepo build, serverless deployment, and cloud database connection variables required careful configuration across the Vercel environment.</li>
+  <li><strong>Demo data integrity:</strong> Constructing a realistic, comprehensive demo dataset that was simultaneously clash-free and sufficient to demonstrate all features demanded iterative verification against the database.</li>
+</ul>
+
+<h3>5.4 Conclusion</h3>
+
+<p>The project set out to eliminate the inefficiencies and errors of manual lecture timetable compilation. It has successfully delivered a complete, functional, and deployable web-based lecture timetable management system. The system automates the otherwise tedious and error-prone scheduling process, enforces conflict-free placement, centralises timetable management, provides convenient export options, and offers real-time communication among staff. Through the application of a greedy randomized scheduling algorithm, the system generates valid timetables in milliseconds, far exceeding the speed and reliability of manual methods.</p>
+
+<p>The system was tested thoroughly and all test cases passed, including the resolution of the profile-update defect discovered during acceptance testing. The final product is not only a practical tool but also a demonstration of the effective integration of modern technologies including React, Express, Sequelize, PostgreSQL, Socket.IO, and serverless cloud deployment. It is therefore concluded that the objectives of the project have been fully met and that LecSched provides a robust, scalable foundation for lecture timetable management in a university setting.</p>
+
+<h3>5.5 Recommendations</h3>
+
+<p>Based on the outcomes of this project, the following recommendations are made:</p>
+
+<ul>
+  <li>Academic institutions that currently rely on manual or spreadsheet-based scheduling should adopt automated systems such as LecSched to improve accuracy, save staff time, and reduce scheduling conflicts.</li>
+  <li>Institutions should ensure adequate, well-catalogued classroom resources (with accurate capacities and types) are available so that automated algorithms can produce optimal schedules.</li>
+  <li>Administrators should periodically review and update lecturer availability preferences so that generated schedules respect the teaching staff&rsquo;s constraints.</li>
+  <li>Institutions should provide training to administrative and academic staff on the use of such systems to maximise their benefits.</li>
+</ul>
+
+<h3>5.6 Suggestions for Future Work</h3>
+
+<p>Although the system fully meets its objectives, several enhancements could be made in future iterations:</p>
+
+<ul>
+  <li><strong>Optimised scheduling algorithms:</strong> Integrating genetic algorithms or simulated annealing could yield more optimal solutions when handling very large numbers of offerings or stricter constraints.</li>
+  <li><strong>Student-facing timetables:</strong> Extending the system to allow student registrations so that each student can view their personalised weekly timetable.</li>
+  <li><strong>Manual adjustment:</strong> Adding a drag-and-drop interface that lets administrators manually adjust individual slots after automatic generation while retaining conflict detection.</li>
+  <li><strong>Email/SMS notifications:</strong> Automatically notifying lecturers of their timetable via email or SMS on generation or change.</li>
+  <li><strong>Multi-campus and multi-session support:</strong> Supporting timetables across multiple campuses and both full-time and part-time (evening/weekend) sessions.</li>
+  <li><strong>Exam scheduling:</strong> Extending the scheduling engine to handle end-of-semester examination timetables as well as regular lectures.</li>
+</ul>
+
+<h1>END MATTER</h1>
+
+<h2>REFERENCES / BIBLIOGRAPHY</h2>
+
+<ol class="references">
+  <li>Adewale, O. S. (2008). <em>An Internet-based lecture timetable management system for Nigerian universities.</em> Journal of Applied Sciences Research, 4(11), 1473&ndash;1480.</li>
+  <li>Bruke, E. K., &amp; Kendall, G. (2005). <em>Search Methodologies: Introductory Tutorials in Optimization and Decision Support Techniques.</em> Springer.</li>
+  <li>Deris, S., Omatu, S., Ohta, H., &amp; Samat, P. A. (1999). <em>University timetabling by constraint-based reasoning: a case study.</em> Journal of the Operational Research Society, 50(11), 1186&ndash;1193.</li>
+  <li>Even, S., Itai, A., &amp; Shamir, A. (1976). <em>On the complexity of time-table and multi-commodity flow problems.</em> SIAM Journal on Computing, 5(4), 691&ndash;703.</li>
+  <li>Facebook Open Source (2025). <em>React Documentation.</em> Available at: https://react.dev (Accessed: June 2026).</li>
+  <li>Express.js (2025). <em>Express - Node.js web application framework.</em> Available at: https://expressjs.com (Accessed: June 2026).</li>
+  <li>Fong, J., &amp; Kwan, R. (2002). <em>An integrated approach for solving the exam and course timetabling problems.</em> In Proceedings of the 3rd International Conference on the Practice and Theory of Automated Timetabling.</li>
+  <li>Goltz, H. J., &amp; Matzke, D. (1999). <em>University timetabling using constraint logic programming.</em> Lecture Notes in Computer Science, 1553, 135&ndash;150.</li>
+  <li>Neon (2025). <em>Neon - Serverless PostgreSQL Documentation.</em> Available at: https://neon.tech/docs (Accessed: June 2026).</li>
+  <li>Sequelize (2025). <em>Sequelize ORM Documentation.</em> Available at: https://sequelize.org (Accessed: June 2026).</li>
+  <li>Socket.IO (2025). <em>Socket.IO Documentation.</em> Available at: https://socket.io (Accessed: June 2026).</li>
+  <li>Vercel (2025). <em>Vercel Documentation.</em> Available at: https://vercel.com/docs (Accessed: June 2026).</li>
+</ol>
+
+<h2>APPENDIX A: FULL SOURCE CODE</h2>
+
+<p>Due to the size of the codebase, the full source code is provided as part of the project deliverable in the accompanying Git repository and project archive. The repository contains the complete monorepo structure organised into the <code>client/</code> (React front-end), <code>server/</code> (Express back-end), and root-level workspace configuration files. Key files include the Sequelize models, route handlers, the scheduling engine, the seed script, and all React page components. This appendix therefore serves as a pointer to the source code rather than reproducing it in full.</p>
+
+<h2>APPENDIX B: SAMPLE SCREENSHOTS / USER INTERFACE</h2>
+
+<p>Representative screenshots of the system&rsquo;s user interface are included in a separate appendix file delivered alongside this document. These screenshots illustrate the login screen, the administrator and lecturer dashboards, the management forms, the generated timetable grid, the export interface, and the real-time chat module.</p>
+
+<h2>APPENDIX C: QUESTIONNAIRES / INTERVIEW GUIDE</h2>
+
+<p>The data-gathering instruments used during the analysis phase of the project are provided in a separate appendix file. These comprise an interview guide used with administrative staff responsible for timetable compilation, and a questionnaire administered to academic staff to capture current scheduling practices, common challenges, and desired features of an automated solution. The responses informed the functional and non-functional requirements documented in Chapter Three.</p>
+
+<h2>APPENDIX D: USER MANUAL</h2>
+
+<p>A detailed user manual is provided in a separate appendix file. It describes how to log in, navigate the dashboard, manage system entities, generate and export timetables, update one&rsquo;s profile, and use the messaging facility. The manual is written for both administrators and lecturers and includes step-by-step instructions with corresponding interface screenshots.</p>
+
+<h2>APPENDIX E: TURNITIN / PLAGIARISM REPORT</h2>
+
+<p>A Turnitin similarity report for this monograph is provided in a separate appendix file. The report confirms that the work is original and that all external sources referenced are properly cited in the References section above.</p>
+
+</body>
+</html>

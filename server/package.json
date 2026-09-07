@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "seed": "node seed.js"
+    "seed": "node seed.js",
+    "seed:demo": "node seed-demo.js",
+    "clear:demo": "node clear-demo.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

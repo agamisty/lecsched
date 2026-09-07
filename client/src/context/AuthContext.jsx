@@ -37,6 +37,9 @@ export function AuthProvider({ children }) {
     setUser((prev) => {
       const next = { ...(prev || {}), ...updates };
       localStorage.setItem('user', JSON.stringify(next));
+      if (updates.token) {
+        localStorage.setItem('token', updates.token);
+      }
       return next;
     });
   };

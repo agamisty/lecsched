@@ -9,7 +9,7 @@ const server = http.createServer(app);
 initSocket(server, '*');
 
 async function start() {
-  await sequelize.sync();
+  await sequelize.sync({ alter: true });
   await ensureDefaultTimeSlots();
   server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

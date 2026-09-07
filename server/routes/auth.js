@@ -57,7 +57,13 @@ router.put('/me', auth, async (req, res) => {
     if (!user) return res.status(404).json({ error: 'User not found' });
     const { name, email, password, currentPassword, avatar } = req.body;
     if (name) user.name = name;
-    if (email) user.email = email;
+    if (email) {
+      const existing = await User.findOne({ where: { email } });
+      if (existing && existing.id !== user.id) {
+        return res.status(400).json({ error: 'Email is already in use by another account' });
+      }
+      user.email = email;
+    }
     if (typeof avatar === 'string') user.avatar = avatar;
     if (password) {
       if (!currentPassword) return res.status(400).json({ error: 'Current password is required' });
@@ -66,7 +72,12 @@ router.put('/me', auth, async (req, res) => {
       user.password = await bcrypt.hash(password, 10);
     }
     await user.save();
-    res.json({ id: user.id, name: user.name, email: user.email, role: user.role, department: user.department, departments: user.departments, avatar: user.avatar || '' });
+    const token = jwt.sign(
+      { id: user.id, name: user.name, email: user.email, role: user.role, department: user.department, departments: user.departments },
+      JWT_SECRET,
+      { expiresIn: JWT_EXPIRES_IN }
+    );
+    res.json({ id: user.id, name: user.name, email: user.email, role: user.role, department: user.department, departments: user.departments, avatar: user.avatar || '', token });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

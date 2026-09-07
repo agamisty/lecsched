@@ -23,15 +23,18 @@ import {
   FileText,
   Layers3,
   Menu,
+  MessageCircle,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import Logo from './Logo';
+import ChatWidget from './ChatWidget';
 
 const NAV_SECTIONS = [
   {
     label: 'Overview',
     items: [
       { to: '/', label: 'Dashboard', icon: LayoutDashboard, end: true },
+      { to: '/chat', label: 'Chat', icon: MessageCircle },
     ]
   },
   {
@@ -145,6 +148,7 @@ export default function Layout({ children }) {
         </div>
       </aside>
       <main className="main-content">{children}</main>
+      <ChatWidget />
     </div>
   );
 }

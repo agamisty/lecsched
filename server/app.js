@@ -7,7 +7,7 @@ require('./models/associations');
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '5mb' }));
 
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));

@@ -12,6 +12,8 @@
     "dev": "concurrently \"npm --prefix server start\" \"npm --prefix client run dev\"",
     "build": "npm --prefix client run build",
     "seed": "npm --prefix server run seed",
+    "seed:demo": "npm --prefix server run seed:demo",
+    "clear:demo": "npm --prefix server run clear:demo",
     "install:all": "npm install"
   },
   "devDependencies": {

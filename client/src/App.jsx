@@ -19,6 +19,7 @@ import GeneratorPage from './pages/GeneratorPage';
 import TimetablePage from './pages/TimetablePage';
 import ReportsPage from './pages/ReportsPage';
 import SettingsPage from './pages/SettingsPage';
+import ChatPage from './pages/ChatPage';
 
 function Protected({ children }) {
   const { user, loading } = useAuth();
@@ -49,6 +50,7 @@ export default function App() {
       <Route path="/viewer" element={<Protected><TimetablePage /></Protected>} />
       <Route path="/reports" element={<Protected><ReportsPage /></Protected>} />
       <Route path="/settings" element={<Protected><SettingsPage /></Protected>} />
+      <Route path="/chat" element={<Protected><ChatPage /></Protected>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
