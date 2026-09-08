@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import toast from 'react-hot-toast';
 import Layout from '../components/Layout';
+import Timetable from '../components/Timetable';
 import { useAuth } from '../context/AuthContext';
 import {
   timetableAPI,
@@ -316,6 +317,37 @@ export default function TimetablePage() {
   const grid = currentGroup ? buildGrid(displayedSlots) : null;
   const unsavedCount = Object.keys(pendingMoves).length;
 
+  const exportPeriods = PERIODS.map((p) => ({
+    id: p.label,
+    number: p.num,
+    startTime: p.start,
+    endTime: p.end,
+  }));
+
+  const exportDays = DAY_KEYS.map((d) => ({
+    id: d,
+    shortName: d.slice(0, 2),
+    fullName: d,
+  }));
+
+  const exportCourses = displayedSlots
+    .map((s) => {
+      const sn = timeToPeriodNum(s.startTime);
+      if (!sn) return null;
+      const en = timeToPeriodEnd(s.endTime) || sn;
+      return {
+        id: String(s.id),
+        day: s.day,
+        startPeriodId: `P${sn}`,
+        endPeriodId: `P${en}`,
+        courseCode: s.courseCode || '',
+        courseTitle: s.courseName || '',
+        room: s.classroomName || '',
+        lecturer: s.lecturerName || '',
+      };
+    })
+    .filter(Boolean);
+
   const countClasses = () => {
     if (!grid) return 0;
     let c = 0;
@@ -354,20 +386,7 @@ export default function TimetablePage() {
   };
 
   const handleExportPDF = async () => {
-    try {
-      const params = {};
-      if (selSemester) params.semesterId = selSemester;
-      if (selProgram) params.programId = selProgram;
-      if (selLevel) params.academicLevelId = selLevel;
-      const res = await timetableAPI.pdf(params);
-      const blob = new Blob([res.data], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      window.open(url, '_blank');
-      setTimeout(() => URL.revokeObjectURL(url), 60000);
-      toast.success('Timetable opened in a new tab — use Print / Save as PDF');
-    } catch (err) {
-      toast.error('Failed to export timetable');
-    }
+    handlePrint();
   };
 
   const periodFromX = (e) => {
@@ -673,7 +692,17 @@ export default function TimetablePage() {
                   <p>Weekly Class Timetable — {totalSlots} classes</p>
                 </div>
                 {grid && (
-                  <div className="tv-v-grid">
+                  <div className="tv-export-timetable">
+                    <Timetable
+                      title={activeGroup}
+                      periods={exportPeriods}
+                      days={exportDays}
+                      courses={exportCourses}
+                    />
+                  </div>
+                )}
+                {grid && (
+                  <div className="tv-v-grid tv-v-grid-edit">
                     <div className="tv-v-header-row">
                       <div className="tv-v-corner">
                         <div className="tv-v-corner-day">Day</div>

@@ -3400,6 +3400,11 @@ td {
   display: none;
 }
 
+/* The SVG export timetable is only shown when printing / exporting */
+.tv-export-timetable {
+  display: none;
+}
+
 /* Print Styles */
 @media print {
   body * {
@@ -3420,48 +3425,25 @@ td {
     width: 100%;
     padding: 1rem;
   }
-  .tv-print-header {
+  .tv-export-timetable {
     display: block !important;
-    margin-bottom: 1rem;
-    text-align: center;
   }
-  .tv-print-header h2 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #000;
-    margin-bottom: 0.2rem;
+  .tv-export-timetable .timetable-wrapper {
+    width: 100%;
   }
-  .tv-print-header p {
-    font-size: 0.82rem;
-    color: #555;
+  .tv-export-timetable .timetable-scroll {
+    overflow: visible;
+    padding: 0;
   }
-  .tv-v-header-row,
-  .tv-v-period-header,
-  .tv-v-corner {
-    background: #2c2520 !important;
+  .tv-export-timetable .timetable-svg {
+    width: 100%;
+    height: auto;
   }
-  .tv-v-period-label {
-    color: #fff !important;
+  .tv-print-header {
+    display: none !important;
   }
-  .tv-v-period-time {
-    color: rgba(255,255,255,0.6) !important;
-  }
-  .tv-v-corner-day {
-    color: #fff !important;
-  }
-  .tv-v-day-label {
-    background: #f5f0ea !important;
-    color: #000 !important;
-    font-weight: 700;
-  }
-  .tv-v-cell {
-    border: 1px solid #ccc !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-  .tv-v-cell-type {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+  .tv-v-grid-edit {
+    display: none !important;
   }
 }
 
