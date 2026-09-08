@@ -16,6 +16,7 @@ router.post('/', auth, async (req, res) => {
     const msg = await Message.create({
       userId: req.user.id,
       userName: req.user.name || 'Unknown',
+      senderRole: req.user.role || 'lecturer',
       text: String(text).trim(),
       recipientId: recipientId || null,
       recipientName: recipientName || null,

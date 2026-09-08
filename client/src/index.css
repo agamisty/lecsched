@@ -977,14 +977,17 @@ td {
   align-self: flex-end;
 }
 
+.chat-msg.own.admin { background: #1864ab; }
+.chat-msg.own.lecturer { background: #14722f; }
+
 .chat-msg.other {
   background: var(--bg-hover);
   color: var(--text-primary);
   align-self: flex-start;
 }
 
-.chat-msg.other.admin { background: #eaf3ff; }
-.chat-msg.other.lecturer { background: #eefaf0; }
+.chat-msg.other.admin { background: #eaf3ff; border-left: 3px solid #1971c2; }
+.chat-msg.other.lecturer { background: #eefaf0; border-left: 3px solid #2b8a3e; }
 .chat-role-tag, .cw-role-tag {
   display: inline-block;
   font-size: 0.58rem;
@@ -1326,14 +1329,16 @@ td {
   align-self: flex-end;
   border-bottom-right-radius: 2px;
 }
+.cw-msg.own.admin { background: #1864ab; }
+.cw-msg.own.lecturer { background: #14722f; }
 .cw-msg.other {
   background: var(--bg-hover);
   color: var(--text-primary);
   align-self: flex-start;
   border-bottom-left-radius: 2px;
 }
-.cw-msg.other.admin { background: #eaf3ff; }
-.cw-msg.other.lecturer { background: #eefaf0; }
+.cw-msg.other.admin { background: #eaf3ff; border-left: 3px solid #1971c2; }
+.cw-msg.other.lecturer { background: #eefaf0; border-left: 3px solid #2b8a3e; }
 .cw-msg .cw-msg-sender {
   font-size: 0.65rem;
   font-weight: 600;

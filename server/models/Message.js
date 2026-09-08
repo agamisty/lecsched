@@ -5,6 +5,7 @@ const Message = sequelize.define('Message', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   userId: { type: DataTypes.INTEGER, allowNull: false },
   userName: { type: DataTypes.STRING, allowNull: false },
+  senderRole: { type: DataTypes.STRING, allowNull: false, defaultValue: 'lecturer' },
   text: { type: DataTypes.TEXT, allowNull: false },
   recipientId: { type: DataTypes.INTEGER, allowNull: true },
   recipientName: { type: DataTypes.STRING, allowNull: true },

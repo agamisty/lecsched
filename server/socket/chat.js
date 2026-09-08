@@ -8,6 +8,7 @@ function setupChat(io) {
       id: msg.id,
       userId: msg.userId,
       userName: msg.userName,
+      senderRole: msg.senderRole,
       text: msg.text,
       recipientId: msg.recipientId,
       recipientName: msg.recipientName,
@@ -100,6 +101,7 @@ function setupChat(io) {
         const msg = await Message.create({
           userId: data.userId,
           userName: data.userName,
+          senderRole: data.senderRole || 'lecturer',
           text: data.text,
           isPrivate: false,
           room,
@@ -118,6 +120,7 @@ function setupChat(io) {
         const msg = await Message.create({
           userId: data.userId,
           userName: data.userName,
+          senderRole: data.senderRole || 'lecturer',
           text: data.text,
           recipientId: data.recipientId,
           recipientName: data.recipientName,

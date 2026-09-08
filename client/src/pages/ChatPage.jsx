@@ -156,7 +156,7 @@ export default function ChatPage() {
       apiCall.then((res) => setMessages(res.data)).catch(() => {});
     };
     refresh();
-    const t = setInterval(refresh, 1500);
+    const t = setInterval(refresh, 700);
     return () => clearInterval(t);
   }, [chatWith, room, user]);
 
@@ -201,6 +201,7 @@ export default function ChatPage() {
       id: -Date.now(),
       userId: user.id,
       userName: user.name,
+      senderRole: user.role,
       text: body.text,
       recipientId: body.recipientId || null,
       recipientName: body.recipientName || null,
@@ -435,7 +436,11 @@ export default function ChatPage() {
             )}
             {messages.map((msg) => {
               const own = msg.userId === user?.id;
-              const fromAdmin = msg.userId === user?.id ? user.role === 'admin' : admins.some((a) => a.id === msg.userId);
+              const fromAdmin = msg.senderRole
+                ? msg.senderRole === 'admin'
+                : msg.userId === user?.id
+                  ? user.role === 'admin'
+                  : admins.some((a) => a.id === msg.userId);
               const isEditing = editingId === msg.id;
               return (
                 <div key={msg.id} className={`chat-msg ${own ? 'own' : 'other'} ${fromAdmin ? 'admin' : 'lecturer'}`}
