@@ -11,6 +11,10 @@ initSocket(server, '*');
 async function start() {
   await sequelize.sync({ alter: true });
   await ensureDefaultTimeSlots();
+  if (process.env.SEED_REAL === '1') {
+    const seedReal = require('./seed-real');
+    await seedReal.run();
+  }
   server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
