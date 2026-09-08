@@ -343,17 +343,8 @@ async function run() {
           label: slot.label,
         });
         g++;
-      } else {
-        mergedSlots.push({
-          page: slot.page,
-          day: slot.day,
-          time: [...slot.time],
-          course: slot.course,
-          rooms: slot.rooms || [],
-          lecturers: slot.lecturers || [],
-          label: slot.label,
-        });
       }
+      // single-period rows (only one period of the pair occupied) are dropped
     }
   }
   console.log(`Slots after 2-hour pair merge: ${DATASET.slots.length} -> ${mergedSlots.length}`);
