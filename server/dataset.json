@@ -5634,8 +5634,22 @@
    "page": 1,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-TF1"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 1,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENGL 158",
    "rooms": [
@@ -5676,8 +5690,24 @@
    "page": 1,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 154",
+   "rooms": [
+    "SCB-TF1"
+   ],
+   "lecturers": [
+    "J.K MENSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 1,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 154",
    "rooms": [
@@ -5692,7 +5722,7 @@
    "page": 1,
    "day": "Thu",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
    ],
    "course": "BIOL 154",
@@ -5708,7 +5738,23 @@
    "page": 1,
    "day": "Thu",
    "time": [
-    "13:00",
+    "16:00",
+    "16:55"
+   ],
+   "course": "BIOL 154",
+   "rooms": [
+    "BB-GL200"
+   ],
+   "lecturers": [
+    "Boampong"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 1,
+   "day": "Thu",
+   "time": [
+    "14:00",
     "14:55"
    ],
    "course": "BCHEM 162",
@@ -5724,8 +5770,40 @@
    "page": 1,
    "day": "Thu",
    "time": [
-    "10:30",
+    "13:00",
+    "13:55"
+   ],
+   "course": "BCHEM 162",
+   "rooms": [
+    "SCB-SF8"
+   ],
+   "lecturers": [
+    "F.O MENSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 1,
+   "day": "Thu",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "Sarfo Adu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 1,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "ENGL 158",
    "rooms": [
@@ -5740,7 +5818,7 @@
    "page": 1,
    "day": "Tue",
    "time": [
-    "17:00",
+    "18:00",
     "18:55"
    ],
    "course": "BCHEM 162",
@@ -5754,7 +5832,21 @@
    "page": 1,
    "day": "Tue",
    "time": [
-    "14:00",
+    "17:00",
+    "17:55"
+   ],
+   "course": "BCHEM 162",
+   "rooms": [],
+   "lecturers": [
+    "S.A Domfeh"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 1,
+   "day": "Tue",
+   "time": [
+    "15:00",
     "15:55"
    ],
    "course": "BCHEM 154",
@@ -5770,8 +5862,40 @@
    "page": 1,
    "day": "Tue",
    "time": [
-    "10:30",
+    "14:00",
+    "14:55"
+   ],
+   "course": "BCHEM 154",
+   "rooms": [
+    "BC-LAB"
+   ],
+   "lecturers": [
+    "Group"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 1,
+   "day": "Tue",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 156",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "M.B Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 1,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 156",
    "rooms": [
@@ -5902,8 +6026,24 @@
    "page": 2,
    "day": "Fri",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "ENGL 264",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "Ani"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 2,
+   "day": "Fri",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "ENGL 264",
    "rooms": [
@@ -5960,7 +6100,7 @@
    "page": 2,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
    ],
    "course": "BCHEM 254",
@@ -5977,8 +6117,42 @@
    "page": 2,
    "day": "Mon",
    "time": [
-    "10:30",
+    "08:00",
+    "08:55"
+   ],
+   "course": "BCHEM 254",
+   "rooms": [
+    "SCB-TF1"
+   ],
+   "lecturers": [
+    "KWARTENG",
+    "S.A Domfeh"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 2,
+   "day": "Mon",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "BCHEM 254",
+   "rooms": [
+    "SCB-GF1"
+   ],
+   "lecturers": [
+    "LARBIE",
+    "C.K FIREMPONG"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 2,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BCHEM 254",
    "rooms": [
@@ -6082,8 +6256,24 @@
    "page": 2,
    "day": "Wed",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "BCHEM 258",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "BORQUAYE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 2,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "BCHEM 258",
    "rooms": [
@@ -6175,8 +6365,24 @@
    "page": 3,
    "day": "Thu",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "BCHEM 360",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "LARBIE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 3,
+   "day": "Thu",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "BCHEM 360",
    "rooms": [
@@ -6191,8 +6397,24 @@
    "page": 3,
    "day": "Tue",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "BCHEM 354",
+   "rooms": [
+    "CB-GF1"
+   ],
+   "lecturers": [
+    "J.A BENTIL"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 3,
+   "day": "Tue",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "BCHEM 354",
    "rooms": [
@@ -6241,8 +6463,25 @@
    "page": 3,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "BCHEM 356",
+   "rooms": [
+    "SCB-TF1"
+   ],
+   "lecturers": [
+    "F.C MILLS-ROBERTSON",
+    "J.K DADSON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 3,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BCHEM 356",
    "rooms": [
@@ -6273,8 +6512,62 @@
    "page": 3,
    "day": "Wed",
    "time": [
-    "15:00",
+    "18:00",
     "18:55"
+   ],
+   "course": "BCHEM 356",
+   "rooms": [
+    "DB"
+   ],
+   "lecturers": [
+    "Casely Hayford",
+    "F.C MILLS-ROBERTSON",
+    "J.K"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 3,
+   "day": "Wed",
+   "time": [
+    "17:00",
+    "17:55"
+   ],
+   "course": "BCHEM 356",
+   "rooms": [
+    "DB"
+   ],
+   "lecturers": [
+    "Casely Hayford",
+    "F.C MILLS-ROBERTSON",
+    "J.K"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 3,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "BCHEM 356",
+   "rooms": [
+    "DB"
+   ],
+   "lecturers": [
+    "Casely Hayford",
+    "F.C MILLS-ROBERTSON",
+    "J.K"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 3,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "BCHEM 356",
    "rooms": [
@@ -6360,7 +6653,7 @@
    "page": 4,
    "day": "Mon",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
    ],
    "course": "BCHEM 472",
@@ -6376,8 +6669,40 @@
    "page": 4,
    "day": "Mon",
    "time": [
-    "10:30",
+    "14:00",
+    "14:55"
+   ],
+   "course": "BCHEM 472",
+   "rooms": [
+    "3-A10"
+   ],
+   "lecturers": [
+    "S.P SALIFU"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 4,
+   "day": "Mon",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "BCHEM 464",
+   "rooms": [
+    "SCB-B1"
+   ],
+   "lecturers": [
+    "F.O MENSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 4,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BCHEM 464",
    "rooms": [
@@ -6494,8 +6819,42 @@
    "page": 4,
    "day": "Wed",
    "time": [
-    "13:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "BCHEM 458",
+   "rooms": [
+    "CB-A10"
+   ],
+   "lecturers": [
+    "C.A APPIAH",
+    "TWUMASI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 4,
+   "day": "Wed",
+   "time": [
+    "14:00",
+    "14:55"
+   ],
+   "course": "BCHEM 458",
+   "rooms": [
+    "CB-A10"
+   ],
+   "lecturers": [
+    "C.A APPIAH",
+    "TWUMASI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 4,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "BCHEM 458",
    "rooms": [
@@ -6542,8 +6901,24 @@
    "page": 5,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "BAINSON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 5,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENGL 158",
    "rooms": [
@@ -6574,7 +6949,7 @@
    "page": 5,
    "day": "Thu",
    "time": [
-    "17:00",
+    "18:00",
     "18:55"
    ],
    "course": "BCHEM 162",
@@ -6588,8 +6963,38 @@
    "page": 5,
    "day": "Thu",
    "time": [
-    "13:00",
+    "17:00",
+    "17:55"
+   ],
+   "course": "BCHEM 162",
+   "rooms": [],
+   "lecturers": [
+    "S.A Domfeh"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 5,
+   "day": "Thu",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "CB-GF1"
+   ],
+   "lecturers": [
+    "Sarfo Adu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 5,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "ENGL 158",
    "rooms": [
@@ -6616,8 +7021,24 @@
    "page": 5,
    "day": "Tue",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "NUT 156",
+   "rooms": [
+    "SCB-GF1"
+   ],
+   "lecturers": [
+    "ANNAN"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 5,
+   "day": "Tue",
+   "time": [
+    "14:00",
+    "14:55"
    ],
    "course": "NUT 156",
    "rooms": [
@@ -6707,8 +7128,24 @@
    "page": 5,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "CHEM 154",
+   "rooms": [
+    "SCB-GF1"
+   ],
+   "lecturers": [
+    "M.Badu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 5,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CHEM 154",
    "rooms": [
@@ -6735,8 +7172,23 @@
    "page": 6,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "BCHEM 254",
+   "rooms": [],
+   "lecturers": [
+    "LARBIE",
+    "C.K FIREMPONG"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 6,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BCHEM 254",
    "rooms": [],
@@ -6776,8 +7228,23 @@
    "page": 6,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "NUT 254",
+   "rooms": [],
+   "lecturers": [
+    "Amoah",
+    "J.K AGBENORHEVI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 6,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "NUT 254",
    "rooms": [],
@@ -6817,8 +7284,22 @@
    "page": 6,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "DIET 256",
+   "rooms": [],
+   "lecturers": [
+    "TANDOH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 6,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "DIET 256",
    "rooms": [],
@@ -6857,8 +7338,23 @@
    "page": 6,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "DIET 252",
+   "rooms": [],
+   "lecturers": [
+    "TANDOH",
+    "Amoah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 6,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "DIET 252",
    "rooms": [],
@@ -6886,8 +7382,24 @@
    "page": 7,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "BAINSON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 7,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENGL 158",
    "rooms": [
@@ -6918,8 +7430,22 @@
    "page": 7,
    "day": "Thu",
    "time": [
-    "17:00",
+    "18:00",
     "18:55"
+   ],
+   "course": "BCHEM 162",
+   "rooms": [],
+   "lecturers": [
+    "S.A Domfeh"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 7,
+   "day": "Thu",
+   "time": [
+    "17:00",
+    "17:55"
    ],
    "course": "BCHEM 162",
    "rooms": [],
@@ -6989,8 +7515,24 @@
    "page": 7,
    "day": "Tue",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "NUT 156",
+   "rooms": [
+    "SCB-GF1"
+   ],
+   "lecturers": [
+    "ANNAN"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 7,
+   "day": "Tue",
+   "time": [
+    "14:00",
+    "14:55"
    ],
    "course": "NUT 156",
    "rooms": [
@@ -7052,8 +7594,24 @@
    "page": 7,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "CHEM 154",
+   "rooms": [
+    "SCB-GF1"
+   ],
+   "lecturers": [
+    "M.Badu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 7,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CHEM 154",
    "rooms": [
@@ -7080,8 +7638,23 @@
    "page": 8,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "BCHEM 254",
+   "rooms": [],
+   "lecturers": [
+    "LARBIE",
+    "C.K FIREMPONG"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 8,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BCHEM 254",
    "rooms": [],
@@ -7122,8 +7695,23 @@
    "page": 8,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "NUT 254",
+   "rooms": [],
+   "lecturers": [
+    "Amoako",
+    "C.A APPIAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 8,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "NUT 254",
    "rooms": [],
@@ -7163,8 +7751,22 @@
    "page": 8,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "NUT 272",
+   "rooms": [],
+   "lecturers": [
+    "F.C MILLS-ROBERTSON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 8,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "NUT 272",
    "rooms": [],
@@ -7203,8 +7805,22 @@
    "page": 8,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "FST 182",
+   "rooms": [],
+   "lecturers": [
+    "C.Boakye Agyemang"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 8,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "FST 182",
    "rooms": [],
@@ -7291,8 +7907,24 @@
    "page": 9,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "BTC 566",
+   "rooms": [
+    "SCB-GF19"
+   ],
+   "lecturers": [
+    "TETTEH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 9,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "BTC 566",
    "rooms": [
@@ -7438,8 +8070,22 @@
    "page": 9,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "PHAR 564",
+   "rooms": [],
+   "lecturers": [
+    "Duah Boakye"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 9,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "PHAR 564",
    "rooms": [],
@@ -7468,7 +8114,7 @@
    "page": 9,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "BTC 568",
@@ -7482,8 +8128,36 @@
    "page": 9,
    "day": "Wed",
    "time": [
-    "13:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "BTC 568",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 9,
+   "day": "Wed",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "BTC 568",
+   "rooms": [],
+   "lecturers": [
+    "ZAKPAA"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 9,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "BTC 568",
    "rooms": [],
@@ -7508,8 +8182,23 @@
    "page": 10,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "BCHEM 568",
+   "rooms": [],
+   "lecturers": [
+    "J.A BENTIL",
+    "J.K DADSON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 10,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BCHEM 568",
    "rooms": [],
@@ -7584,8 +8273,24 @@
    "page": 10,
    "day": "Wed",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "BCHEM 554",
+   "rooms": [
+    "SCB-B23"
+   ],
+   "lecturers": [
+    "TWUMASI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 10,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "BCHEM 554",
    "rooms": [
@@ -7614,8 +8319,24 @@
    "page": 11,
    "day": "Fri",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "NUT 558",
+   "rooms": [
+    "PB-P23"
+   ],
+   "lecturers": [
+    "C.A APPIAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 11,
+   "day": "Fri",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "NUT 558",
    "rooms": [
@@ -7688,8 +8409,22 @@
    "page": 11,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "NUT 566",
+   "rooms": [],
+   "lecturers": [
+    "TANDOH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 11,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "NUT 566",
    "rooms": [],
@@ -7821,7 +8556,7 @@
    "page": 11,
    "day": "Wed",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
    ],
    "course": "NUT 564",
@@ -7837,8 +8572,41 @@
    "page": 11,
    "day": "Wed",
    "time": [
-    "08:00",
+    "15:00",
+    "15:55"
+   ],
+   "course": "NUT 564",
+   "rooms": [
+    "CB-A9"
+   ],
+   "lecturers": [
+    "Amoah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 11,
+   "day": "Wed",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "NUT 568",
+   "rooms": [
+    "3-P22"
+   ],
+   "lecturers": [
+    "KWARTENG",
+    "A.A Lar"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 11,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "NUT 568",
    "rooms": [
@@ -7896,8 +8664,22 @@
    "page": 12,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "FSC 580",
+   "rooms": [],
+   "lecturers": [
+    "J.K DADSON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 12,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "FSC 580",
    "rooms": [],
@@ -7978,8 +8760,22 @@
    "page": 12,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "FSC 582",
+   "rooms": [],
+   "lecturers": [
+    "C.K FIREMPONG"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 12,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "FSC 582",
    "rooms": [],
@@ -8044,8 +8840,22 @@
    "page": 13,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "BACG 558",
+   "rooms": [],
+   "lecturers": [
+    "S.P SALIFU"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 13,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "BACG 558",
    "rooms": [],
@@ -8234,8 +9044,22 @@
    "page": 15,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "ST 564",
+   "rooms": [],
+   "lecturers": [
+    "AADJEI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 15,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "ST 564",
    "rooms": [],
@@ -8319,8 +9143,23 @@
    "page": 16,
    "day": "Thu",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "NUT 576",
+   "rooms": [],
+   "lecturers": [
+    "R.ANNAN",
+    "C.APPREY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 16,
+   "day": "Thu",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "NUT 576",
    "rooms": [],
@@ -8334,8 +9173,22 @@
    "page": 16,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "NUT 750",
+   "rooms": [],
+   "lecturers": [
+    "ANNAN"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 16,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "NUT 750",
    "rooms": [],
@@ -8376,8 +9229,23 @@
    "page": 17,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "BCHEM 754",
+   "rooms": [],
+   "lecturers": [
+    "KWARTENG",
+    "F.C MILLS-ROBERTSON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 17,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BCHEM 754",
    "rooms": [],
@@ -8406,8 +9274,22 @@
    "page": 17,
    "day": "Tue",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
+   ],
+   "course": "BCHEM 752",
+   "rooms": [],
+   "lecturers": [
+    "J.A BENTIL"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 17,
+   "day": "Tue",
+   "time": [
+    "16:00",
+    "16:55"
    ],
    "course": "BCHEM 752",
    "rooms": [],
@@ -8446,8 +9328,24 @@
    "page": 18,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "BIOL 158",
+   "rooms": [
+    "BC-LAB"
+   ],
+   "lecturers": [
+    "J.A BENTIL"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 18,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "BIOL 158",
    "rooms": [
@@ -8492,8 +9390,22 @@
    "page": 18,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "BIOL 160",
+   "rooms": [],
+   "lecturers": [
+    "M.AARKOH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 18,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "BIOL 160",
    "rooms": [],
@@ -8553,7 +9465,7 @@
    "page": 18,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "ENGL 158",
@@ -8569,7 +9481,23 @@
    "page": 18,
    "day": "Thu",
    "time": [
-    "15:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-SF8"
+   ],
+   "lecturers": [
+    "Appiah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 18,
+   "day": "Thu",
+   "time": [
+    "16:00",
     "16:55"
    ],
    "course": "ENGL 158",
@@ -8585,8 +9513,40 @@
    "page": 18,
    "day": "Thu",
    "time": [
-    "13:00",
+    "15:00",
+    "15:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-SF20"
+   ],
+   "lecturers": [
+    "F.B Appiah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 18,
+   "day": "Thu",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 158",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 18,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 158",
    "rooms": [
@@ -8643,8 +9603,24 @@
    "page": 18,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "BIOL 152",
+   "rooms": [
+    "BB-GL100"
+   ],
+   "lecturers": [
+    "W.G AKANWARIWIAK"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 18,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BIOL 152",
    "rooms": [
@@ -8689,8 +9665,24 @@
    "page": 18,
    "day": "Wed",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
+   ],
+   "course": "BIOL 160",
+   "rooms": [
+    "BB-GL100"
+   ],
+   "lecturers": [
+    "Kwarteng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 18,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
    ],
    "course": "BIOL 160",
    "rooms": [
@@ -8719,8 +9711,22 @@
    "page": 18,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 158",
+   "rooms": [],
+   "lecturers": [
+    "BAINSON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 18,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 158",
    "rooms": [],
@@ -8749,8 +9755,36 @@
    "page": 19,
    "day": "Fri",
    "time": [
-    "16:00",
+    "18:00",
     "18:55"
+   ],
+   "course": "FST 182",
+   "rooms": [],
+   "lecturers": [
+    "Group"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 19,
+   "day": "Fri",
+   "time": [
+    "17:00",
+    "17:55"
+   ],
+   "course": "FST 182",
+   "rooms": [],
+   "lecturers": [
+    "Group"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 19,
+   "day": "Fri",
+   "time": [
+    "16:00",
+    "16:55"
    ],
    "course": "FST 182",
    "rooms": [],
@@ -8775,8 +9809,24 @@
    "page": 19,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "BIOL 258",
+   "rooms": [
+    "BB-GL300"
+   ],
+   "lecturers": [
+    "ADDO-FORDJOUR"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 19,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "BIOL 258",
    "rooms": [
@@ -8977,8 +10027,24 @@
    "page": 19,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "BIOL 258",
+   "rooms": [
+    "CB-SF1"
+   ],
+   "lecturers": [
+    "ADDO-FORDJOUR"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 19,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "BIOL 258",
    "rooms": [
@@ -9037,8 +10103,24 @@
    "page": 20,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "BIOL 352",
+   "rooms": [
+    "SSNB-SF15"
+   ],
+   "lecturers": [
+    "AKY (EAMPONG"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "BIOL 352",
    "rooms": [
@@ -9067,8 +10149,24 @@
    "page": 20,
    "day": "Fri",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "BIOL 354",
+   "rooms": [
+    "BB-GL200"
+   ],
+   "lecturers": [
+    "J.D BELFORD"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Fri",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "BIOL 354",
    "rooms": [
@@ -9098,8 +10196,25 @@
    "page": 20,
    "day": "Fri",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "BIOL 356",
+   "rooms": [
+    "SSNB-SF15"
+   ],
+   "lecturers": [
+    "Kwarteng",
+    "Siaw"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Fri",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BIOL 356",
    "rooms": [
@@ -9115,7 +10230,7 @@
    "page": 20,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
    ],
    "course": "MATH 472",
@@ -9131,7 +10246,23 @@
    "page": 20,
    "day": "Mon",
    "time": [
-    "17:00",
+    "13:00",
+    "13:55"
+   ],
+   "course": "MATH 472",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "Senyah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Mon",
+   "time": [
+    "18:00",
     "18:55"
    ],
    "course": "MATH 472",
@@ -9145,7 +10276,21 @@
    "page": 20,
    "day": "Mon",
    "time": [
-    "15:00",
+    "17:00",
+    "17:55"
+   ],
+   "course": "MATH 472",
+   "rooms": [],
+   "lecturers": [
+    "Senyah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Mon",
+   "time": [
+    "16:00",
     "16:55"
    ],
    "course": "BIOL 356",
@@ -9162,7 +10307,24 @@
    "page": 20,
    "day": "Mon",
    "time": [
-    "10:30",
+    "15:00",
+    "15:55"
+   ],
+   "course": "BIOL 356",
+   "rooms": [
+    "SCB-GF1"
+   ],
+   "lecturers": [
+    "Kwarteng",
+    "Siaw"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Mon",
+   "time": [
+    "11:30",
     "12:25"
    ],
    "course": "BIOL 360",
@@ -9177,8 +10339,37 @@
    "page": 20,
    "day": "Mon",
    "time": [
-    "08:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "BIOL 360",
+   "rooms": [],
+   "lecturers": [
+    "SYLVERKEN",
+    "Boampong"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Mon",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "BIOL 358",
+   "rooms": [
+    "BB-GL100"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "BIOL 358",
    "rooms": [
@@ -9191,7 +10382,7 @@
    "page": 20,
    "day": "Thu",
    "time": [
-    "16:00",
+    "18:00",
     "18:55"
    ],
    "course": "SCI 352",
@@ -9205,7 +10396,35 @@
    "page": 20,
    "day": "Thu",
    "time": [
-    "13:00",
+    "17:00",
+    "17:55"
+   ],
+   "course": "SCI 352",
+   "rooms": [],
+   "lecturers": [
+    "Group"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Thu",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "SCI 352",
+   "rooms": [],
+   "lecturers": [
+    "Group"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Thu",
+   "time": [
+    "14:00",
     "14:55"
    ],
    "course": "BIOL 352",
@@ -9222,7 +10441,24 @@
    "page": 20,
    "day": "Thu",
    "time": [
-    "08:00",
+    "13:00",
+    "13:55"
+   ],
+   "course": "BIOL 352",
+   "rooms": [
+    "3-GL200"
+   ],
+   "lecturers": [
+    "AKYEAMPONG",
+    "Anokye"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Thu",
+   "time": [
+    "09:00",
     "09:55"
    ],
    "course": "STAT 154",
@@ -9236,8 +10472,36 @@
    "page": 20,
    "day": "Thu",
    "time": [
-    "10:30",
+    "08:00",
+    "08:55"
+   ],
+   "course": "STAT 154",
+   "rooms": [],
+   "lecturers": [
+    "AADJEI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Thu",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "STAT 154",
+   "rooms": [],
+   "lecturers": [
+    "V.K DEDU"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "STAT 154",
    "rooms": [],
@@ -9250,7 +10514,7 @@
    "page": 20,
    "day": "Tue",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
    ],
    "course": "BIOL 358",
@@ -9264,8 +10528,38 @@
    "page": 20,
    "day": "Tue",
    "time": [
-    "10:30",
+    "15:00",
+    "15:55"
+   ],
+   "course": "BIOL 358",
+   "rooms": [],
+   "lecturers": [
+    "TERLABIE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Tue",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "BIOL 360",
+   "rooms": [],
+   "lecturers": [
+    "Casely Hayford",
+    "SYLVERKEN",
+    "Boampong"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BIOL 360",
    "rooms": [],
@@ -9280,7 +10574,7 @@
    "page": 20,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
    ],
    "course": "BIOL 354",
@@ -9295,7 +10589,22 @@
    "page": 20,
    "day": "Wed",
    "time": [
-    "15:00",
+    "08:00",
+    "08:55"
+   ],
+   "course": "BIOL 354",
+   "rooms": [],
+   "lecturers": [
+    "Casely Hayford",
+    "J.D BELFORD"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Wed",
+   "time": [
+    "16:00",
     "16:55"
    ],
    "course": "BIOL 354",
@@ -9309,7 +10618,21 @@
    "page": 20,
    "day": "Wed",
    "time": [
-    "10:30",
+    "15:00",
+    "15:55"
+   ],
+   "course": "BIOL 354",
+   "rooms": [],
+   "lecturers": [
+    "E.J.D BELFORD"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
    ],
    "course": "BIOL 358",
@@ -9323,8 +10646,38 @@
    "page": 20,
    "day": "Wed",
    "time": [
-    "13:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "BIOL 358",
+   "rooms": [
+    "3-BLT"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Wed",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "BIOL 358",
+   "rooms": [
+    "SCB-SF19"
+   ],
+   "lecturers": [
+    "TERLABIE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 20,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "BIOL 358",
    "rooms": [
@@ -9379,8 +10732,24 @@
    "page": 21,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "BIOL 452",
+   "rooms": [
+    "SCB-GF1"
+   ],
+   "lecturers": [
+    "ANNING A.K"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 21,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "BIOL 452",
    "rooms": [
@@ -9500,8 +10869,25 @@
    "page": 21,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "BIOL 460",
+   "rooms": [
+    "BB-GL3"
+   ],
+   "lecturers": [
+    "Biney",
+    "J.A LARBI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 21,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BIOL 460",
    "rooms": [
@@ -9617,8 +11003,24 @@
    "page": 22,
    "day": "Fri",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 158",
+   "rooms": [
+    "BB-BLT"
+   ],
+   "lecturers": [
+    "APAU"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 22,
+   "day": "Fri",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 158",
    "rooms": [
@@ -9703,7 +11105,7 @@
    "page": 22,
    "day": "Thu",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
    ],
    "course": "FST 182",
@@ -9720,8 +11122,41 @@
    "page": 22,
    "day": "Thu",
    "time": [
-    "10:30",
+    "13:00",
+    "13:55"
+   ],
+   "course": "FST 182",
+   "rooms": [
+    "DB"
+   ],
+   "lecturers": [
+    "Casely Hayford",
+    "Osei-Danso"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 22,
+   "day": "Thu",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 156",
+   "rooms": [
+    "3-BLT"
+   ],
+   "lecturers": [
+    "Egh"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 22,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 156",
    "rooms": [
@@ -9766,8 +11201,20 @@
    "page": 22,
    "day": "Wed",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
+   ],
+   "course": "CHEM 158",
+   "rooms": [],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 22,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
    ],
    "course": "CHEM 158",
    "rooms": [],
@@ -9778,8 +11225,24 @@
    "page": 23,
    "day": "Fri",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "ENVS 264",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [
+    "SULEMANA"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 23,
+   "day": "Fri",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "ENVS 264",
    "rooms": [
@@ -9858,8 +11321,22 @@
    "page": 23,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "ENVS 262",
+   "rooms": [],
+   "lecturers": [
+    "L.N.A Sackey"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 23,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "ENVS 262",
    "rooms": [],
@@ -10024,7 +11501,7 @@
    "page": 24,
    "day": "Fri",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
    ],
    "course": "ENVS 356",
@@ -10040,8 +11517,40 @@
    "page": 24,
    "day": "Fri",
    "time": [
-    "10:30",
+    "15:00",
+    "15:55"
+   ],
+   "course": "ENVS 356",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [
+    "R.C ABAIDOO"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 24,
+   "day": "Fri",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "ENVS 352",
+   "rooms": [
+    "SCB-SF8"
+   ],
+   "lecturers": [
+    "Osei-Owusu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 24,
+   "day": "Fri",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "ENVS 352",
    "rooms": [
@@ -10056,8 +11565,24 @@
    "page": 24,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "ENVS 364",
+   "rooms": [
+    "3-BLT"
+   ],
+   "lecturers": [
+    "A.K ANNING"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 24,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "ENVS 364",
    "rooms": [
@@ -10124,8 +11649,24 @@
    "page": 24,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "ENVS 362",
+   "rooms": [
+    "SCB-TF34"
+   ],
+   "lecturers": [
+    "Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 24,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "ENVS 362",
    "rooms": [
@@ -10170,7 +11711,7 @@
    "page": 24,
    "day": "Wed",
    "time": [
-    "17:00",
+    "18:00",
     "18:55"
    ],
    "course": "ENVS 356",
@@ -10186,8 +11727,40 @@
    "page": 24,
    "day": "Wed",
    "time": [
-    "08:00",
+    "17:00",
+    "17:55"
+   ],
+   "course": "ENVS 356",
+   "rooms": [
+    "BB-GL200"
+   ],
+   "lecturers": [
+    "Sackey"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 24,
+   "day": "Wed",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "ENVS 366",
+   "rooms": [
+    "3-BLT"
+   ],
+   "lecturers": [
+    "Baffour-Ata"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 24,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENVS 366",
    "rooms": [
@@ -10282,8 +11855,22 @@
    "page": 25,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ENVS 454",
+   "rooms": [
+    "3-GL300"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 25,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENVS 454",
    "rooms": [
@@ -10426,8 +12013,24 @@
    "page": 26,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ENVS 558",
+   "rooms": [
+    "3-A8"
+   ],
+   "lecturers": [
+    "ANTWI-AGYEI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 26,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENVS 558",
    "rooms": [
@@ -10484,8 +12087,24 @@
    "page": 26,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ENVS 574",
+   "rooms": [
+    "3-A9"
+   ],
+   "lecturers": [
+    "FEI-BAFFOE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 26,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENVS 574",
    "rooms": [
@@ -10500,7 +12119,7 @@
    "page": 26,
    "day": "Tue",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
    ],
    "course": "ENVS 576",
@@ -10516,8 +12135,40 @@
    "page": 26,
    "day": "Tue",
    "time": [
-    "08:00",
+    "14:00",
+    "14:55"
+   ],
+   "course": "ENVS 576",
+   "rooms": [
+    "3-P23"
+   ],
+   "lecturers": [
+    "ANTWI-AGYEI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 26,
+   "day": "Tue",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "ENVS 562",
+   "rooms": [
+    "3-A9"
+   ],
+   "lecturers": [
+    "MIEZAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 26,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENVS 562",
    "rooms": [
@@ -10562,7 +12213,7 @@
    "page": 26,
    "day": "Wed",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
    ],
    "course": "ENVS 564",
@@ -10578,8 +12229,40 @@
    "page": 26,
    "day": "Wed",
    "time": [
-    "08:00",
+    "16:00",
+    "16:55"
+   ],
+   "course": "ENVS 564",
+   "rooms": [
+    "PB-P23"
+   ],
+   "lecturers": [
+    "MIEZAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 26,
+   "day": "Wed",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "ENVS 572",
+   "rooms": [
+    "3-A9"
+   ],
+   "lecturers": [
+    "J.N HOGARH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 26,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENVS 572",
    "rooms": [
@@ -10608,8 +12291,24 @@
    "page": 27,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "BIOL 162",
+   "rooms": [
+    "BB-GL100"
+   ],
+   "lecturers": [
+    "Boampong"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 27,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "BIOL 162",
    "rooms": [
@@ -10670,8 +12369,22 @@
    "page": 27,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "FST 152",
+   "rooms": [],
+   "lecturers": [
+    "FS-L Boakye"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 27,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "FST 152",
    "rooms": [],
@@ -10755,7 +12468,7 @@
    "page": 27,
    "day": "Wed",
    "time": [
-    "17:00",
+    "18:00",
     "18:55"
    ],
    "course": "ENGL 158",
@@ -10771,7 +12484,23 @@
    "page": 27,
    "day": "Wed",
    "time": [
-    "10:30",
+    "17:00",
+    "17:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-SF20"
+   ],
+   "lecturers": [
+    "Opoku-Fofie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 27,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
    ],
    "course": "MATH 172",
@@ -10787,7 +12516,23 @@
    "page": 27,
    "day": "Wed",
    "time": [
-    "13:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "MATH 172",
+   "rooms": [
+    "SCB-FF5"
+   ],
+   "lecturers": [
+    "FOOD"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 27,
+   "day": "Wed",
+   "time": [
+    "15:00",
     "15:55"
    ],
    "course": "MATH 172",
@@ -10803,8 +12548,57 @@
    "page": 27,
    "day": "Wed",
    "time": [
-    "08:00",
+    "14:00",
+    "14:55"
+   ],
+   "course": "MATH 172",
+   "rooms": [
+    "CB-FF24"
+   ],
+   "lecturers": [
+    "Boateng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 27,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
+   ],
+   "course": "MATH 172",
+   "rooms": [
+    "CB-FF24"
+   ],
+   "lecturers": [
+    "Boateng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 27,
+   "day": "Wed",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "FST 152",
+   "rooms": [
+    "3-LT1"
+   ],
+   "lecturers": [
+    "A.A Boakye",
+    "J.L.Z Pepra-Ameyaw"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 27,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "FST 152",
    "rooms": [
@@ -10820,7 +12614,7 @@
    "page": 28,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
    ],
    "course": "FST 252",
@@ -10836,8 +12630,38 @@
    "page": 28,
    "day": "Mon",
    "time": [
-    "08:00",
+    "13:00",
+    "13:55"
+   ],
+   "course": "FST 252",
+   "rooms": [
+    "B-A10"
+   ],
+   "lecturers": [
+    "E.A AMANKWAAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 28,
+   "day": "Mon",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 176",
+   "rooms": [],
+   "lecturers": [
+    "BAINSON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 28,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 176",
    "rooms": [],
@@ -10850,8 +12674,24 @@
    "page": 28,
    "day": "Thu",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "FST 262",
+   "rooms": [
+    "SCB-SF7"
+   ],
+   "lecturers": [
+    "Pepra-Ameyaw"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 28,
+   "day": "Thu",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "FST 262",
    "rooms": [
@@ -10892,8 +12732,24 @@
    "page": 28,
    "day": "Tue",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "CHEM 292",
+   "rooms": [
+    "3-LT1"
+   ],
+   "lecturers": [
+    "L.S.BORQUAYE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 28,
+   "day": "Tue",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CHEM 292",
    "rooms": [
@@ -10924,7 +12780,7 @@
    "page": 28,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
    ],
    "course": "BIOL 262",
@@ -10938,8 +12794,38 @@
    "page": 28,
    "day": "Wed",
    "time": [
-    "10:30",
+    "08:00",
+    "08:55"
+   ],
+   "course": "BIOL 262",
+   "rooms": [
+    "BB-GL200"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 28,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "BIOL 262",
+   "rooms": [
+    "SCB-FF5"
+   ],
+   "lecturers": [
+    "FOOD"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 28,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BIOL 262",
    "rooms": [
@@ -11046,8 +12932,22 @@
    "page": 29,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "FST 356",
+   "rooms": [],
+   "lecturers": [
+    "FOOD"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 29,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "FST 356",
    "rooms": [],
@@ -11076,8 +12976,24 @@
    "page": 30,
    "day": "Fri",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "SCE 356",
+   "rooms": [
+    "CB-GF19"
+   ],
+   "lecturers": [
+    "Peprah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 30,
+   "day": "Fri",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "SCE 356",
    "rooms": [
@@ -11108,8 +13024,24 @@
    "page": 30,
    "day": "Fri",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "FST 462",
+   "rooms": [
+    "SCB-TF34"
+   ],
+   "lecturers": [
+    "L.D.K"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 30,
+   "day": "Fri",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "FST 462",
    "rooms": [
@@ -11154,7 +13086,7 @@
    "page": 30,
    "day": "Thu",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
    ],
    "course": "MAS 262",
@@ -11170,8 +13102,40 @@
    "page": 30,
    "day": "Thu",
    "time": [
-    "10:30",
+    "14:00",
+    "14:55"
+   ],
+   "course": "MAS 262",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "L.D.K"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 30,
+   "day": "Thu",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "BCHEM 468",
+   "rooms": [
+    "SCB-TF34"
+   ],
+   "lecturers": [
+    "H.D ZAKPAA"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 30,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "BCHEM 468",
    "rooms": [
@@ -11245,8 +13209,24 @@
    "page": 30,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "PL 356",
+   "rooms": [
+    "3-A7"
+   ],
+   "lecturers": [
+    "Peprah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 30,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "PL 356",
    "rooms": [
@@ -11276,8 +13256,24 @@
    "page": 30,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "FST 454",
+   "rooms": [
+    "SCB-FF5"
+   ],
+   "lecturers": [
+    "FOOD"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 30,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "FST 454",
    "rooms": [
@@ -11304,8 +13300,22 @@
    "page": 31,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "FST 560",
+   "rooms": [],
+   "lecturers": [
+    "H.E LUTTERODT"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 31,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "FST 560",
    "rooms": [],
@@ -11349,8 +13359,22 @@
    "page": 31,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "FST 584",
+   "rooms": [],
+   "lecturers": [
+    "N.B"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 31,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "FST 584",
    "rooms": [],
@@ -11363,8 +13387,22 @@
    "page": 31,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "FST 580",
+   "rooms": [],
+   "lecturers": [
+    "ANNAN"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 31,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "FST 580",
    "rooms": [],
@@ -11403,7 +13441,7 @@
    "page": 31,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "FST 554",
@@ -11419,8 +13457,38 @@
    "page": 31,
    "day": "Wed",
    "time": [
-    "13:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "FST 554",
+   "rooms": [
+    "SCB-FF5"
+   ],
+   "lecturers": [
+    "FOOD"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 31,
+   "day": "Wed",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "FST 554",
+   "rooms": [],
+   "lecturers": [
+    "ODURO"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 31,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "FST 554",
    "rooms": [],
@@ -11447,8 +13515,23 @@
    "page": 32,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "FSA 752",
+   "rooms": [],
+   "lecturers": [
+    "OFOSU",
+    "G.M"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 32,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "FSA 752",
    "rooms": [],
@@ -11535,8 +13618,22 @@
    "page": 32,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "FST 580",
+   "rooms": [],
+   "lecturers": [
+    "ANNAN"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 32,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "FST 580",
    "rooms": [],
@@ -11563,8 +13660,22 @@
    "page": 32,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "FST 586",
+   "rooms": [],
+   "lecturers": [
+    "Zaukuu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 32,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "FST 586",
    "rooms": [],
@@ -11606,7 +13717,7 @@
    "page": 32,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "FST 572",
@@ -11622,8 +13733,39 @@
    "page": 32,
    "day": "Wed",
    "time": [
-    "15:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "FST 572",
+   "rooms": [
+    "CB-FF5"
+   ],
+   "lecturers": [
+    "FOOD"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 32,
+   "day": "Wed",
+   "time": [
+    "16:00",
     "16:55"
+   ],
+   "course": "FST 572",
+   "rooms": [],
+   "lecturers": [
+    "E.A AMANKWAAH",
+    "Quasie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 32,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "FST 572",
    "rooms": [],
@@ -11663,8 +13805,23 @@
    "page": 33,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "FSA 752",
+   "rooms": [],
+   "lecturers": [
+    "OFOSU",
+    "G.M I.W"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 33,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "FSA 752",
    "rooms": [],
@@ -11762,8 +13919,22 @@
    "page": 33,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "FST 586",
+   "rooms": [],
+   "lecturers": [
+    "Zaukuu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 33,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "FST 586",
    "rooms": [],
@@ -11800,8 +13971,22 @@
    "page": 33,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "FST 768",
+   "rooms": [],
+   "lecturers": [
+    "J.K AGBENORHEVI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 33,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "FST 768",
    "rooms": [],
@@ -11828,7 +14013,7 @@
    "page": 34,
    "day": "Mon",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
    ],
    "course": "FSA 756",
@@ -11842,8 +14027,37 @@
    "page": 34,
    "day": "Mon",
    "time": [
-    "08:00",
+    "16:00",
+    "16:55"
+   ],
+   "course": "FSA 756",
+   "rooms": [],
+   "lecturers": [
+    "Pepra-Ameyaw"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 34,
+   "day": "Mon",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "FSA 752",
+   "rooms": [],
+   "lecturers": [
+    "OFOSU",
+    "G.M ANKAR-BREWOO"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 34,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "FSA 752",
    "rooms": [],
@@ -12021,8 +14235,24 @@
    "page": 35,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "BIOL 158",
+   "rooms": [
+    "SCB-TF34"
+   ],
+   "lecturers": [
+    "A.A Lar"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 35,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "BIOL 158",
    "rooms": [
@@ -12125,8 +14355,22 @@
    "page": 35,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [],
+   "lecturers": [
+    "H.M Eyison"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 35,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENGL 158",
    "rooms": [],
@@ -12139,8 +14383,24 @@
    "page": 35,
    "day": "Wed",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "MATH 158",
+   "rooms": [
+    "SCB-FF5"
+   ],
+   "lecturers": [
+    "ATTAH GYAMFI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 35,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "MATH 158",
    "rooms": [
@@ -12169,8 +14429,24 @@
    "page": 35,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "OPT 158",
+   "rooms": [
+    "CB-GF17"
+   ],
+   "lecturers": [
+    "Amoah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 35,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "OPT 158",
    "rooms": [
@@ -12185,7 +14461,7 @@
    "page": 36,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
    ],
    "course": "OPT 264",
@@ -12201,8 +14477,40 @@
    "page": 36,
    "day": "Mon",
    "time": [
-    "10:30",
+    "13:00",
+    "13:55"
+   ],
+   "course": "OPT 264",
+   "rooms": [
+    "CB-B23"
+   ],
+   "lecturers": [
+    "Mohammed"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 36,
+   "day": "Mon",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "OPT 254",
+   "rooms": [
+    "CB-LT1"
+   ],
+   "lecturers": [
+    "A.K Mohammed"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 36,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "OPT 254",
    "rooms": [
@@ -12303,7 +14611,7 @@
    "page": 36,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "BIOL 254",
@@ -12319,8 +14627,40 @@
    "page": 36,
    "day": "Tue",
    "time": [
-    "14:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "BIOL 254",
+   "rooms": [
+    "BB-BLT"
+   ],
+   "lecturers": [
+    "OWUSU-DAAKU"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 36,
+   "day": "Tue",
+   "time": [
+    "15:00",
     "15:55"
+   ],
+   "course": "BIOL 254",
+   "rooms": [
+    "BB-GL100"
+   ],
+   "lecturers": [
+    "OWUSU-DAAKU"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 36,
+   "day": "Tue",
+   "time": [
+    "14:00",
+    "14:55"
    ],
    "course": "BIOL 254",
    "rooms": [
@@ -12379,8 +14719,22 @@
    "page": 36,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ENUR 258",
+   "rooms": [],
+   "lecturers": [
+    "Abebrese"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 36,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENUR 258",
    "rooms": [],
@@ -12419,8 +14773,23 @@
    "page": 37,
    "day": "Mon",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "OPT 370",
+   "rooms": [],
+   "lecturers": [
+    "AHMED",
+    "A.K"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 37,
+   "day": "Mon",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "OPT 370",
    "rooms": [],
@@ -12614,8 +14983,25 @@
    "page": 37,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "PHARM 388",
+   "rooms": [
+    "3-LT2"
+   ],
+   "lecturers": [
+    "Marte",
+    "A.F Donkor"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 37,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "PHARM 388",
    "rooms": [
@@ -12661,7 +15047,7 @@
    "page": 38,
    "day": "Mon",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
    ],
    "course": "OPT 454",
@@ -12678,8 +15064,42 @@
    "page": 38,
    "day": "Mon",
    "time": [
-    "13:00",
+    "15:00",
+    "15:55"
+   ],
+   "course": "OPT 454",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "Agyekum",
+    "USU"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 38,
+   "day": "Mon",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "OPT 452",
+   "rooms": [
+    "SCB-FF5"
+   ],
+   "lecturers": [
+    "OWUSU",
+    "A.K"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 38,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "OPT 452",
    "rooms": [
@@ -12711,7 +15131,7 @@
    "page": 38,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
    ],
    "course": "OPT 454",
@@ -12725,8 +15145,107 @@
    "page": 38,
    "day": "Thu",
    "time": [
-    "13:00",
+    "08:00",
+    "08:55"
+   ],
+   "course": "OPT 454",
+   "rooms": [],
+   "lecturers": [
+    "OD-LAB-TAB"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 38,
+   "day": "Thu",
+   "time": [
+    "18:00",
     "18:55"
+   ],
+   "course": "OPT 454",
+   "rooms": [
+    "CB-B23"
+   ],
+   "lecturers": [
+    "OWUSU",
+    "Agyekum"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 38,
+   "day": "Thu",
+   "time": [
+    "17:00",
+    "17:55"
+   ],
+   "course": "OPT 454",
+   "rooms": [
+    "CB-B23"
+   ],
+   "lecturers": [
+    "OWUSU",
+    "Agyekum"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 38,
+   "day": "Thu",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "OPT 454",
+   "rooms": [
+    "CB-B23"
+   ],
+   "lecturers": [
+    "OWUSU",
+    "Agyekum"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 38,
+   "day": "Thu",
+   "time": [
+    "15:00",
+    "15:55"
+   ],
+   "course": "OPT 454",
+   "rooms": [
+    "CB-B23"
+   ],
+   "lecturers": [
+    "OWUSU",
+    "Agyekum"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 38,
+   "day": "Thu",
+   "time": [
+    "14:00",
+    "14:55"
+   ],
+   "course": "OPT 454",
+   "rooms": [
+    "CB-B23"
+   ],
+   "lecturers": [
+    "OWUSU",
+    "Agyekum"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 38,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "OPT 454",
    "rooms": [
@@ -12790,8 +15309,24 @@
    "page": 38,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "OPT 456",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [
+    "Agyekum"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 38,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "OPT 456",
    "rooms": [
@@ -12806,7 +15341,7 @@
    "page": 38,
    "day": "Wed",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
    ],
    "course": "OPT 454",
@@ -12820,7 +15355,21 @@
    "page": 38,
    "day": "Wed",
    "time": [
-    "13:00",
+    "15:00",
+    "15:55"
+   ],
+   "course": "OPT 454",
+   "rooms": [],
+   "lecturers": [
+    "OD-LAB-TAB Kyeremeh"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 38,
+   "day": "Wed",
+   "time": [
+    "14:00",
     "14:55"
    ],
    "course": "OPT 452",
@@ -12835,8 +15384,39 @@
    "page": 38,
    "day": "Wed",
    "time": [
-    "08:00",
+    "13:00",
+    "13:55"
+   ],
+   "course": "OPT 452",
+   "rooms": [],
+   "lecturers": [
+    "OWUSU",
+    "A.K"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 38,
+   "day": "Wed",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "OPT 458",
+   "rooms": [
+    "SCB-TF34"
+   ],
+   "lecturers": [
+    "Ayisi-Boateng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 38,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "OPT 458",
    "rooms": [
@@ -12891,8 +15471,23 @@
    "page": 39,
    "day": "Fri",
    "time": [
-    "17:00",
+    "18:00",
     "18:55"
+   ],
+   "course": "OPT 556",
+   "rooms": [],
+   "lecturers": [
+    "Kyeremeh",
+    "OwUSU"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 39,
+   "day": "Fri",
+   "time": [
+    "17:00",
+    "17:55"
    ],
    "course": "OPT 556",
    "rooms": [],
@@ -12933,8 +15528,23 @@
    "page": 39,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "OPT 558",
+   "rooms": [],
+   "lecturers": [
+    "Wemer",
+    "Agyekum"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 39,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "OPT 558",
    "rooms": [],
@@ -12996,8 +15606,24 @@
    "page": 39,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "OPT 558",
+   "rooms": [
+    "CB-B1"
+   ],
+   "lecturers": [
+    "Agyekum E.Wemer"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 39,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "OPT 558",
    "rooms": [
@@ -13012,8 +15638,25 @@
    "page": 39,
    "day": "Wed",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "OPT 558",
+   "rooms": [
+    "3-A7"
+   ],
+   "lecturers": [
+    "Vemer",
+    "Agyekum"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 39,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "OPT 558",
    "rooms": [
@@ -13083,8 +15726,24 @@
    "page": 40,
    "day": "Mon",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "OPT 654",
+   "rooms": [
+    "3-LT2"
+   ],
+   "lecturers": [
+    "Kyeremeh"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 40,
+   "day": "Mon",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "OPT 654",
    "rooms": [
@@ -13111,8 +15770,24 @@
    "page": 40,
    "day": "Thu",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "OPT 658",
+   "rooms": [
+    "CB-GF18"
+   ],
+   "lecturers": [
+    "OwUsU"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 40,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "OPT 658",
    "rooms": [
@@ -13183,8 +15858,22 @@
    "page": 40,
    "day": "Wed",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "OPT 656",
+   "rooms": [
+    "SCB-B1"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 40,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "OPT 656",
    "rooms": [
@@ -13273,8 +15962,24 @@
    "page": 41,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "CB-LT1"
+   ],
+   "lecturers": [
+    "Opoku-Fofie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 41,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENGL 158",
    "rooms": [
@@ -13327,8 +16032,24 @@
    "page": 41,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 156",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "Bonyah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 41,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 156",
    "rooms": [
@@ -13343,7 +16064,7 @@
    "page": 41,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
    ],
    "course": "CHEM 156",
@@ -13357,8 +16078,38 @@
    "page": 41,
    "day": "Wed",
    "time": [
-    "10:30",
+    "08:00",
+    "08:55"
+   ],
+   "course": "CHEM 156",
+   "rooms": [
+    "CB-SF20"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 41,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 156",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "CHEMISTRY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 41,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 156",
    "rooms": [
@@ -13373,8 +16124,24 @@
    "page": 42,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "CHEM 270",
+   "rooms": [
+    "3-LT1"
+   ],
+   "lecturers": [
+    "BOADI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 42,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "CHEM 270",
    "rooms": [
@@ -13405,8 +16172,24 @@
    "page": 42,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 262",
+   "rooms": [
+    "SCB-GF18"
+   ],
+   "lecturers": [
+    "E.E KWANSA-ANSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 42,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 262",
    "rooms": [
@@ -13421,8 +16204,23 @@
    "page": 42,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 270",
+   "rooms": [],
+   "lecturers": [
+    "Laryea",
+    "M.B Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 42,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 270",
    "rooms": [],
@@ -13460,8 +16258,24 @@
    "page": 42,
    "day": "Tue",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "MATH 266",
+   "rooms": [
+    "3-A10"
+   ],
+   "lecturers": [
+    "M.B Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 42,
+   "day": "Tue",
+   "time": [
+    "14:00",
+    "14:55"
    ],
    "course": "MATH 266",
    "rooms": [
@@ -13506,7 +16320,7 @@
    "page": 42,
    "day": "Wed",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
    ],
    "course": "ENGL 264",
@@ -13522,8 +16336,40 @@
    "page": 42,
    "day": "Wed",
    "time": [
-    "10:30",
+    "15:00",
+    "15:55"
+   ],
+   "course": "ENGL 264",
+   "rooms": [
+    "SCB-GF17"
+   ],
+   "lecturers": [
+    "Yeboah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 42,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 270",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "CHEMISTRY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 42,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 270",
    "rooms": [
@@ -13580,8 +16426,22 @@
    "page": 43,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ECON 152",
+   "rooms": [],
+   "lecturers": [
+    "D.K"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 43,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ECON 152",
    "rooms": [],
@@ -13663,8 +16523,24 @@
    "page": 43,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 354",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "L.S BORQUAYE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 43,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 354",
    "rooms": [
@@ -13695,8 +16571,24 @@
    "page": 43,
    "day": "Tue",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "CHEM 354",
+   "rooms": [
+    "SCB-GF1"
+   ],
+   "lecturers": [
+    "ADEI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 43,
+   "day": "Tue",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CHEM 354",
    "rooms": [
@@ -13727,8 +16619,24 @@
    "page": 43,
    "day": "Tue",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "CHEM 362",
+   "rooms": [
+    "SCB-SF20"
+   ],
+   "lecturers": [
+    "VOEGBORLO"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 43,
+   "day": "Tue",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "CHEM 362",
    "rooms": [
@@ -13743,7 +16651,7 @@
    "page": 43,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
    ],
    "course": "CHEM 356",
@@ -13757,8 +16665,38 @@
    "page": 43,
    "day": "Wed",
    "time": [
-    "10:30",
+    "13:00",
+    "13:55"
+   ],
+   "course": "CHEM 356",
+   "rooms": [
+    "CB-SF8"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 43,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 354",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "CHEMISTRY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 43,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 354",
    "rooms": [
@@ -13811,8 +16749,24 @@
    "page": 44,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 476",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "M.A NKANSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 44,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 476",
    "rooms": [
@@ -13907,7 +16861,7 @@
    "page": 44,
    "day": "Thu",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
    ],
    "course": "CHEM 452",
@@ -13921,8 +16875,36 @@
    "page": 44,
    "day": "Thu",
    "time": [
-    "10:30",
+    "13:00",
+    "13:55"
+   ],
+   "course": "CHEM 452",
+   "rooms": [],
+   "lecturers": [
+    "Amenuvor"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 44,
+   "day": "Thu",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 470",
+   "rooms": [],
+   "lecturers": [
+    "CHEMISTRY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 44,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 470",
    "rooms": [],
@@ -14035,7 +17017,7 @@
    "page": 44,
    "day": "Wed",
    "time": [
-    "13:00",
+    "15:00",
     "15:55"
    ],
    "course": "CHEM 456",
@@ -14051,8 +17033,56 @@
    "page": 44,
    "day": "Wed",
    "time": [
-    "10:30",
+    "14:00",
+    "14:55"
+   ],
+   "course": "CHEM 456",
+   "rooms": [
+    "SCB-FF5"
+   ],
+   "lecturers": [
+    "J.A.M AWUDZA"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 44,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
+   ],
+   "course": "CHEM 456",
+   "rooms": [
+    "SCB-FF5"
+   ],
+   "lecturers": [
+    "J.A.M AWUDZA"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 44,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 476",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "CHEMISTRY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 44,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 476",
    "rooms": [
@@ -14067,8 +17097,22 @@
    "page": 45,
    "day": "Fri",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "CHEM 554",
+   "rooms": [
+    "PB-P22"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 45,
+   "day": "Fri",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "CHEM 554",
    "rooms": [
@@ -14123,8 +17167,22 @@
    "page": 45,
    "day": "Thu",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "CHEM 552",
+   "rooms": [],
+   "lecturers": [
+    "B.VOEGBORLO"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 45,
+   "day": "Thu",
+   "time": [
+    "14:00",
+    "14:55"
    ],
    "course": "CHEM 552",
    "rooms": [],
@@ -14151,8 +17209,24 @@
    "page": 45,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 552",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "CHEMISTRY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 45,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 552",
    "rooms": [
@@ -14167,8 +17241,22 @@
    "page": 46,
    "day": "Fri",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "CHEM 554",
+   "rooms": [
+    "PB-P22"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 46,
+   "day": "Fri",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "CHEM 554",
    "rooms": [
@@ -14223,8 +17311,22 @@
    "page": 46,
    "day": "Thu",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "CHEM 552",
+   "rooms": [],
+   "lecturers": [
+    "VOEGBORLO"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 46,
+   "day": "Thu",
+   "time": [
+    "14:00",
+    "14:55"
    ],
    "course": "CHEM 552",
    "rooms": [],
@@ -14251,8 +17353,24 @@
    "page": 46,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 552",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "CHEMISTRY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 46,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 552",
    "rooms": [
@@ -14267,8 +17385,24 @@
    "page": 47,
    "day": "Fri",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "CHEM 564",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "N.K ASARE-DONKOH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 47,
+   "day": "Fri",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "CHEM 564",
    "rooms": [
@@ -14325,7 +17459,7 @@
    "page": 47,
    "day": "Wed",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
    ],
    "course": "CHEM 564",
@@ -14341,8 +17475,40 @@
    "page": 47,
    "day": "Wed",
    "time": [
-    "10:30",
+    "15:00",
+    "15:55"
+   ],
+   "course": "CHEM 564",
+   "rooms": [
+    "SCB-GF2"
+   ],
+   "lecturers": [
+    "N.K ASARE-DONKOH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 47,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 562",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "CHEMISTRY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 47,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 562",
    "rooms": [
@@ -14357,8 +17523,40 @@
    "page": 48,
    "day": "Fri",
    "time": [
-    "16:00",
+    "18:00",
     "18:55"
+   ],
+   "course": "CHEM 572",
+   "rooms": [
+    "SCB-GF2"
+   ],
+   "lecturers": [
+    "Osei Akoto"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 48,
+   "day": "Fri",
+   "time": [
+    "17:00",
+    "17:55"
+   ],
+   "course": "CHEM 572",
+   "rooms": [
+    "SCB-GF2"
+   ],
+   "lecturers": [
+    "Osei Akoto"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 48,
+   "day": "Fri",
+   "time": [
+    "16:00",
+    "16:55"
    ],
    "course": "CHEM 572",
    "rooms": [
@@ -14427,8 +17625,22 @@
    "page": 48,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "CHEM 576",
+   "rooms": [],
+   "lecturers": [
+    "J.K MENSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 48,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "CHEM 576",
    "rooms": [],
@@ -14481,7 +17693,7 @@
    "page": 48,
    "day": "Wed",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
    ],
    "course": "CHEM 572",
@@ -14497,8 +17709,40 @@
    "page": 48,
    "day": "Wed",
    "time": [
-    "10:30",
+    "16:00",
+    "16:55"
+   ],
+   "course": "CHEM 572",
+   "rooms": [
+    "SCB-SF4"
+   ],
+   "lecturers": [
+    "Osei Akoto"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 48,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 574",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "CHEMISTRY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 48,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 574",
    "rooms": [
@@ -14525,8 +17769,22 @@
    "page": 49,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "CHEM 582",
+   "rooms": [
+    "3-A9"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 49,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "CHEM 582",
    "rooms": [
@@ -14681,7 +17939,7 @@
    "page": 49,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "CHEM 586",
@@ -14697,8 +17955,38 @@
    "page": 49,
    "day": "Wed",
    "time": [
-    "08:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "CHEM 586",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "CHEMISTRY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 49,
+   "day": "Wed",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "CHEM 582",
+   "rooms": [
+    "CB-SF4"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 49,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "CHEM 582",
    "rooms": [
@@ -14835,8 +18123,24 @@
    "page": 50,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "CHM 560",
+   "rooms": [
+    "CB-LT2"
+   ],
+   "lecturers": [
+    "CHEMISTRY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 50,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHM 560",
    "rooms": [
@@ -14863,7 +18167,7 @@
    "page": 51,
    "day": "Fri",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
    ],
    "course": "CHEM 772",
@@ -14877,8 +18181,36 @@
    "page": 51,
    "day": "Fri",
    "time": [
-    "10:30",
+    "14:00",
+    "14:55"
+   ],
+   "course": "CHEM 772",
+   "rooms": [],
+   "lecturers": [
+    "Menkah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 51,
+   "day": "Fri",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 758",
+   "rooms": [],
+   "lecturers": [
+    "AKOTO"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 51,
+   "day": "Fri",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 758",
    "rooms": [],
@@ -14917,7 +18249,7 @@
    "page": 51,
    "day": "Mon",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
    ],
    "course": "CHEM 756",
@@ -14932,8 +18264,37 @@
    "page": 51,
    "day": "Mon",
    "time": [
-    "10:30",
+    "14:00",
+    "14:55"
+   ],
+   "course": "CHEM 756",
+   "rooms": [],
+   "lecturers": [
+    "L.S BORQUAYE",
+    "M.Badu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 51,
+   "day": "Mon",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 764",
+   "rooms": [],
+   "lecturers": [
+    "DADI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 51,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 764",
    "rooms": [],
@@ -14972,7 +18333,7 @@
    "page": 51,
    "day": "Thu",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
    ],
    "course": "CHEM 784",
@@ -14987,8 +18348,37 @@
    "page": 51,
    "day": "Thu",
    "time": [
-    "10:30",
+    "14:00",
+    "14:55"
+   ],
+   "course": "CHEM 784",
+   "rooms": [],
+   "lecturers": [
+    "J.K MENSAH",
+    "Laryea"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 51,
+   "day": "Thu",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 762",
+   "rooms": [],
+   "lecturers": [
+    "N.K ASARE-DONKOH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 51,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 762",
    "rooms": [],
@@ -15015,8 +18405,22 @@
    "page": 51,
    "day": "Tue",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "CHEM 798",
+   "rooms": [],
+   "lecturers": [
+    "J.A.M AWUDZA"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 51,
+   "day": "Tue",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CHEM 798",
    "rooms": [],
@@ -15041,7 +18445,7 @@
    "page": 51,
    "day": "Wed",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
    ],
    "course": "CHEM 788",
@@ -15055,8 +18459,34 @@
    "page": 51,
    "day": "Wed",
    "time": [
-    "10:30",
+    "16:00",
+    "16:55"
+   ],
+   "course": "CHEM 788",
+   "rooms": [],
+   "lecturers": [
+    "LSarpong"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 51,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CHEM 782",
+   "rooms": [],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 51,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CHEM 782",
    "rooms": [],
@@ -15081,8 +18511,22 @@
    "page": 52,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ECON 152",
+   "rooms": [],
+   "lecturers": [
+    "J.B DRAMANI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ECON 152",
    "rooms": [],
@@ -15095,7 +18539,7 @@
    "page": 52,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
    ],
    "course": "MATH 162",
@@ -15111,7 +18555,23 @@
    "page": 52,
    "day": "Mon",
    "time": [
-    "13:00",
+    "08:00",
+    "08:55"
+   ],
+   "course": "MATH 162",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "Bonyah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Mon",
+   "time": [
+    "14:00",
     "14:55"
    ],
    "course": "MATH 162",
@@ -15125,8 +18585,38 @@
    "page": 52,
    "day": "Mon",
    "time": [
-    "10:30",
+    "13:00",
+    "13:55"
+   ],
+   "course": "MATH 162",
+   "rooms": [],
+   "lecturers": [
+    "Bonyah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Mon",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CSM 166",
+   "rooms": [
+    "SCB-SF"
+   ],
+   "lecturers": [
+    "Y.E AYEPKLE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CSM 166",
    "rooms": [
@@ -15141,7 +18631,7 @@
    "page": 52,
    "day": "Tue",
    "time": [
-    "13:00",
+    "16:00",
     "16:55"
    ],
    "course": "CSM 152",
@@ -15157,7 +18647,55 @@
    "page": 52,
    "day": "Tue",
    "time": [
-    "08:00",
+    "15:00",
+    "15:55"
+   ],
+   "course": "CSM 152",
+   "rooms": [
+    "SCB-TF1"
+   ],
+   "lecturers": [
+    "Abdul Salam"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Tue",
+   "time": [
+    "14:00",
+    "14:55"
+   ],
+   "course": "CSM 152",
+   "rooms": [
+    "SCB-TF1"
+   ],
+   "lecturers": [
+    "Abdul Salam"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Tue",
+   "time": [
+    "13:00",
+    "13:55"
+   ],
+   "course": "CSM 152",
+   "rooms": [
+    "SCB-TF1"
+   ],
+   "lecturers": [
+    "Abdul Salam"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Tue",
+   "time": [
+    "09:00",
     "09:55"
    ],
    "course": "STAT 166",
@@ -15173,7 +18711,23 @@
    "page": 52,
    "day": "Tue",
    "time": [
-    "10:30",
+    "08:00",
+    "08:55"
+   ],
+   "course": "STAT 166",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "K.Owusu-Agyeman J.K Afriyie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Tue",
+   "time": [
+    "11:30",
     "12:25"
    ],
    "course": "STAT 166",
@@ -15189,7 +18743,23 @@
    "page": 52,
    "day": "Tue",
    "time": [
-    "08:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "STAT 166",
+   "rooms": [
+    "SCB-SF"
+   ],
+   "lecturers": [
+    "Afriyie J.K K.Owusu-Agyeman"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Tue",
+   "time": [
+    "09:00",
     "09:55"
    ],
    "course": "CSM 158",
@@ -15205,8 +18775,40 @@
    "page": 52,
    "day": "Tue",
    "time": [
-    "10:30",
+    "08:00",
+    "08:55"
+   ],
+   "course": "CSM 158",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "K.Owusu-Agyeman J.K Afriyie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Tue",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CSM 158",
+   "rooms": [
+    "SCB-GF"
+   ],
+   "lecturers": [
+    "Afriyie J.K K.Owusu-Agyeman"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CSM 158",
    "rooms": [
@@ -15221,7 +18823,7 @@
    "page": 52,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "ENGL 158",
@@ -15235,8 +18837,70 @@
    "page": 52,
    "day": "Wed",
    "time": [
-    "15:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Wed",
+   "time": [
+    "18:00",
     "18:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "Oduro Kwarteng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Wed",
+   "time": [
+    "17:00",
+    "17:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "Oduro Kwarteng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "Oduro Kwarteng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 52,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "ENGL 158",
    "rooms": [
@@ -15251,8 +18915,56 @@
    "page": 53,
    "day": "Fri",
    "time": [
-    "13:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "ENGL 264",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "Oduro Kwarteng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Fri",
+   "time": [
+    "15:00",
+    "15:55"
+   ],
+   "course": "ENGL 264",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "Oduro Kwarteng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Fri",
+   "time": [
+    "14:00",
+    "14:55"
+   ],
+   "course": "ENGL 264",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "Oduro Kwarteng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Fri",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "ENGL 264",
    "rooms": [
@@ -15267,8 +18979,24 @@
    "page": 53,
    "day": "Mon",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "CSM 258",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "Fosu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Mon",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "CSM 258",
    "rooms": [
@@ -15313,8 +19041,24 @@
    "page": 53,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "CSM 292",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "Y.M MISSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CSM 292",
    "rooms": [
@@ -15329,8 +19073,56 @@
    "page": 53,
    "day": "Thu",
    "time": [
-    "13:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "CSM 254",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "Group"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Thu",
+   "time": [
+    "15:00",
+    "15:55"
+   ],
+   "course": "CSM 254",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "Group"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Thu",
+   "time": [
+    "14:00",
+    "14:55"
+   ],
+   "course": "CSM 254",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "Group"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CSM 254",
    "rooms": [
@@ -15345,8 +19137,24 @@
    "page": 53,
    "day": "Tue",
    "time": [
-    "17:00",
+    "18:00",
     "18:55"
+   ],
+   "course": "CSM 260",
+   "rooms": [
+    "SCB-FF"
+   ],
+   "lecturers": [
+    "K.O PEASAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Tue",
+   "time": [
+    "17:00",
+    "17:55"
    ],
    "course": "CSM 260",
    "rooms": [
@@ -15377,8 +19185,22 @@
    "page": 53,
    "day": "Tue",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "CSM 264",
+   "rooms": [],
+   "lecturers": [
+    "E.O OPPONG"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Tue",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "CSM 264",
    "rooms": [],
@@ -15405,7 +19227,7 @@
    "page": 53,
    "day": "Wed",
    "time": [
-    "15:00",
+    "18:00",
     "18:55"
    ],
    "course": "CSM 266",
@@ -15421,7 +19243,55 @@
    "page": 53,
    "day": "Wed",
    "time": [
-    "10:30",
+    "17:00",
+    "17:55"
+   ],
+   "course": "CSM 266",
+   "rooms": [
+    "SCB-SF8"
+   ],
+   "lecturers": [
+    "K.Owusu-Agyeman"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "CSM 266",
+   "rooms": [
+    "SCB-SF8"
+   ],
+   "lecturers": [
+    "K.Owusu-Agyeman"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
+   ],
+   "course": "CSM 266",
+   "rooms": [
+    "SCB-SF8"
+   ],
+   "lecturers": [
+    "K.Owusu-Agyeman"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
    ],
    "course": "CSM 252",
@@ -15435,7 +19305,21 @@
    "page": 53,
    "day": "Wed",
    "time": [
-    "13:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "CSM 252",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Wed",
+   "time": [
+    "14:00",
     "14:55"
    ],
    "course": "CSM 252",
@@ -15451,8 +19335,40 @@
    "page": 53,
    "day": "Wed",
    "time": [
-    "17:00",
+    "13:00",
+    "13:55"
+   ],
+   "course": "CSM 252",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "F.K AMPONG"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Wed",
+   "time": [
+    "18:00",
     "18:55"
+   ],
+   "course": "CSM 252",
+   "rooms": [
+    "SCB-TF1"
+   ],
+   "lecturers": [
+    "F.K AMPONG"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 53,
+   "day": "Wed",
+   "time": [
+    "17:00",
+    "17:55"
    ],
    "course": "CSM 252",
    "rooms": [
@@ -15467,7 +19383,7 @@
    "page": 54,
    "day": "Fri",
    "time": [
-    "15:00",
+    "18:00",
     "18:55"
    ],
    "course": "CSM 374",
@@ -15483,8 +19399,68 @@
    "page": 54,
    "day": "Fri",
    "time": [
-    "13:00",
+    "17:00",
+    "17:55"
+   ],
+   "course": "CSM 374",
+   "rooms": [
+    "SCB-TF1"
+   ],
+   "lecturers": [
+    "Kornyoh"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Fri",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "CSM 374",
+   "rooms": [
+    "SCB-TF1"
+   ],
+   "lecturers": [
+    "Kornyoh"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Fri",
+   "time": [
+    "15:00",
+    "15:55"
+   ],
+   "course": "CSM 374",
+   "rooms": [
+    "SCB-TF1"
+   ],
+   "lecturers": [
+    "Kornyoh"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Fri",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "CSM 366",
+   "rooms": [],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Fri",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CSM 366",
    "rooms": [],
@@ -15495,8 +19471,56 @@
    "page": 54,
    "day": "Mon",
    "time": [
-    "15:00",
+    "18:00",
     "18:55"
+   ],
+   "course": "CSM 354",
+   "rooms": [
+    "SCB-SF19"
+   ],
+   "lecturers": [
+    "USSIPH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Mon",
+   "time": [
+    "17:00",
+    "17:55"
+   ],
+   "course": "CSM 354",
+   "rooms": [
+    "SCB-SF19"
+   ],
+   "lecturers": [
+    "USSIPH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Mon",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "CSM 354",
+   "rooms": [
+    "SCB-SF19"
+   ],
+   "lecturers": [
+    "USSIPH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Mon",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "CSM 354",
    "rooms": [
@@ -15559,7 +19583,7 @@
    "page": 54,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "CSM 376",
@@ -15575,7 +19599,23 @@
    "page": 54,
    "day": "Thu",
    "time": [
-    "13:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "CSM 376",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "Osei"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Thu",
+   "time": [
+    "14:00",
     "14:55"
    ],
    "course": "CSM 376",
@@ -15589,8 +19629,38 @@
    "page": 54,
    "day": "Thu",
    "time": [
-    "08:00",
+    "13:00",
+    "13:55"
+   ],
+   "course": "CSM 376",
+   "rooms": [],
+   "lecturers": [
+    "Osei"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Thu",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "ACTS 256",
+   "rooms": [
+    "SCB-SF19"
+   ],
+   "lecturers": [
+    "Arthur"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ACTS 256",
    "rooms": [
@@ -15645,7 +19715,7 @@
    "page": 54,
    "day": "Wed",
    "time": [
-    "15:00",
+    "18:00",
     "18:55"
    ],
    "course": "CSM 394",
@@ -15661,7 +19731,55 @@
    "page": 54,
    "day": "Wed",
    "time": [
+    "17:00",
+    "17:55"
+   ],
+   "course": "CSM 394",
+   "rooms": [
+    "SCB-SF"
+   ],
+   "lecturers": [
+    "B.E Owusu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "CSM 394",
+   "rooms": [
+    "SCB-SF"
+   ],
+   "lecturers": [
+    "B.E Owusu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Wed",
+   "time": [
     "15:00",
+    "15:55"
+   ],
+   "course": "CSM 394",
+   "rooms": [
+    "SCB-SF"
+   ],
+   "lecturers": [
+    "B.E Owusu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Wed",
+   "time": [
+    "18:00",
     "18:55"
    ],
    "course": "CSM 358",
@@ -15677,7 +19795,55 @@
    "page": 54,
    "day": "Wed",
    "time": [
-    "10:30",
+    "17:00",
+    "17:55"
+   ],
+   "course": "CSM 358",
+   "rooms": [
+    "SCB-SF19"
+   ],
+   "lecturers": [
+    "B.E Owusu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "CSM 358",
+   "rooms": [
+    "SCB-SF19"
+   ],
+   "lecturers": [
+    "B.E Owusu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
+   ],
+   "course": "CSM 358",
+   "rooms": [
+    "SCB-SF19"
+   ],
+   "lecturers": [
+    "B.E Owusu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
    ],
    "course": "ACTS 256",
@@ -15691,8 +19857,36 @@
    "page": 54,
    "day": "Wed",
    "time": [
-    "13:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "ACTS 256",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Wed",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "ACTS 256",
+   "rooms": [],
+   "lecturers": [
+    "Arthur"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 54,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "ACTS 256",
    "rooms": [],
@@ -15705,7 +19899,7 @@
    "page": 55,
    "day": "Mon",
    "time": [
-    "13:00",
+    "16:00",
     "16:55"
    ],
    "course": "CSM 494",
@@ -15721,8 +19915,68 @@
    "page": 55,
    "day": "Mon",
    "time": [
-    "10:30",
+    "15:00",
+    "15:55"
+   ],
+   "course": "CSM 494",
+   "rooms": [
+    "SCB-SF20"
+   ],
+   "lecturers": [
+    "ASANTE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 55,
+   "day": "Mon",
+   "time": [
+    "14:00",
+    "14:55"
+   ],
+   "course": "CSM 494",
+   "rooms": [
+    "SCB-SF20"
+   ],
+   "lecturers": [
+    "ASANTE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 55,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
+   ],
+   "course": "CSM 494",
+   "rooms": [
+    "SCB-SF20"
+   ],
+   "lecturers": [
+    "ASANTE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 55,
+   "day": "Mon",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CSM 490",
+   "rooms": [],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 55,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CSM 490",
    "rooms": [],
@@ -15733,7 +19987,7 @@
    "page": 55,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
    ],
    "course": "CSM 482",
@@ -15749,7 +20003,23 @@
    "page": 55,
    "day": "Thu",
    "time": [
-    "10:30",
+    "08:00",
+    "08:55"
+   ],
+   "course": "CSM 482",
+   "rooms": [
+    "SCB-SF20"
+   ],
+   "lecturers": [
+    "K.A PABBI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 55,
+   "day": "Thu",
+   "time": [
+    "11:30",
     "12:25"
    ],
    "course": "CSM 482",
@@ -15765,8 +20035,40 @@
    "page": 55,
    "day": "Thu",
    "time": [
-    "14:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "CSM 482",
+   "rooms": [
+    "SCB-SF20"
+   ],
+   "lecturers": [
+    "K.A PABBI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 55,
+   "day": "Thu",
+   "time": [
+    "15:00",
     "15:55"
+   ],
+   "course": "CSM 482",
+   "rooms": [
+    "SCB-SF8"
+   ],
+   "lecturers": [
+    "Sardiya"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 55,
+   "day": "Thu",
+   "time": [
+    "14:00",
+    "14:55"
    ],
    "course": "CSM 482",
    "rooms": [
@@ -15781,8 +20083,24 @@
    "page": 55,
    "day": "Tue",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "CSM 484",
+   "rooms": [
+    "DB"
+   ],
+   "lecturers": [
+    "TWUM Casely Hayford"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 55,
+   "day": "Tue",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CSM 484",
    "rooms": [
@@ -15811,8 +20129,40 @@
    "page": 55,
    "day": "Tue",
    "time": [
-    "13:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "CSM 478",
+   "rooms": [
+    "CB-SF19"
+   ],
+   "lecturers": [
+    "TWUM Casely Hayford"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 55,
+   "day": "Tue",
+   "time": [
+    "14:00",
+    "14:55"
+   ],
+   "course": "CSM 478",
+   "rooms": [
+    "CB-SF19"
+   ],
+   "lecturers": [
+    "TWUM Casely Hayford"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 55,
+   "day": "Tue",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CSM 478",
    "rooms": [
@@ -15827,8 +20177,22 @@
    "page": 55,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 472",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 55,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 472",
    "rooms": [
@@ -15857,8 +20221,22 @@
    "page": 55,
    "day": "Wed",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "MATH 472",
+   "rooms": [],
+   "lecturers": [
+    "EKO Owusu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 55,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "MATH 472",
    "rooms": [],
@@ -15940,8 +20318,24 @@
    "page": 56,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "Oduro Kwarteng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 56,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "ENGL 158",
    "rooms": [
@@ -15970,8 +20364,20 @@
    "page": 57,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "BIT 268",
+   "rooms": [],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 57,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "BIT 268",
    "rooms": [],
@@ -15994,8 +20400,24 @@
    "page": 57,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "CSM 292",
+   "rooms": [
+    "CB-TF1"
+   ],
+   "lecturers": [
+    "Y.M MISSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 57,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "CSM 292",
    "rooms": [
@@ -16066,8 +20488,36 @@
    "page": 57,
    "day": "Wed",
    "time": [
-    "13:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "BIT 258",
+   "rooms": [],
+   "lecturers": [
+    "VUM"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 57,
+   "day": "Wed",
+   "time": [
+    "14:00",
+    "14:55"
+   ],
+   "course": "BIT 258",
+   "rooms": [],
+   "lecturers": [
+    "VUM"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 57,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "BIT 258",
    "rooms": [],
@@ -16096,8 +20546,20 @@
    "page": 58,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "CSM 552",
+   "rooms": [],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 58,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "CSM 552",
    "rooms": [],
@@ -16174,8 +20636,22 @@
    "page": 58,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "CSM 542",
+   "rooms": [],
+   "lecturers": [
+    "Kornyoh"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 58,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CSM 542",
    "rooms": [],
@@ -16232,7 +20708,7 @@
    "page": 58,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
    ],
    "course": "CSM 566",
@@ -16246,8 +20722,36 @@
    "page": 58,
    "day": "Wed",
    "time": [
-    "10:30",
+    "08:00",
+    "08:55"
+   ],
+   "course": "CSM 566",
+   "rooms": [],
+   "lecturers": [
+    "K.Owusu-Agyeman"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 58,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "CSM 566",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 58,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CSM 566",
    "rooms": [
@@ -16286,8 +20790,22 @@
    "page": 59,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MIT 568",
+   "rooms": [],
+   "lecturers": [
+    "Abdul Salam"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 59,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MIT 568",
    "rooms": [],
@@ -16330,8 +20848,22 @@
    "page": 59,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MIT 566",
+   "rooms": [],
+   "lecturers": [
+    "K.Owusu-Agyeman"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 59,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MIT 566",
    "rooms": [],
@@ -16356,8 +20888,24 @@
    "page": 59,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MIT 564",
+   "rooms": [
+    "SCB-SF4"
+   ],
+   "lecturers": [
+    "J.K PANFORD"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 59,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MIT 564",
    "rooms": [
@@ -16458,7 +21006,7 @@
    "page": 59,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "MIT 576",
@@ -16472,8 +21020,38 @@
    "page": 59,
    "day": "Wed",
    "time": [
-    "13:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "MIT 576",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 59,
+   "day": "Wed",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "MIT 576",
+   "rooms": [
+    "CB-SF4"
+   ],
+   "lecturers": [
+    "Banning"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 59,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MIT 576",
    "rooms": [
@@ -16598,8 +21176,22 @@
    "page": 60,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "CSM 542",
+   "rooms": [],
+   "lecturers": [
+    "Kornyoh"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 60,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "CSM 542",
    "rooms": [],
@@ -16656,8 +21248,22 @@
    "page": 60,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "CSM 566",
+   "rooms": [],
+   "lecturers": [
+    "K.Owusu-Agyeman"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 60,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "CSM 566",
    "rooms": [],
@@ -16758,8 +21364,24 @@
    "page": 61,
    "day": "Thu",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "CSDF 560",
+   "rooms": [
+    "CB-FF2"
+   ],
+   "lecturers": [
+    "K.O PEASAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 61,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CSDF 560",
    "rooms": [
@@ -16788,8 +21410,24 @@
    "page": 61,
    "day": "Wed",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
+   ],
+   "course": "CSDF 556",
+   "rooms": [
+    "SCB-FF2"
+   ],
+   "lecturers": [
+    "ASANTE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 61,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
    ],
    "course": "CSDF 556",
    "rooms": [
@@ -16880,8 +21518,24 @@
    "page": 62,
    "day": "Thu",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "CSDF 560",
+   "rooms": [
+    "CB-FF2"
+   ],
+   "lecturers": [
+    "K.O PEASAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 62,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CSDF 560",
    "rooms": [
@@ -16910,8 +21564,24 @@
    "page": 62,
    "day": "Wed",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
+   ],
+   "course": "CSDF 556",
+   "rooms": [
+    "SCB-FF2"
+   ],
+   "lecturers": [
+    "ASANTE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 62,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
    ],
    "course": "CSDF 556",
    "rooms": [
@@ -16974,8 +21644,24 @@
    "page": 63,
    "day": "Mon",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "MATH 174",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [
+    "Gyamfi"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 63,
+   "day": "Mon",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "MATH 174",
    "rooms": [
@@ -17006,8 +21692,24 @@
    "page": 63,
    "day": "Thu",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "CB-SF20"
+   ],
+   "lecturers": [
+    "H.M"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 63,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "ENGL 158",
    "rooms": [
@@ -17064,7 +21766,7 @@
    "page": 63,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
    ],
    "course": "MATH 172",
@@ -17080,8 +21782,40 @@
    "page": 63,
    "day": "Wed",
    "time": [
-    "08:00",
+    "13:00",
+    "13:55"
+   ],
+   "course": "MATH 172",
+   "rooms": [
+    "SCB-TF34"
+   ],
+   "lecturers": [
+    "Owusu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 63,
+   "day": "Wed",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 176",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [
+    "BAINSON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 63,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 176",
    "rooms": [
@@ -17176,8 +21910,22 @@
    "page": 64,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ECON 152",
+   "rooms": [],
+   "lecturers": [
+    "Bai"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 64,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ECON 152",
    "rooms": [],
@@ -17216,8 +21964,24 @@
    "page": 64,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 286",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [
+    "AMOAKO-YIRENKYI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 64,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 286",
    "rooms": [
@@ -17264,8 +22028,24 @@
    "page": 64,
    "day": "Thu",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 266",
+   "rooms": [
+    "SCB-SF19"
+   ],
+   "lecturers": [
+    "Sakyi"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 64,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 266",
    "rooms": [
@@ -17280,8 +22060,24 @@
    "page": 64,
    "day": "Tue",
    "time": [
-    "17:00",
+    "18:00",
     "18:55"
+   ],
+   "course": "FST 182",
+   "rooms": [
+    "CB-B1"
+   ],
+   "lecturers": [
+    "C.Boakye Agyemang"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 64,
+   "day": "Tue",
+   "time": [
+    "17:00",
+    "17:55"
    ],
    "course": "FST 182",
    "rooms": [
@@ -17322,8 +22118,24 @@
    "page": 64,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 276",
+   "rooms": [
+    "SCB-SF7"
+   ],
+   "lecturers": [
+    "OWUSU-ANSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 64,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 276",
    "rooms": [
@@ -17366,8 +22178,24 @@
    "page": 64,
    "day": "Wed",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
+   ],
+   "course": "MATH 278",
+   "rooms": [
+    "SCB-TF34"
+   ],
+   "lecturers": [
+    "DONTWI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 64,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
    ],
    "course": "MATH 278",
    "rooms": [
@@ -17444,8 +22272,22 @@
    "page": 65,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 378",
+   "rooms": [
+    "SCB-SF8"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 65,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 378",
    "rooms": [
@@ -17490,8 +22332,24 @@
    "page": 65,
    "day": "Mon",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "MATH 382",
+   "rooms": [
+    "SCB-TF34"
+   ],
+   "lecturers": [
+    "Fosu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 65,
+   "day": "Mon",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "MATH 382",
    "rooms": [
@@ -17598,7 +22456,7 @@
    "page": 65,
    "day": "Wed",
    "time": [
-    "17:00",
+    "18:00",
     "18:55"
    ],
    "course": "MATH 366",
@@ -17614,8 +22472,40 @@
    "page": 65,
    "day": "Wed",
    "time": [
-    "08:00",
+    "17:00",
+    "17:55"
+   ],
+   "course": "MATH 366",
+   "rooms": [
+    "SCB-SF19"
+   ],
+   "lecturers": [
+    "YIRE AMOAKO-Y"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 65,
+   "day": "Wed",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 386",
+   "rooms": [
+    "CB-SF8"
+   ],
+   "lecturers": [
+    "Awashie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 65,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 386",
    "rooms": [
@@ -17706,8 +22596,24 @@
    "page": 66,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 460",
+   "rooms": [
+    "3-P2"
+   ],
+   "lecturers": [
+    "BAINSON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 66,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 460",
    "rooms": [
@@ -17738,8 +22644,24 @@
    "page": 66,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 496",
+   "rooms": [
+    "3-P22"
+   ],
+   "lecturers": [
+    "J.EZEARN"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 66,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 496",
    "rooms": [
@@ -17818,8 +22740,24 @@
    "page": 66,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 492",
+   "rooms": [
+    "CB-B1"
+   ],
+   "lecturers": [
+    "R.K BOADI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 66,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 492",
    "rooms": [
@@ -17920,8 +22858,24 @@
    "page": 67,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 456",
+   "rooms": [
+    "CB-A10"
+   ],
+   "lecturers": [
+    "J.K.K Asamoah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 67,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 456",
    "rooms": [
@@ -18156,8 +23110,24 @@
    "page": 68,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 476",
+   "rooms": [
+    "3-P2"
+   ],
+   "lecturers": [
+    "Tak"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 68,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 476",
    "rooms": [
@@ -18364,8 +23334,24 @@
    "page": 69,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 474",
+   "rooms": [
+    "CB-SF19"
+   ],
+   "lecturers": [
+    "SEBIL"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 69,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 474",
    "rooms": [
@@ -18408,8 +23394,22 @@
    "page": 70,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 576",
+   "rooms": [],
+   "lecturers": [
+    "Boateng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 70,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 576",
    "rooms": [],
@@ -18438,8 +23438,22 @@
    "page": 70,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 562",
+   "rooms": [],
+   "lecturers": [
+    "COMP OWUSU-ANSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 70,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 562",
    "rooms": [],
@@ -18452,8 +23466,22 @@
    "page": 70,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 556",
+   "rooms": [],
+   "lecturers": [
+    "BARNES"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 70,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 556",
    "rooms": [],
@@ -18506,8 +23534,22 @@
    "page": 70,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 576",
+   "rooms": [],
+   "lecturers": [
+    "Boateng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 70,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 576",
    "rooms": [],
@@ -18536,8 +23578,22 @@
    "page": 70,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 556",
+   "rooms": [],
+   "lecturers": [
+    "BARNES"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 70,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 556",
    "rooms": [],
@@ -18562,8 +23618,22 @@
    "page": 71,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 576",
+   "rooms": [],
+   "lecturers": [
+    "Boateng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 71,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 576",
    "rooms": [],
@@ -18592,8 +23662,22 @@
    "page": 71,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 586",
+   "rooms": [],
+   "lecturers": [
+    "ACKORA PRAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 71,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 586",
    "rooms": [],
@@ -18660,8 +23744,22 @@
    "page": 71,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 576",
+   "rooms": [],
+   "lecturers": [
+    "Boateng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 71,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 576",
    "rooms": [],
@@ -18702,8 +23800,22 @@
    "page": 71,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 584",
+   "rooms": [],
+   "lecturers": [
+    "Fosu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 71,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 584",
    "rooms": [],
@@ -18742,8 +23854,22 @@
    "page": 72,
    "day": "Fri",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 554",
+   "rooms": [],
+   "lecturers": [
+    "Asamoah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 72,
+   "day": "Fri",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 554",
    "rooms": [],
@@ -18772,8 +23898,22 @@
    "page": 72,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 562",
+   "rooms": [],
+   "lecturers": [
+    "COMP OWUSU-ANSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 72,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 562",
    "rooms": [],
@@ -18786,8 +23926,22 @@
    "page": 72,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 556",
+   "rooms": [],
+   "lecturers": [
+    "BARNES"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 72,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 556",
    "rooms": [],
@@ -18812,8 +23966,24 @@
    "page": 72,
    "day": "Tue",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 552",
+   "rooms": [
+    "CB-SF4"
+   ],
+   "lecturers": [
+    "I.K DONTWI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 72,
+   "day": "Tue",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 552",
    "rooms": [
@@ -18856,8 +24026,22 @@
    "page": 72,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 556",
+   "rooms": [],
+   "lecturers": [
+    "BARNES"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 72,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 556",
    "rooms": [],
@@ -18884,8 +24068,22 @@
    "page": 73,
    "day": "Fri",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 574",
+   "rooms": [],
+   "lecturers": [
+    "OBENG-DENTEH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 73,
+   "day": "Fri",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 574",
    "rooms": [],
@@ -18964,8 +24162,22 @@
    "page": 73,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 564",
+   "rooms": [],
+   "lecturers": [
+    "EZEARN"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 73,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 564",
    "rooms": [],
@@ -18992,8 +24204,22 @@
    "page": 73,
    "day": "Wed",
    "time": [
-    "17:00",
+    "18:00",
     "18:55"
+   ],
+   "course": "MATH 564",
+   "rooms": [],
+   "lecturers": [
+    "EZEARN"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 73,
+   "day": "Wed",
+   "time": [
+    "17:00",
+    "17:55"
    ],
    "course": "MATH 564",
    "rooms": [],
@@ -19070,8 +24296,22 @@
    "page": 74,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 562",
+   "rooms": [],
+   "lecturers": [
+    "COMP OWUSU-ANSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 74,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 562",
    "rooms": [],
@@ -19110,8 +24350,20 @@
    "page": 74,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 756",
+   "rooms": [],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 74,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 756",
    "rooms": [],
@@ -19200,8 +24452,22 @@
    "page": 74,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 782",
+   "rooms": [],
+   "lecturers": [
+    "BARNES"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 74,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 782",
    "rooms": [],
@@ -19228,8 +24494,22 @@
    "page": 74,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 756",
+   "rooms": [],
+   "lecturers": [
+    "Owusu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 74,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 756",
    "rooms": [],
@@ -19320,8 +24600,22 @@
    "page": 75,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 786",
+   "rooms": [],
+   "lecturers": [
+    "ACKORA-PRAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 75,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 786",
    "rooms": [],
@@ -19438,8 +24732,22 @@
    "page": 75,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 782",
+   "rooms": [],
+   "lecturers": [
+    "BARNES"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 75,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 782",
    "rooms": [],
@@ -19478,8 +24786,22 @@
    "page": 75,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MATH 784",
+   "rooms": [],
+   "lecturers": [
+    "Fosu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 75,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 784",
    "rooms": [],
@@ -19558,8 +24880,22 @@
    "page": 76,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 562",
+   "rooms": [],
+   "lecturers": [
+    "COMP OWUSU-ANSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 76,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 562",
    "rooms": [],
@@ -19624,8 +24960,20 @@
    "page": 76,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 756",
+   "rooms": [],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 76,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 756",
    "rooms": [],
@@ -19688,8 +25036,22 @@
    "page": 76,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 782",
+   "rooms": [],
+   "lecturers": [
+    "BARNES"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 76,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 782",
    "rooms": [],
@@ -19754,8 +25116,22 @@
    "page": 76,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 792",
+   "rooms": [],
+   "lecturers": [
+    "BARNES"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 76,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 792",
    "rooms": [],
@@ -19782,8 +25158,36 @@
    "page": 77,
    "day": "Mon",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "MATH 796",
+   "rooms": [],
+   "lecturers": [
+    "K.F DARKWAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 77,
+   "day": "Mon",
+   "time": [
+    "15:00",
+    "15:55"
+   ],
+   "course": "MATH 796",
+   "rooms": [],
+   "lecturers": [
+    "K.F DARKWAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 77,
+   "day": "Wed",
+   "time": [
+    "11:30",
+    "12:25"
    ],
    "course": "MATH 796",
    "rooms": [],
@@ -19797,7 +25201,7 @@
    "day": "Wed",
    "time": [
     "10:30",
-    "12:25"
+    "11:25"
    ],
    "course": "MATH 796",
    "rooms": [],
@@ -19840,8 +25244,22 @@
    "page": 78,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ECON 152",
+   "rooms": [],
+   "lecturers": [
+    "Bai"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 78,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ECON 152",
    "rooms": [],
@@ -19898,8 +25316,22 @@
    "page": 78,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 172",
+   "rooms": [
+    "SCB-GF18"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 78,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 172",
    "rooms": [
@@ -20083,8 +25515,40 @@
    "page": 79,
    "day": "Mon",
    "time": [
-    "13:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "MATH 286",
+   "rooms": [
+    "SCB-FF5"
+   ],
+   "lecturers": [
+    "Sakyi"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 79,
+   "day": "Mon",
+   "time": [
+    "14:00",
+    "14:55"
+   ],
+   "course": "MATH 286",
+   "rooms": [
+    "SCB-FF5"
+   ],
+   "lecturers": [
+    "Sakyi"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 79,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 286",
    "rooms": [
@@ -20175,8 +25639,24 @@
    "page": 79,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 276",
+   "rooms": [
+    "SCB-SF7"
+   ],
+   "lecturers": [
+    "OWUSU-ANSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 79,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 276",
    "rooms": [
@@ -20207,8 +25687,24 @@
    "page": 79,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 278",
+   "rooms": [
+    "CB-B1"
+   ],
+   "lecturers": [
+    "Y.E AYEPKLE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 79,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 278",
    "rooms": [
@@ -20239,8 +25735,40 @@
    "page": 80,
    "day": "Fri",
    "time": [
-    "16:00",
+    "18:00",
     "18:55"
+   ],
+   "course": "ACTS 356",
+   "rooms": [
+    "SCB-GF17"
+   ],
+   "lecturers": [
+    "ABAITEY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 80,
+   "day": "Fri",
+   "time": [
+    "17:00",
+    "17:55"
+   ],
+   "course": "ACTS 356",
+   "rooms": [
+    "SCB-GF17"
+   ],
+   "lecturers": [
+    "ABAITEY"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 80,
+   "day": "Fri",
+   "time": [
+    "16:00",
+    "16:55"
    ],
    "course": "ACTS 356",
    "rooms": [
@@ -20285,7 +25813,7 @@
    "page": 80,
    "day": "Mon",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
    ],
    "course": "ACTS 354",
@@ -20301,8 +25829,40 @@
    "page": 80,
    "day": "Mon",
    "time": [
-    "10:30",
+    "16:00",
+    "16:55"
+   ],
+   "course": "ACTS 354",
+   "rooms": [
+    "CB-LT1"
+   ],
+   "lecturers": [
+    "TAT Awiakye Marfo"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 80,
+   "day": "Mon",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "SCI 352",
+   "rooms": [
+    "SCB-GF17"
+   ],
+   "lecturers": [
+    "TWUMASI-ANKRAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 80,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "SCI 352",
    "rooms": [
@@ -20389,8 +25949,24 @@
    "page": 80,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 366",
+   "rooms": [
+    "SCB-GF18"
+   ],
+   "lecturers": [
+    "Gyamfi"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 80,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 366",
    "rooms": [
@@ -20637,7 +26213,7 @@
    "page": 81,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
    ],
    "course": "ACTS 466",
@@ -20653,8 +26229,40 @@
    "page": 81,
    "day": "Wed",
    "time": [
-    "08:00",
+    "13:00",
+    "13:55"
+   ],
+   "course": "ACTS 466",
+   "rooms": [
+    "SCB-GF19"
+   ],
+   "lecturers": [
+    "DEDU"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 81,
+   "day": "Wed",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 474",
+   "rooms": [
+    "CB-SF19"
+   ],
+   "lecturers": [
+    "SEBIL"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 81,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 474",
    "rooms": [
@@ -20727,8 +26335,24 @@
    "page": 82,
    "day": "Thu",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "ACTS 566",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "Bonuedi"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 82,
+   "day": "Thu",
+   "time": [
+    "14:00",
+    "14:55"
    ],
    "course": "ACTS 566",
    "rooms": [
@@ -20743,8 +26367,22 @@
    "page": 82,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "ACTS 552",
+   "rooms": [],
+   "lecturers": [
+    "N.K FREMPONG"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 82,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "ACTS 552",
    "rooms": [],
@@ -20757,8 +26395,24 @@
    "page": 82,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "ACTS 560",
+   "rooms": [
+    "SCB-SF4"
+   ],
+   "lecturers": [
+    "MATH-SEMIN"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 82,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "ACTS 560",
    "rooms": [
@@ -20787,8 +26441,22 @@
    "page": 83,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "STAT 768",
+   "rooms": [],
+   "lecturers": [
+    "OKYERE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 83,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "STAT 768",
    "rooms": [],
@@ -20801,8 +26469,22 @@
    "page": 83,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "ACTS 768",
+   "rooms": [],
+   "lecturers": [
+    "S.K APPIAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 83,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "ACTS 768",
    "rooms": [],
@@ -20815,8 +26497,22 @@
    "page": 83,
    "day": "Tue",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
+   ],
+   "course": "ACTS 764",
+   "rooms": [],
+   "lecturers": [
+    "G.A OKYERE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 83,
+   "day": "Tue",
+   "time": [
+    "16:00",
+    "16:55"
    ],
    "course": "ACTS 764",
    "rooms": [],
@@ -20829,8 +26525,22 @@
    "page": 83,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "ACTS 762",
+   "rooms": [],
+   "lecturers": [
+    "OKYERE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 83,
+   "day": "Wed",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "ACTS 762",
    "rooms": [],
@@ -20871,8 +26581,25 @@
    "page": 84,
    "day": "Fri",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 174",
+   "rooms": [
+    "SCB-SF20"
+   ],
+   "lecturers": [
+    "Aseidu",
+    "R.K BOADI"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 84,
+   "day": "Fri",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 174",
    "rooms": [
@@ -20904,8 +26631,22 @@
    "page": 84,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ECON 152",
+   "rooms": [],
+   "lecturers": [
+    "Bai"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 84,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ECON 152",
    "rooms": [],
@@ -20930,8 +26671,22 @@
    "page": 84,
    "day": "Mon",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
+   ],
+   "course": "MATH 178",
+   "rooms": [],
+   "lecturers": [
+    "Y.E AYEPKLE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 84,
+   "day": "Mon",
+   "time": [
+    "16:00",
+    "16:55"
    ],
    "course": "MATH 178",
    "rooms": [],
@@ -20989,8 +26744,56 @@
    "page": 84,
    "day": "Tue",
    "time": [
-    "13:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "MATH 176",
+   "rooms": [
+    "CB-LT1"
+   ],
+   "lecturers": [
+    "Y.E AYEPKLE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 84,
+   "day": "Tue",
+   "time": [
+    "15:00",
+    "15:55"
+   ],
+   "course": "MATH 176",
+   "rooms": [
+    "CB-LT1"
+   ],
+   "lecturers": [
+    "Y.E AYEPKLE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 84,
+   "day": "Tue",
+   "time": [
+    "14:00",
+    "14:55"
+   ],
+   "course": "MATH 176",
+   "rooms": [
+    "CB-LT1"
+   ],
+   "lecturers": [
+    "Y.E AYEPKLE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 84,
+   "day": "Tue",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MATH 176",
    "rooms": [
@@ -21021,8 +26824,24 @@
    "page": 84,
    "day": "Wed",
    "time": [
-    "17:00",
+    "18:00",
     "18:55"
+   ],
+   "course": "MATH 176",
+   "rooms": [
+    "SCB-GF18"
+   ],
+   "lecturers": [
+    "Adu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 84,
+   "day": "Wed",
+   "time": [
+    "17:00",
+    "17:55"
    ],
    "course": "MATH 176",
    "rooms": [
@@ -21069,8 +26888,24 @@
    "page": 85,
    "day": "Fri",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "MATH 278",
+   "rooms": [
+    "SCB-FF5"
+   ],
+   "lecturers": [
+    "HII OWUSU-ANSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 85,
+   "day": "Fri",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "MATH 278",
    "rooms": [
@@ -21127,8 +26962,24 @@
    "page": 85,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 286",
+   "rooms": [
+    "SCB-SF7"
+   ],
+   "lecturers": [
+    "Sakyi"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 85,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 286",
    "rooms": [
@@ -21171,8 +27022,40 @@
    "page": 85,
    "day": "Thu",
    "time": [
-    "13:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "ENGL 264",
+   "rooms": [
+    "SCB-GF17"
+   ],
+   "lecturers": [
+    "Oduro Kwarteng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 85,
+   "day": "Thu",
+   "time": [
+    "14:00",
+    "14:55"
+   ],
+   "course": "ENGL 264",
+   "rooms": [
+    "SCB-GF17"
+   ],
+   "lecturers": [
+    "Oduro Kwarteng"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 85,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "ENGL 264",
    "rooms": [
@@ -21201,8 +27084,24 @@
    "page": 85,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 276",
+   "rooms": [
+    "SCB-SF19"
+   ],
+   "lecturers": [
+    "OWUSU-ANSAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 85,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 276",
    "rooms": [
@@ -21295,8 +27194,24 @@
    "page": 86,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "STAT 360",
+   "rooms": [
+    "SCB-FF5"
+   ],
+   "lecturers": [
+    "Pels"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 86,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "STAT 360",
    "rooms": [
@@ -21327,8 +27242,22 @@
    "page": 86,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MATH 366",
+   "rooms": [],
+   "lecturers": [
+    "R.N Borkor"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 86,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MATH 366",
    "rooms": [],
@@ -21443,7 +27372,7 @@
    "page": 86,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "STAT 356",
@@ -21459,8 +27388,40 @@
    "page": 86,
    "day": "Wed",
    "time": [
-    "13:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "STAT 356",
+   "rooms": [
+    "SCB-SF4"
+   ],
+   "lecturers": [
+    "MATH-SEMIN"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 86,
+   "day": "Wed",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "STAT 356",
+   "rooms": [
+    "SCB-SF20"
+   ],
+   "lecturers": [
+    "S.K APPIAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 86,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "STAT 356",
    "rooms": [
@@ -21491,8 +27452,24 @@
    "page": 87,
    "day": "Fri",
    "time": [
-    "17:00",
+    "18:00",
     "18:55"
+   ],
+   "course": "STAT 456",
+   "rooms": [
+    "SCB-FF1"
+   ],
+   "lecturers": [
+    "Senyah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 87,
+   "day": "Fri",
+   "time": [
+    "17:00",
+    "17:55"
    ],
    "course": "STAT 456",
    "rooms": [
@@ -21689,8 +27666,24 @@
    "page": 87,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 474",
+   "rooms": [
+    "CB-SF19"
+   ],
+   "lecturers": [
+    "SEBIL"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 87,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 474",
    "rooms": [
@@ -21759,8 +27752,24 @@
    "page": 88,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MSTAT 552",
+   "rooms": [
+    "3-A9"
+   ],
+   "lecturers": [
+    "A.Y OMARI-SASU"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 88,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MSTAT 552",
    "rooms": [
@@ -21927,8 +27936,24 @@
    "page": 88,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MSTAT 558",
+   "rooms": [
+    "CB-GF19"
+   ],
+   "lecturers": [
+    "R.K AVUGLAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 88,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MSTAT 558",
    "rooms": [
@@ -21943,8 +27968,22 @@
    "page": 88,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MSTAT 560",
+   "rooms": [],
+   "lecturers": [
+    "COMP OKYERE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 88,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MSTAT 560",
    "rooms": [],
@@ -22097,8 +28136,24 @@
    "page": 90,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "PHY 154",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [
+    "Newman Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 90,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "PHY 154",
    "rooms": [
@@ -22202,8 +28257,24 @@
    "page": 90,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "3-A10"
+   ],
+   "lecturers": [
+    "J.P KUUTIERO"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 90,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ENGL 158",
    "rooms": [
@@ -22248,8 +28319,23 @@
    "page": 90,
    "day": "Tue",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "PHY 156",
+   "rooms": [],
+   "lecturers": [
+    "R.Y TAMAKLOE",
+    "IpE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 90,
+   "day": "Tue",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "PHY 156",
    "rooms": [],
@@ -22303,8 +28389,24 @@
    "page": 90,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "CHEM 156",
+   "rooms": [
+    "3-A10"
+   ],
+   "lecturers": [
+    "Amenuvor"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 90,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "CHEM 156",
    "rooms": [
@@ -22387,8 +28489,24 @@
    "page": 91,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "ECON 152",
+   "rooms": [
+    "CB-GF"
+   ],
+   "lecturers": [
+    "PIMPONG"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 91,
+   "day": "Fri",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "ECON 152",
    "rooms": [
@@ -22419,7 +28537,7 @@
    "page": 91,
    "day": "Mon",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
    ],
    "course": "PHY 252",
@@ -22435,7 +28553,23 @@
    "page": 91,
    "day": "Mon",
    "time": [
-    "14:00",
+    "16:00",
+    "16:55"
+   ],
+   "course": "PHY 252",
+   "rooms": [
+    "SCB-SF20"
+   ],
+   "lecturers": [
+    "Adu-Poku"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 91,
+   "day": "Mon",
+   "time": [
+    "15:00",
     "15:55"
    ],
    "course": "PHY 258",
@@ -22450,8 +28584,39 @@
    "page": 91,
    "day": "Mon",
    "time": [
-    "08:00",
+    "14:00",
+    "14:55"
+   ],
+   "course": "PHY 258",
+   "rooms": [],
+   "lecturers": [
+    "NKRUMAH",
+    "S.K DANUOR"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 91,
+   "day": "Mon",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 292",
+   "rooms": [
+    "SCB-SF8"
+   ],
+   "lecturers": [
+    "Gyamfi"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 91,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 292",
    "rooms": [
@@ -22496,7 +28661,7 @@
    "page": 91,
    "day": "Thu",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
    ],
    "course": "PHY 262",
@@ -22510,8 +28675,38 @@
    "page": 91,
    "day": "Thu",
    "time": [
-    "10:30",
+    "15:00",
+    "15:55"
+   ],
+   "course": "PHY 262",
+   "rooms": [],
+   "lecturers": [
+    "BRITWUM"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 91,
+   "day": "Thu",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "PHY 254",
+   "rooms": [
+    "CB-A10"
+   ],
+   "lecturers": [
+    "BRITWUM"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 91,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "PHY 254",
    "rooms": [
@@ -22626,8 +28821,22 @@
    "page": 91,
    "day": "Wed",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "PHY 258",
+   "rooms": [],
+   "lecturers": [
+    "NKRUMAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 91,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "PHY 258",
    "rooms": [],
@@ -22746,8 +28955,22 @@
    "page": 92,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "PHY 360",
+   "rooms": [
+    "CB-GF19"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 92,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "PHY 360",
    "rooms": [
@@ -22790,8 +29013,22 @@
    "page": 92,
    "day": "Thu",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "PHY 396",
+   "rooms": [
+    "3-BLT"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 92,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "PHY 396",
    "rooms": [
@@ -22861,7 +29098,7 @@
    "page": 92,
    "day": "Wed",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
    ],
    "course": "MATH 396",
@@ -22877,7 +29114,23 @@
    "page": 92,
    "day": "Wed",
    "time": [
-    "14:00",
+    "16:00",
+    "16:55"
+   ],
+   "course": "MATH 396",
+   "rooms": [
+    "SCB-SF14"
+   ],
+   "lecturers": [
+    "Awashie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 92,
+   "day": "Wed",
+   "time": [
+    "15:00",
     "15:55"
    ],
    "course": "MATH 398",
@@ -22893,8 +29146,40 @@
    "page": 92,
    "day": "Wed",
    "time": [
-    "08:00",
+    "14:00",
+    "14:55"
+   ],
+   "course": "MATH 398",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "Labik"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 92,
+   "day": "Wed",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "PHY 398",
+   "rooms": [
+    "SCB-GF19"
+   ],
+   "lecturers": [
+    "R.K NKUM"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 92,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "PHY 398",
    "rooms": [
@@ -23078,7 +29363,7 @@
    "page": 93,
    "day": "Wed",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
    ],
    "course": "MATH 396",
@@ -23092,7 +29377,21 @@
    "page": 93,
    "day": "Wed",
    "time": [
-    "10:30",
+    "08:00",
+    "08:55"
+   ],
+   "course": "MATH 396",
+   "rooms": [],
+   "lecturers": [
+    "J.Adom"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 93,
+   "day": "Wed",
+   "time": [
+    "11:30",
     "12:25"
    ],
    "course": "MATH 396",
@@ -23106,8 +29405,54 @@
    "page": 93,
    "day": "Wed",
    "time": [
-    "15:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "MATH 396",
+   "rooms": [],
+   "lecturers": [
+    "PHYSICS STAFF"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 93,
+   "day": "Wed",
+   "time": [
+    "17:00",
     "17:55"
+   ],
+   "course": "MATH 396",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "Awashie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 93,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "MATH 396",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "Awashie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 93,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "MATH 396",
    "rooms": [
@@ -23230,8 +29575,22 @@
    "page": 94,
    "day": "Thu",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "PHY 396",
+   "rooms": [
+    "3-BLT"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 94,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "PHY 396",
    "rooms": [
@@ -23291,8 +29650,40 @@
    "page": 94,
    "day": "Wed",
    "time": [
-    "15:00",
+    "17:00",
     "17:55"
+   ],
+   "course": "MATH 396",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "Awashie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 94,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "MATH 396",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "Awashie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 94,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "MATH 396",
    "rooms": [
@@ -23427,8 +29818,22 @@
    "page": 95,
    "day": "Thu",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "PHY 396",
+   "rooms": [
+    "3-BLT"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 95,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "PHY 396",
    "rooms": [
@@ -23486,8 +29891,40 @@
    "page": 95,
    "day": "Wed",
    "time": [
-    "15:00",
+    "17:00",
     "17:55"
+   ],
+   "course": "MATH 396",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "Awashie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 95,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "MATH 396",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "Awashie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 95,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "MATH 396",
    "rooms": [
@@ -23726,8 +30163,24 @@
    "page": 96,
    "day": "Wed",
    "time": [
-    "16:00",
+    "17:00",
     "17:55"
+   ],
+   "course": "MATH 396",
+   "rooms": [
+    "SCB-SF14"
+   ],
+   "lecturers": [
+    "Awashie"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 96,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
    ],
    "course": "MATH 396",
    "rooms": [
@@ -23877,7 +30330,7 @@
    "page": 97,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "PHY 396",
@@ -23891,8 +30344,36 @@
    "page": 97,
    "day": "Thu",
    "time": [
-    "13:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "PHY 396",
+   "rooms": [],
+   "lecturers": [
+    "M.K.E DONKOR"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 97,
+   "day": "Thu",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "PHY 396",
+   "rooms": [
+    "3-BLT"
+   ],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 97,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "PHY 396",
    "rooms": [
@@ -23947,8 +30428,40 @@
    "page": 97,
    "day": "Wed",
    "time": [
-    "15:00",
+    "17:00",
     "17:55"
+   ],
+   "course": "MATH 396",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "Labik"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 97,
+   "day": "Wed",
+   "time": [
+    "16:00",
+    "16:55"
+   ],
+   "course": "MATH 396",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "Labik"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 97,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "MATH 396",
    "rooms": [
@@ -24051,8 +30564,24 @@
    "page": 98,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 472",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [
+    "Opoku-Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 98,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 472",
    "rooms": [
@@ -24067,8 +30596,22 @@
    "page": 98,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "PHY 486",
+   "rooms": [],
+   "lecturers": [
+    "Martin"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 98,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "PHY 486",
    "rooms": [],
@@ -24081,8 +30624,22 @@
    "page": 98,
    "day": "Wed",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "PHY 488",
+   "rooms": [],
+   "lecturers": [
+    "Martin"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 98,
+   "day": "Wed",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "PHY 488",
    "rooms": [],
@@ -24237,8 +30794,24 @@
    "page": 99,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 472",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [
+    "Opoku-Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 99,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 472",
    "rooms": [
@@ -24413,8 +30986,24 @@
    "page": 100,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 472",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [
+    "Opoku-Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 100,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 472",
    "rooms": [
@@ -24621,8 +31210,24 @@
    "page": 101,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 472",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [
+    "Opoku-Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 101,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 472",
    "rooms": [
@@ -24835,8 +31440,24 @@
    "page": 102,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 472",
+   "rooms": [
+    "SCB-FF24"
+   ],
+   "lecturers": [
+    "Opoku-Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 102,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 472",
    "rooms": [
@@ -25011,8 +31632,24 @@
    "page": 103,
    "day": "Thu",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 472",
+   "rooms": [
+    "CB-FF24"
+   ],
+   "lecturers": [
+    "Opoku-Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 103,
+   "day": "Thu",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 472",
    "rooms": [
@@ -25101,8 +31738,22 @@
    "page": 104,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "PHYS 562",
+   "rooms": [],
+   "lecturers": [
+    "R.K NKUM"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 104,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "PHYS 562",
    "rooms": [],
@@ -25129,8 +31780,22 @@
    "page": 104,
    "day": "Thu",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "PHY 572",
+   "rooms": [],
+   "lecturers": [
+    "Asilevi"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 104,
+   "day": "Thu",
+   "time": [
+    "14:00",
+    "14:55"
    ],
    "course": "PHY 572",
    "rooms": [],
@@ -25155,8 +31820,22 @@
    "page": 105,
    "day": "Mon",
    "time": [
-    "15:00",
+    "16:00",
     "16:55"
+   ],
+   "course": "PHYN 554",
+   "rooms": [],
+   "lecturers": [
+    "Subaar"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 105,
+   "day": "Mon",
+   "time": [
+    "15:00",
+    "15:55"
    ],
    "course": "PHYN 554",
    "rooms": [],
@@ -25221,7 +31900,7 @@
    "page": 105,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
    ],
    "course": "PHYN 558",
@@ -25233,8 +31912,36 @@
    "page": 105,
    "day": "Tue",
    "time": [
-    "10:30",
+    "08:00",
+    "08:55"
+   ],
+   "course": "PHYN 558",
+   "rooms": [],
+   "lecturers": [],
+   "label": "Main"
+  },
+  {
+   "page": 105,
+   "day": "Tue",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "PHYN 558",
+   "rooms": [
+    "CB-A8"
+   ],
+   "lecturers": [
+    "Owusu-Mensah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 105,
+   "day": "Tue",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "PHYN 558",
    "rooms": [
@@ -25249,7 +31956,7 @@
    "page": 105,
    "day": "Wed",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "PHYN 588",
@@ -25263,8 +31970,36 @@
    "page": 105,
    "day": "Wed",
    "time": [
-    "13:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "PHYN 588",
+   "rooms": [],
+   "lecturers": [
+    "PHYSICS STAFF"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 105,
+   "day": "Wed",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "PHYN 588",
+   "rooms": [],
+   "lecturers": [
+    "E.C.K ADDISON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 105,
+   "day": "Wed",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "PHYN 588",
    "rooms": [],
@@ -25277,8 +32012,22 @@
    "page": 106,
    "day": "Fri",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "PHYM 552",
+   "rooms": [],
+   "lecturers": [
+    "KWAKYE-AWUAH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 106,
+   "day": "Fri",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "PHYM 552",
    "rooms": [],
@@ -25291,8 +32040,24 @@
    "page": 106,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "PHYM 554",
+   "rooms": [
+    "CB-A7"
+   ],
+   "lecturers": [
+    "OONNN"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 106,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "PHYM 554",
    "rooms": [
@@ -25319,8 +32084,22 @@
    "page": 106,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "PHYM 556",
+   "rooms": [],
+   "lecturers": [
+    "R.K NKUM"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 106,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "PHYM 556",
    "rooms": [],
@@ -25359,8 +32138,22 @@
    "page": 106,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "PHYS 558",
+   "rooms": [],
+   "lecturers": [
+    "F.K AMPONG"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 106,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "PHYS 558",
    "rooms": [],
@@ -25387,8 +32180,22 @@
    "page": 107,
    "day": "Fri",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "PHYG 554",
+   "rooms": [],
+   "lecturers": [
+    "PREKO"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 107,
+   "day": "Fri",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "PHYG 554",
    "rooms": [],
@@ -25401,8 +32208,22 @@
    "page": 107,
    "day": "Mon",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "PHYG 556",
+   "rooms": [],
+   "lecturers": [
+    "ASARE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 107,
+   "day": "Mon",
+   "time": [
+    "14:00",
+    "14:55"
    ],
    "course": "PHYG 556",
    "rooms": [],
@@ -25415,7 +32236,7 @@
    "page": 107,
    "day": "Thu",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
    ],
    "course": "PHY 572",
@@ -25429,8 +32250,38 @@
    "page": 107,
    "day": "Thu",
    "time": [
-    "10:30",
+    "14:00",
+    "14:55"
+   ],
+   "course": "PHY 572",
+   "rooms": [],
+   "lecturers": [
+    "Asilevi"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 107,
+   "day": "Thu",
+   "time": [
+    "11:30",
     "12:25"
+   ],
+   "course": "PHYG 552",
+   "rooms": [
+    "SCB-SF4"
+   ],
+   "lecturers": [
+    "MENYEH"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 107,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "PHYG 552",
    "rooms": [
@@ -25485,8 +32336,24 @@
    "page": 107,
    "day": "Tue",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "PHYG 558",
+   "rooms": [
+    "3-P23"
+   ],
+   "lecturers": [
+    "S.K DANUOR"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 107,
+   "day": "Tue",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "PHYG 558",
    "rooms": [
@@ -25545,8 +32412,22 @@
    "page": 108,
    "day": "Fri",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "PHYC 562",
+   "rooms": [],
+   "lecturers": [
+    "E.K.K ABAVARE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 108,
+   "day": "Fri",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "PHYC 562",
    "rooms": [],
@@ -25559,8 +32440,22 @@
    "page": 108,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "PHYC 552",
+   "rooms": [],
+   "lecturers": [
+    "Martin"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 108,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "PHYC 552",
    "rooms": [],
@@ -25737,8 +32632,24 @@
    "page": 109,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "CSM 152",
+   "rooms": [
+    "3-A10"
+   ],
+   "lecturers": [
+    "R.O.M Gyening"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 109,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "CSM 152",
    "rooms": [
@@ -25769,8 +32680,22 @@
    "page": 109,
    "day": "Thu",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "PHY 156",
+   "rooms": [],
+   "lecturers": [
+    "R.YTAMAKLOE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 109,
+   "day": "Thu",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "PHY 156",
    "rooms": [],
@@ -25812,7 +32737,7 @@
    "page": 109,
    "day": "Tue",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
    ],
    "course": "PHY 156",
@@ -25828,8 +32753,38 @@
    "page": 109,
    "day": "Tue",
    "time": [
-    "13:00",
+    "10:30",
+    "11:25"
+   ],
+   "course": "PHY 156",
+   "rooms": [],
+   "lecturers": [
+    "V.S ASARE",
+    "R.M NOYE",
+    "Boac"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 109,
+   "day": "Tue",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "PHY 156",
+   "rooms": [],
+   "lecturers": [
+    "R.YTAMAKLOE"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 109,
+   "day": "Tue",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "PHY 156",
    "rooms": [],
@@ -25868,7 +32823,7 @@
    "page": 109,
    "day": "Wed",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
    ],
    "course": "ENGL 158",
@@ -25884,8 +32839,40 @@
    "page": 109,
    "day": "Wed",
    "time": [
-    "08:00",
+    "13:00",
+    "13:55"
+   ],
+   "course": "ENGL 158",
+   "rooms": [
+    "SCB-FF2"
+   ],
+   "lecturers": [
+    "Eyison H.M"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 109,
+   "day": "Wed",
+   "time": [
+    "09:00",
     "09:55"
+   ],
+   "course": "CHEM 156",
+   "rooms": [
+    "3-A10"
+   ],
+   "lecturers": [
+    "Kwawu"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 109,
+   "day": "Wed",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "CHEM 156",
    "rooms": [
@@ -25914,7 +32901,7 @@
    "page": 110,
    "day": "Fri",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
    ],
    "course": "ENGL 264",
@@ -25930,8 +32917,40 @@
    "page": 110,
    "day": "Fri",
    "time": [
-    "13:00",
+    "08:00",
+    "08:55"
+   ],
+   "course": "ENGL 264",
+   "rooms": [
+    "SCB-GF18"
+   ],
+   "lecturers": [
+    "Osei-Danso"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 110,
+   "day": "Fri",
+   "time": [
+    "14:00",
     "14:55"
+   ],
+   "course": "ENGL 264",
+   "rooms": [
+    "SCB-SF1"
+   ],
+   "lecturers": [
+    "J.P KUUTIERO"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 110,
+   "day": "Fri",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "ENGL 264",
    "rooms": [
@@ -25974,8 +32993,24 @@
    "page": 110,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MATH 292",
+   "rooms": [
+    "SCB-SF8"
+   ],
+   "lecturers": [
+    "Gyamfi"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 110,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MATH 292",
    "rooms": [
@@ -26006,8 +33041,24 @@
    "page": 110,
    "day": "Thu",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "PHY 396",
+   "rooms": [
+    "3-A7"
+   ],
+   "lecturers": [
+    "E.C.K ADDISON"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 110,
+   "day": "Thu",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "PHY 396",
    "rooms": [
@@ -26255,8 +33306,24 @@
    "page": 111,
    "day": "Mon",
    "time": [
-    "08:00",
+    "09:00",
     "09:55"
+   ],
+   "course": "MET 358",
+   "rooms": [
+    "SCB-GF18"
+   ],
+   "lecturers": [
+    "YAMBA"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 111,
+   "day": "Mon",
+   "time": [
+    "08:00",
+    "08:55"
    ],
    "course": "MET 358",
    "rooms": [
@@ -26452,8 +33519,25 @@
    "page": 112,
    "day": "Mon",
    "time": [
-    "10:30",
+    "11:30",
     "12:25"
+   ],
+   "course": "MET 454",
+   "rooms": [
+    "SCB-SF4"
+   ],
+   "lecturers": [
+    "W.A ATIAH",
+    "Torsah"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 112,
+   "day": "Mon",
+   "time": [
+    "10:30",
+    "11:25"
    ],
    "course": "MET 454",
    "rooms": [
@@ -26525,8 +33609,24 @@
    "page": 112,
    "day": "Wed",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "MATH 472",
+   "rooms": [
+    "PB-P23"
+   ],
+   "lecturers": [
+    "Baffour-Ata"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 112,
+   "day": "Wed",
+   "time": [
+    "14:00",
+    "14:55"
    ],
    "course": "MATH 472",
    "rooms": [
@@ -26585,8 +33685,22 @@
    "page": 113,
    "day": "Fri",
    "time": [
-    "14:00",
+    "15:00",
     "15:55"
+   ],
+   "course": "MET 554",
+   "rooms": [],
+   "lecturers": [
+    "Asilevi"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 113,
+   "day": "Fri",
+   "time": [
+    "14:00",
+    "14:55"
    ],
    "course": "MET 554",
    "rooms": [],
@@ -26599,8 +33713,24 @@
    "page": 113,
    "day": "Mon",
    "time": [
-    "13:00",
+    "14:00",
     "14:55"
+   ],
+   "course": "MET 560",
+   "rooms": [
+    "SCB-SF4"
+   ],
+   "lecturers": [
+    "PREKO"
+   ],
+   "label": "Main"
+  },
+  {
+   "page": 113,
+   "day": "Mon",
+   "time": [
+    "13:00",
+    "13:55"
    ],
    "course": "MET 560",
    "rooms": [
