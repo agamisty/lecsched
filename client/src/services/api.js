@@ -124,6 +124,7 @@ export const timetableAPI = {
   get: (params) => api.get('/timetable', { params }),
   generate: (config) => api.post('/timetable/generate', config || {}),
   update: (id, data) => api.put(`/timetable/${id}`, data),
+  batchMove: (moves) => api.post('/timetable/batch-move', { moves }),
   clear: (params) => api.delete('/timetable/clear', { params }),
   pdf: (params) => api.get('/timetable/pdf', { params, responseType: 'blob' }),
 };

@@ -111,6 +111,83 @@ router.post('/generate', auth, async (req, res) => {
   }
 });
 
+async function moveSlot(slot, day, startTime, endTime) {
+  if (!['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].includes(day)) {
+    return { ok: false, error: 'Invalid day' };
+  }
+
+  // ---- find any class already occupying the target spot in the same group
+  const sameGroup = await TimetableSlot.findAll({
+    where: {
+      semesterId: slot.semesterId,
+      programId: slot.programId,
+      academicLevelId: slot.academicLevelId,
+      day,
+      id: { [Op.ne]: slot.id },
+    },
+  });
+  let blocked = null;
+  for (const c of sameGroup) {
+    if (startTime < c.endTime && c.startTime < endTime) { blocked = c; break; }
+  }
+  if (blocked) {
+    const cCourse = await Course.findByPk(blocked.courseId);
+    return {
+      ok: false,
+      error: `This conflicts with ${cCourse?.code || 'another class'} already scheduled in the same slot`,
+      blocked: { courseCode: cCourse?.code || '' },
+    };
+  }
+
+  // ---- non-blocking warnings: lecturer / classroom availability across the semester
+  const warnings = [];
+  if (slot.lecturerId) {
+    const lecSlots = await TimetableSlot.findAll({
+      where: { semesterId: slot.semesterId, lecturerId: slot.lecturerId, day, id: { [Op.ne]: slot.id } },
+      include: [
+        { model: Course, as: 'Course', attributes: ['code'] },
+        { model: Program, as: 'Program', attributes: ['name'] },
+        { model: AcademicLevel, as: 'AcademicLevel', attributes: ['level'] },
+      ],
+    });
+    for (const c of lecSlots) {
+      if (startTime < c.endTime && c.startTime < endTime) {
+        warnings.push({
+          type: 'lecturer',
+          courseCode: c.Course?.code || '',
+          programme: c.Program?.name || '',
+          level: c.AcademicLevel?.level || 0,
+          time: `${c.day} ${c.startTime}-${c.endTime}`,
+        });
+      }
+    }
+  }
+  if (slot.classroomId) {
+    const roomSlots = await TimetableSlot.findAll({
+      where: { semesterId: slot.semesterId, classroomId: slot.classroomId, day, id: { [Op.ne]: slot.id } },
+      include: [
+        { model: Course, as: 'Course', attributes: ['code'] },
+        { model: Program, as: 'Program', attributes: ['name'] },
+        { model: AcademicLevel, as: 'AcademicLevel', attributes: ['level'] },
+      ],
+    });
+    for (const c of roomSlots) {
+      if (startTime < c.endTime && c.startTime < endTime) {
+        warnings.push({
+          type: 'room',
+          courseCode: c.Course?.code || '',
+          programme: c.Program?.name || '',
+          level: c.AcademicLevel?.level || 0,
+          time: `${c.day} ${c.startTime}-${c.endTime}`,
+        });
+      }
+    }
+  }
+
+  await slot.update({ day, startTime, endTime });
+  return { ok: true, warnings };
+}
+
 router.put('/:id', auth, async (req, res) => {
   try {
     const { day, startTime, endTime } = req.body;
@@ -122,80 +199,54 @@ router.put('/:id', auth, async (req, res) => {
     const slot = await TimetableSlot.findByPk(id);
     if (!slot) return res.status(404).json({ error: 'Timetable slot not found' });
 
-    if (!['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].includes(day)) {
-      return res.status(400).json({ error: 'Invalid day' });
+    const result = await moveSlot(slot, day, startTime, endTime);
+    if (!result.ok) {
+      return res.status(409).json({ error: result.error, blocked: result.blocked });
     }
 
-    // ---- find any class already occupying the target spot in the same group
-    const sameGroup = await TimetableSlot.findAll({
-      where: {
-        semesterId: slot.semesterId,
-        programId: slot.programId,
-        academicLevelId: slot.academicLevelId,
-        day,
-        id: { [Op.ne]: slot.id },
-      },
-    });
-    let blocked = null;
-    for (const c of sameGroup) {
-      if (startTime < c.endTime && c.startTime < endTime) { blocked = c; break; }
-    }
-    if (blocked) {
-      const cCourse = await Course.findByPk(blocked.courseId);
-      return res.status(409).json({
-        error: `This conflicts with ${cCourse?.code || 'another class'} already scheduled in the same slot`,
-        blocked: { courseCode: cCourse?.code || '' },
-      });
+    res.json({ success: true, slot: { id: slot.id, day, startTime, endTime }, warnings: result.warnings || [] });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.post('/batch-move', auth, async (req, res) => {
+  try {
+    const moves = req.body.moves;
+    if (!Array.isArray(moves) || moves.length === 0) {
+      return res.status(400).json({ error: 'moves[] is required' });
     }
 
-    // ---- non-blocking warnings: lecturer / classroom availability across the semester
     const warnings = [];
-    if (slot.lecturerId) {
-      const lecSlots = await TimetableSlot.findAll({
-        where: { semesterId: slot.semesterId, lecturerId: slot.lecturerId, day, id: { [Op.ne]: slot.id } },
-        include: [
-          { model: Course, as: 'Course', attributes: ['code'] },
-          { model: Program, as: 'Program', attributes: ['name'] },
-          { model: AcademicLevel, as: 'AcademicLevel', attributes: ['level'] },
-        ],
-      });
-      for (const c of lecSlots) {
-        if (startTime < c.endTime && c.startTime < endTime) {
-          warnings.push({
-            type: 'lecturer',
-            courseCode: c.Course?.code || '',
-            programme: c.Program?.name || '',
-            level: c.AcademicLevel?.level || 0,
-            time: `${c.day} ${c.startTime}-${c.endTime}`,
-          });
-        }
+    const results = [];
+    for (const m of moves) {
+      const id = parseInt(m.id, 10);
+      const { day, startTime, endTime } = m;
+      if (!id || !day || !startTime || !endTime) {
+        results.push({ id: m.id, ok: false, error: 'invalid payload' });
+        continue;
       }
-    }
-    if (slot.classroomId) {
-      const roomSlots = await TimetableSlot.findAll({
-        where: { semesterId: slot.semesterId, classroomId: slot.classroomId, day, id: { [Op.ne]: slot.id } },
-        include: [
-          { model: Course, as: 'Course', attributes: ['code'] },
-          { model: Program, as: 'Program', attributes: ['name'] },
-          { model: AcademicLevel, as: 'AcademicLevel', attributes: ['level'] },
-        ],
-      });
-      for (const c of roomSlots) {
-        if (startTime < c.endTime && c.startTime < endTime) {
-          warnings.push({
-            type: 'room',
-            courseCode: c.Course?.code || '',
-            programme: c.Program?.name || '',
-            level: c.AcademicLevel?.level || 0,
-            time: `${c.day} ${c.startTime}-${c.endTime}`,
-          });
-        }
+      const slot = await TimetableSlot.findByPk(id);
+      if (!slot) {
+        results.push({ id, ok: false, error: 'slot not found' });
+        continue;
       }
+      const result = await moveSlot(slot, day, startTime, endTime);
+      if (!result.ok) {
+        results.push({ id, ok: false, error: result.error, blocked: result.blocked });
+        continue;
+      }
+      warnings.push(...(result.warnings || []));
+      results.push({ id, ok: true });
     }
 
-    await slot.update({ day, startTime, endTime });
-
-    res.json({ success: true, slot: { id: slot.id, day, startTime, endTime }, warnings });
+    const failed = results.filter((r) => !r.ok);
+    res.json({
+      success: failed.length === 0,
+      applied: results.length - failed.length,
+      failed,
+      warnings,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

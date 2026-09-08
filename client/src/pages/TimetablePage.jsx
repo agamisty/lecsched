@@ -20,6 +20,8 @@ import {
   FileText,
   FileDown,
   Loader2,
+  Save,
+  RotateCcw,
 } from 'lucide-react';
 
 const DAY_KEYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
@@ -105,6 +107,15 @@ function buildGrid(slots) {
     }
   }
   return grid;
+}
+
+function applyMoves(slots, moves) {
+  const keys = Object.keys(moves);
+  if (keys.length === 0) return slots;
+  return slots.map((s) => {
+    const mv = moves[s.id];
+    return mv ? { ...s, day: mv.day, startTime: mv.startTime, endTime: mv.endTime } : s;
+  });
 }
 
 function exportJSON(groupName, grid, slots) {
@@ -226,6 +237,8 @@ export default function TimetablePage() {
 
   const [dragInfo, setDragInfo] = useState(null);
   const [dropTarget, setDropTarget] = useState(null);
+  const [pendingMoves, setPendingMoves] = useState({});
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     academicYearsAPI.list().then((r) => {
@@ -293,7 +306,9 @@ export default function TimetablePage() {
   useEffect(() => { loadTimetable(); }, []);
 
   const currentGroup = grouped[activeGroup];
-  const grid = currentGroup ? buildGrid(currentGroup.slots || []) : null;
+  const displayedSlots = currentGroup ? applyMoves(currentGroup.slots || [], pendingMoves) : [];
+  const grid = currentGroup ? buildGrid(displayedSlots) : null;
+  const unsavedCount = Object.keys(pendingMoves).length;
 
   const countClasses = () => {
     if (!grid) return 0;
@@ -369,16 +384,12 @@ export default function TimetablePage() {
     setDropTarget({ day, period: col + 1 });
   };
 
-  const handleRowDrop = async (e, day) => {
+  const handleRowDrop = (e, day) => {
     e.preventDefault();
     const info = dragInfo;
     setDropTarget(null);
     setDragInfo(null);
     if (!info) return;
-    if (day === info.day) {
-      toast.error('Drop it on a different day or time slot');
-      return;
-    }
     const col = periodFromX(e);
     if (col + info.span > 10) {
       toast.error('Not enough room on the timetable at that time');
@@ -386,21 +397,51 @@ export default function TimetablePage() {
     }
     const startTime = PERIODS[col].start;
     const endTime = PERIODS[col + info.span - 1].end;
+    if (day === info.day && info.startPeriod === col + 1) return;
+
+    for (let i = col; i < col + info.span; i++) {
+      const existing = grid[day]?.[i];
+      if (existing && existing.id !== info.id) {
+        toast.error(`${info.code} can't go there — ${existing.courseCode} already occupies ${day} ${PERIODS[i].start}`);
+        return;
+      }
+    }
+
+    setPendingMoves((prev) => ({ ...prev, [info.id]: { day, startTime, endTime } }));
+    toast.success(`${info.code} moved to ${day} ${startTime}–${endTime} — press Save to apply`);
+  };
+
+  const handleSaveMoves = async () => {
+    const moves = Object.entries(pendingMoves).map(([id, m]) => ({ id: Number(id), ...m }));
+    if (moves.length === 0 || saving) return;
+    setSaving(true);
     try {
-      const res = await timetableAPI.update(info.id, { day, startTime, endTime });
-      toast.success(`${info.code} moved to ${day} ${startTime}–${endTime}`);
-      const warnings = res.data.warnings || [];
-      if (warnings.length > 0) {
-        const desc = warnings.map((w) => {
+      const res = await timetableAPI.batchMove(moves);
+      const { applied, failed, warnings } = res.data || {};
+      toast.success(`${applied || moves.length} change${(applied || moves.length) === 1 ? '' : 's'} saved`);
+      if (failed && failed.length > 0) {
+        const details = failed.map((f) => `#${f.id}: ${f.error}`).join(' · ');
+        toast.error(details, { duration: 7000 });
+      }
+      if (warnings && warnings.length > 0) {
+        const desc = warnings.slice(0, 4).map((w) => {
           const where = w.programme ? ` (${w.programme}${w.level ? ` L${w.level}` : ''})` : '';
           return `${w.type === 'room' ? 'Room clash' : 'Lecturer clash'} with ${w.courseCode}${where} ${w.time}`;
         });
-        toast.warning(desc.join(' · '), { duration: 6000 });
+        toast.warning(desc.join(' · '), { duration: 7000 });
       }
+      setPendingMoves({});
       loadTimetable();
     } catch (err) {
-      toast.error(err.response?.data?.error || 'Failed to move class');
+      toast.error(err.response?.data?.error || 'Failed to save changes');
     }
+    setSaving(false);
+  };
+
+  const handleDiscardMoves = () => {
+    if (unsavedCount === 0) return;
+    setPendingMoves({});
+    toast('Unsaved changes discarded');
   };
 
   return (
@@ -443,6 +484,18 @@ export default function TimetablePage() {
             <FileDown size={14} />
             Export / Print
           </button>
+          {unsavedCount > 0 && (
+            <>
+              <button className="btn btn-ghost btn-sm" onClick={handleDiscardMoves}>
+                <RotateCcw size={14} />
+                Discard
+              </button>
+              <button className="btn btn-success btn-sm" onClick={handleSaveMoves} disabled={saving}>
+                <Save size={14} />
+                {saving ? 'Saving…' : `Save ${unsavedCount} change${unsavedCount !== 1 ? 's' : ''}`}
+              </button>
+            </>
+          )}
           <button className="btn btn-ghost btn-sm" onClick={handleExportASCII}>
             <FileText size={14} />
             Export Text
@@ -689,7 +742,7 @@ export default function TimetablePage() {
                   <span className="tv-legend-dot" style={{ background: TYPE_COLORS.default.badge }} />
                   Other
                 </span>
-                <span className="tv-legend-tip">Tip: drag any class card to move it to another day / time</span>
+                <span className="tv-legend-tip">Tip: drag classes to rearrange freely, then press Save to apply all changes at once</span>
               </div>
             </>
           )}
