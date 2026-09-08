@@ -215,13 +215,25 @@ async function run() {
 
   // ─────────────── LECTURER USERS ───────────────
   const hashedPw = await bcrypt.hash(CREDENTIAL_PASS, 10);
+  const cleanName = (n) =>
+    String(n)
+      .replace(/^[^A-Za-zÀ-ÿ]+/, '')
+      .replace(/[^A-Za-zÀ-ÿ .,'’\-]+$/g, '')
+      .trim();
   const lecturerIdByKey = {};
+  const idByEmail = {};
   for (const lec of DATASET.lecturers) {
     const email = `lecturer.${slug(lec.key)}@lecsched.app`;
+    if (idByEmail[email] != null) {
+      lecturerIdByKey[lec.key] = idByEmail[email];
+      continue;
+    }
     const res = await sequelize.query(
-      `INSERT INTO "Users" ("name","email","password","role","department","departments","avatar","createdAt","updatedAt") VALUES (${sqlStr(lec.name)},'${email}', '${hashedPw}','lecturer','', '[]','','${now}','${now}') RETURNING "id"`
+      `INSERT INTO "Users" ("name","email","password","role","department","departments","avatar","createdAt","updatedAt") VALUES (${sqlStr(cleanName(lec.name))},'${email}', '${hashedPw}','lecturer','', '[]','','${now}','${now}') RETURNING "id"`
     );
-    lecturerIdByKey[lec.key] = res[0][0].id;
+    const id = res[0][0].id;
+    idByEmail[email] = id;
+    lecturerIdByKey[lec.key] = id;
   }
   // per-department staff fallback lecturers
   const staffIdByDept = {};
