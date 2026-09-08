@@ -303,20 +303,16 @@ async function run() {
   };
 
   // ─────────────── MERGE 1-HOUR SLOTS INTO TRUE 2-HOUR SLOTS ───────────────
-  // The raw dataset (extracted from the university PDF) stores each 1-hour class
-  // period as its own slot. A real 2-hour class is two adjacent periods of the
-  // same course on the same day/page (no mid-morning/lunch break between them).
-  // Merge such PAIRS into a single 2-hour slot, but NEVER merge across breaks
-  // (P2->P3 = 30+ min gap) and NEVER stack beyond 2 hours (max in the university).
-  // e.g. CHEM 154 Mon 08:00+09:00 -> one 08:00-09:55 slot; a 10:30 class stays 1h.
+  // The raw dataset (extracted from the university PDF grid) stores each 1-hour
+  // period as its own slot. In the original PDF, a 2-hour class is ONE cell that
+  // spans TWO adjacent grid rows (e.g. rows 09:00 + 10:30 = "period 2 & 3",
+  // or 11:30 + 13:00). Merge any same-course, same-day, same-page slots that sit
+  // in consecutive grid rows into a single 2-hour slot: start = first row start,
+  // end = last row end. NEVER stack more than 2 periods (max in the university).
   const PERIOD_STARTS = ['08:00','09:00','10:30','11:30','13:00','14:00','15:00','16:00','17:00','18:00'];
   const START_INDEX = {};
   PERIOD_STARTS.forEach((s, i) => { START_INDEX[s] = i; });
   function periodIndex(t) { return START_INDEX[t] != null ? START_INDEX[t] : -1; }
-  function toMins(t) {
-    const [h, m] = t.split(':').map(Number);
-    return h * 60 + m;
-  }
 
   // group raw slots by page/day/course, then re-assemble after merging runs
   const slotGroups = {};
@@ -330,23 +326,20 @@ async function run() {
     const group = slotGroups[key].slice().sort((a, b) => a.period - b.period);
     for (const slot of group) {
       const lastRun = mergedSlots[mergedSlots.length - 1];
-      const sameGroup = lastRun && lastRun.runKey === key;
       const contiguous =
-        sameGroup &&
+        lastRun &&
+        lastRun.runKey === key &&
         slot.period === lastRun.lastPeriod + 1 &&
-        toMins(slot.time[0]) - toMins(lastRun.lastEnd) <= 5 &&
         slot.period - lastRun.firstPeriod + 1 <= 2;
       if (contiguous) {
         lastRun.time = [lastRun.time[0], slot.time[1]];
         lastRun.lastPeriod = slot.period;
-        lastRun.lastEnd = slot.time[1];
         lastRun.rooms = slot.rooms && slot.rooms.length ? slot.rooms : lastRun.rooms;
       } else {
         mergedSlots.push({
           runKey: key,
           firstPeriod: slot.period,
           lastPeriod: slot.period,
-          lastEnd: slot.time[1],
           page: slot.page,
           day: slot.day,
           time: [...slot.time],
@@ -358,7 +351,7 @@ async function run() {
       }
     }
   }
-  mergedSlots.forEach((s) => { delete s.runKey; delete s.firstPeriod; delete s.lastPeriod; delete s.lastEnd; });
+  mergedSlots.forEach((s) => { delete s.runKey; delete s.firstPeriod; delete s.lastPeriod; });
   console.log(`Slots after 2-hour merge: ${DATASET.slots.length} -> ${mergedSlots.length}`);
 
   // ─────────────── COURSE OFFERINGS (Semester 2 = current) ───────────────
