@@ -13,6 +13,17 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
+const { getBooted } = require('./bootstrap');
+app.use(async (req, res, next) => {
+  try {
+    await getBooted();
+    next();
+  } catch (e) {
+    console.error('boot failed', e);
+    res.status(500).json({ error: 'boot failed: ' + String(e) });
+  }
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ ok: true });
 });

@@ -13,4 +13,15 @@ async function bootUp() {
   }
 }
 
-module.exports = { bootUp };
+let _boot = null;
+function getBooted() {
+  if (!_boot) {
+    _boot = bootUp().catch((e) => {
+      _boot = null;
+      throw e;
+    });
+  }
+  return _boot;
+}
+
+module.exports = { bootUp, getBooted };
