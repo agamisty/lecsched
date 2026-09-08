@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
-import { Reply, Edit3, Trash2, Search, Check, X } from 'lucide-react';
+import { Reply, Edit3, Trash2, Search, Check, X, ChevronLeft } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useAuth } from '../context/AuthContext';
 import { useChat } from '../context/ChatContext';
@@ -39,6 +39,15 @@ export default function ChatPage() {
   const bottomRef = useRef(null);
   const typingTimer = useRef(null);
   const lastTypingAt = useRef(0);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches);
+  const [contactsOpen, setContactsOpen] = useState(true);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const onChange = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   const belongsToThread = (msg) => {
     if (chatWith) {
@@ -270,6 +279,7 @@ export default function ChatPage() {
   const openChat = (contact) => {
     setChatWith(contact);
     setUnreadMap((prev) => { const n = { ...prev }; delete n[contact.id]; return n; });
+    if (isMobile) setContactsOpen(false);
   };
 
   const q = lecturerSearch.trim().toLowerCase();
@@ -288,13 +298,13 @@ export default function ChatPage() {
         <p>{chatWith ? `Private: ${chatWith.name}` : room === 'postgraduate' ? 'Postgraduate Discussion' : 'General Discussion'}</p>
       </div>
 
-      <div style={{ display: 'flex', gap: '1rem', height: '520px' }}>
-        <div style={{ width: '220px', flexShrink: 0, background: '#fff', borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.06)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+      <div className="chat-body">
+        <div className={`chat-sidebar${isMobile && !contactsOpen ? ' hidden' : ''}`}>
           <div style={{ padding: '0.75rem 1rem', borderBottom: '1px solid #eee', fontWeight: 600, fontSize: '0.85rem', textTransform: 'uppercase', color: '#888' }}>Rooms</div>
           {ROOMS.map((r) => (
             <div
               key={r.id}
-              onClick={() => { setChatWith(null); setRoom(r.id); }}
+              onClick={() => { setChatWith(null); setRoom(r.id); if (isMobile) setContactsOpen(false); }}
               style={{
                 padding: '0.75rem 1rem', cursor: 'pointer', borderBottom: '1px solid #f5f5f5',
                 background: !chatWith && room === r.id ? '#e8f4fd' : 'transparent',
@@ -408,7 +418,15 @@ export default function ChatPage() {
           </div>
         </div>
 
-        <div className="chat-container" style={{ flex: 1, height: '100%' }}>
+        <div className={`chat-container chat-main${isMobile && contactsOpen ? ' hidden' : ''}`}>
+          {isMobile && !contactsOpen && (
+            <div className="chat-mobile-bar">
+              <button type="button" className="chat-mobile-back" onClick={() => setContactsOpen(true)}>
+                <ChevronLeft size={14} /> Contacts
+              </button>
+              <span className="chat-mobile-title">{chatWith ? chatWith.name : room === 'postgraduate' ? 'Postgraduate' : 'General'}</span>
+            </div>
+          )}
           <div className="chat-messages">
             {messages.length === 0 && (
               <div className="empty-state">
