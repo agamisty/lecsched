@@ -156,7 +156,7 @@ export default function ChatPage() {
       apiCall.then((res) => setMessages(res.data)).catch(() => {});
     };
     refresh();
-    const t = setInterval(refresh, 3000);
+    const t = setInterval(refresh, 1500);
     return () => clearInterval(t);
   }, [chatWith, room, user]);
 
@@ -435,13 +435,15 @@ export default function ChatPage() {
             )}
             {messages.map((msg) => {
               const own = msg.userId === user?.id;
+              const fromAdmin = msg.userId === user?.id ? user.role === 'admin' : admins.some((a) => a.id === msg.userId);
               const isEditing = editingId === msg.id;
               return (
-                <div key={msg.id} className={`chat-msg ${own ? 'own' : 'other'}`}
+                <div key={msg.id} className={`chat-msg ${own ? 'own' : 'other'} ${fromAdmin ? 'admin' : 'lecturer'}`}
                   style={msg.isPrivate ? { borderLeft: '3px solid #ffd43b' } : {}}
                 >
                   <div className="msg-sender">
                     {msg.userName}
+                    <span className={`chat-role-tag ${fromAdmin ? 'admin' : 'lecturer'}`}>{fromAdmin ? 'Admin' : 'Lecturer'}</span>
                     {msg.isPrivate && msg.recipientId === user?.id && (
                       <span style={{ fontSize: '0.65rem', color: '#f59f00', marginLeft: '0.3rem' }}>(private)</span>
                     )}

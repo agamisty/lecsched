@@ -983,6 +983,22 @@ td {
   align-self: flex-start;
 }
 
+.chat-msg.other.admin { background: #eaf3ff; }
+.chat-msg.other.lecturer { background: #eefaf0; }
+.chat-role-tag, .cw-role-tag {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-radius: 4px;
+  padding: 0.05rem 0.3rem;
+  margin-left: 0.35rem;
+  vertical-align: middle;
+}
+.chat-role-tag.admin, .cw-role-tag.admin { background: #d0ebff; color: #1971c2; }
+.chat-role-tag.lecturer, .cw-role-tag.lecturer { background: #d3f9d8; color: #087f5b; }
+
 .chat-msg .msg-sender {
   font-size: 0.7rem;
   font-weight: 600;
@@ -1316,6 +1332,8 @@ td {
   align-self: flex-start;
   border-bottom-left-radius: 2px;
 }
+.cw-msg.other.admin { background: #eaf3ff; }
+.cw-msg.other.lecturer { background: #eefaf0; }
 .cw-msg .cw-msg-sender {
   font-size: 0.65rem;
   font-weight: 600;
