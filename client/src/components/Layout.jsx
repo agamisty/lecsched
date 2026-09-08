@@ -71,7 +71,7 @@ const NAV_SECTIONS = [
 ];
 
 export default function Layout({ children }) {
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
@@ -80,6 +80,20 @@ export default function Layout({ children }) {
     NAV_SECTIONS.forEach((s, i) => { initial[i] = true; });
     return initial;
   });
+
+  const isAdmin = user?.role === 'admin';
+
+  const sections = isAdmin
+    ? NAV_SECTIONS
+    : [
+        {
+          label: 'My Timetable',
+          items: [
+            { to: '/viewer', label: 'My Timetable', icon: CalendarDays },
+            { to: '/chat', label: 'Chat with Admin', icon: MessageCircle },
+          ]
+        }
+      ];
 
   const toggleSection = (idx) => {
     setOpenSections(prev => ({ ...prev, [idx]: !prev[idx] }));
@@ -110,8 +124,14 @@ export default function Layout({ children }) {
         <div className="sidebar-brand">
           <Logo />
         </div>
+        {!collapsed && user && (
+          <div className="sidebar-user">
+            <span className="sidebar-user-name">{user.name}</span>
+            <span className={`sidebar-role-pill${isAdmin ? ' admin' : ''}`}>{isAdmin ? 'Administrator' : 'Lecturer'}</span>
+          </div>
+        )}
         <ul className="sidebar-nav sidebar-nav-grouped">
-          {NAV_SECTIONS.map((section, idx) => (
+          {sections.map((section, idx) => (
             <li key={idx} className="sidebar-section">
               {!collapsed && (
                 <button className="sidebar-section-toggle" onClick={() => toggleSection(idx)}>

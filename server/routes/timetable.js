@@ -11,7 +11,7 @@ const Semester = require('../models/Semester');
 const AcademicYear = require('../models/AcademicYear');
 const CourseOffering = require('../models/CourseOffering');
 const { generateTimetable } = require('../scheduler/algorithm');
-const { auth } = require('../middleware/auth');
+const { auth, adminOnly } = require('../middleware/auth');
 const { DAYS } = require('../config');
 const GenerationHistory = require('../models/GenerationHistory');
 
@@ -87,7 +87,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-router.post('/generate', auth, async (req, res) => {
+router.post('/generate', auth, adminOnly, async (req, res) => {
   try {
     const { academicYearId, semesterId, facultyId, departmentId } = req.body;
     const result = await generateTimetable({ academicYearId, semesterId, facultyId, departmentId });
@@ -188,7 +188,7 @@ async function moveSlot(slot, day, startTime, endTime) {
   return { ok: true, warnings };
 }
 
-router.put('/:id', auth, async (req, res) => {
+router.put('/:id', auth, adminOnly, async (req, res) => {
   try {
     const { day, startTime, endTime } = req.body;
     const id = parseInt(req.params.id, 10);
@@ -210,7 +210,7 @@ router.put('/:id', auth, async (req, res) => {
   }
 });
 
-router.post('/batch-move', auth, async (req, res) => {
+router.post('/batch-move', auth, adminOnly, async (req, res) => {
   try {
     const moves = req.body.moves;
     if (!Array.isArray(moves) || moves.length === 0) {
@@ -252,7 +252,7 @@ router.post('/batch-move', auth, async (req, res) => {
   }
 });
 
-router.delete('/clear', auth, async (req, res) => {
+router.delete('/clear', auth, adminOnly, async (req, res) => {
   try {
     const where = {};
     if (req.query.semesterId) where.semesterId = req.query.semesterId;

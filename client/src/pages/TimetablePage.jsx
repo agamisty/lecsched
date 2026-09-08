@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import toast from 'react-hot-toast';
 import Layout from '../components/Layout';
+import { useAuth } from '../context/AuthContext';
 import {
   timetableAPI,
   academicYearsAPI,
@@ -217,6 +218,8 @@ function exportASCII(groupName, grid) {
 }
 
 export default function TimetablePage() {
+  const { user } = useAuth();
+  const isAdmin = user?.role === 'admin';
   const [loading, setLoading] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
 
@@ -275,16 +278,19 @@ export default function TimetablePage() {
     }
   }, [selYear]);
 
+  const filterParams = useCallback(() => {
+    const params = {};
+    if (selYear) params.academicYearId = selYear;
+    if (selSemester) params.semesterId = selSemester;
+    if (selProgram) params.programId = selProgram;
+    if (selLevel) params.academicLevelId = selLevel;
+    return params;
+  }, [selYear, selSemester, selProgram, selLevel]);
+
   const loadTimetable = useCallback(async () => {
     setLoading(true);
     try {
-      const params = {};
-      if (selYear) params.academicYearId = selYear;
-      if (selSemester) params.semesterId = selSemester;
-      if (selProgram) params.programId = selProgram;
-      if (selLevel) params.academicLevelId = selLevel;
-
-      const res = await timetableAPI.get(params);
+      const res = await timetableAPI.get(filterParams());
       const g = res.data.grouped || {};
       const keys = Object.keys(g);
       setGrouped(g);
@@ -301,7 +307,7 @@ export default function TimetablePage() {
       toast.error('Failed to load timetable');
     }
     setLoading(false);
-  }, [selYear, selSemester, selProgram, selLevel, activeGroup]);
+  }, [filterParams, activeGroup]);
 
   useEffect(() => { loadTimetable(); }, []);
 
@@ -371,13 +377,14 @@ export default function TimetablePage() {
   };
 
   const handleCellDragStart = (e, cell, day, startP) => {
+    if (!isAdmin) return;
     e.dataTransfer.setData('text/plain', String(cell.id));
     e.dataTransfer.effectAllowed = 'move';
     setDragInfo({ id: cell.id, span: cell.span || 1, day, startPeriod: startP + 1, code: cell.courseCode });
   };
 
   const handleRowDragOver = (e, day) => {
-    if (!dragInfo) return;
+    if (!isAdmin || !dragInfo) return;
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
     const col = periodFromX(e);
@@ -386,6 +393,7 @@ export default function TimetablePage() {
 
   const handleRowDrop = (e, day) => {
     e.preventDefault();
+    if (!isAdmin) return;
     const info = dragInfo;
     setDropTarget(null);
     setDragInfo(null);
@@ -417,13 +425,18 @@ export default function TimetablePage() {
     setSaving(true);
     try {
       const res = await timetableAPI.batchMove(moves);
-      const { applied, failed, warnings } = res.data || {};
-      toast.success(`${applied || moves.length} change${(applied || moves.length) === 1 ? '' : 's'} saved`);
-      if (failed && failed.length > 0) {
-        const details = failed.map((f) => `#${f.id}: ${f.error}`).join(' · ');
-        toast.error(details, { duration: 7000 });
+      const { applied = 0, failed = [], warnings = [] } = res.data || {};
+
+      if (failed.length > 0) {
+        toast.error(
+          `${applied} of ${moves.length} change${moves.length === 1 ? '' : 's'} saved — ${failed.length} blocked: ` +
+            failed.map((f) => f.error.replace(/^This conflicts with /, '')).join(' · '),
+          { duration: 8000 }
+        );
+      } else {
+        toast.success(`${applied || moves.length} change${(applied || moves.length) === 1 ? '' : 's'} saved`);
       }
-      if (warnings && warnings.length > 0) {
+      if (warnings.length > 0) {
         const desc = warnings.slice(0, 4).map((w) => {
           const where = w.programme ? ` (${w.programme}${w.level ? ` L${w.level}` : ''})` : '';
           return `${w.type === 'room' ? 'Room clash' : 'Lecturer clash'} with ${w.courseCode}${where} ${w.time}`;
@@ -431,11 +444,46 @@ export default function TimetablePage() {
         toast.warning(desc.join(' · '), { duration: 7000 });
       }
       setPendingMoves({});
-      loadTimetable();
+      await loadTimetable();
     } catch (err) {
-      toast.error(err.response?.data?.error || 'Failed to save changes');
+      // A rejected request does not necessarily mean nothing was saved: the
+      // platform may kill the response (timeout / gateway error) after the
+      // server already committed the moves. Reconcile against fresh data
+      // before deciding whether to report an error.
+      const serverMsg = err.response?.data?.error;
+      try {
+        const fresh = await timetableAPI.get(filterParams());
+        const grouped2 = fresh.data?.grouped || {};
+        setGrouped(grouped2);
+        setTotalSlots(fresh.data?.total || 0);
+        const confirmed = moves.filter((m) =>
+          Object.values(grouped2).some((grp) =>
+            grp.slots.some(
+              (s) =>
+                s.id === m.id &&
+                s.day === m.day &&
+                s.startTime === m.startTime &&
+                s.endTime === m.endTime
+            )
+          )
+        );
+        const remaining = moves.filter((m) => !confirmed.includes(m));
+        setPendingMoves((prev) => {
+          const next = { ...prev };
+          confirmed.forEach((m) => delete next[m.id]);
+          return next;
+        });
+        if (remaining.length === 0) {
+          toast.success(`${confirmed.length} change${confirmed.length === 1 ? '' : 's'} saved`);
+          return;
+        }
+        toast.error(serverMsg || `${remaining.length} change${remaining.length === 1 ? '' : 's'} could not be saved`);
+      } catch (_) {
+        toast.error(serverMsg || 'Failed to save changes');
+      }
+    } finally {
+      setSaving(false);
     }
-    setSaving(false);
   };
 
   const handleDiscardMoves = () => {
@@ -454,7 +502,9 @@ export default function TimetablePage() {
           <p className="tv-subtitle">
             {totalSlots > 0
               ? `${totalSlots} scheduled classes across ${groupKeys.length} group${groupKeys.length !== 1 ? 's' : ''}`
-              : 'No timetable data — generate one from the Generator page'}
+              : isAdmin
+                ? 'No timetable data — generate one from the Generator page'
+                : 'No timetable data yet'}
           </p>
           <div className="tv-header-meta">
             <span className="tv-status-badge">
@@ -476,15 +526,15 @@ export default function TimetablePage() {
             <Filter size={14} />
             {showFilters ? 'Hide Filters' : 'Filters'}
           </button>
-          <button className="btn btn-ghost btn-sm" onClick={handlePrint}>
-            <Printer size={14} />
-            Print
-          </button>
-          <button className="btn btn-primary btn-sm" onClick={handleExportPDF}>
-            <FileDown size={14} />
-            Export / Print
-          </button>
-          {unsavedCount > 0 && (
+<button className="btn btn-ghost btn-sm" onClick={handlePrint}>
+              <Printer size={14} />
+              Print
+            </button>
+            <button className="btn btn-primary btn-sm" onClick={handleExportPDF}>
+              <FileDown size={14} />
+              Export / Print
+            </button>
+            {unsavedCount > 0 && isAdmin && (
             <>
               <button className="btn btn-ghost btn-sm" onClick={handleDiscardMoves}>
                 <RotateCcw size={14} />
@@ -594,7 +644,9 @@ export default function TimetablePage() {
               <BookOpen size={40} style={{ opacity: 0.3, marginBottom: '0.75rem' }} />
               <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.3rem' }}>No Timetable Found</h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                Go to Generator to create one, or adjust your filters.
+                {isAdmin
+                  ? 'Go to Generator to create one, or adjust your filters.'
+                  : 'No timetable has been published yet. Check back soon.'}
               </p>
             </div>
           ) : (
@@ -682,7 +734,7 @@ export default function TimetablePage() {
                               return (
                                 <div
                                   key={`${day}-${item.startP}`}
-                                  draggable
+                                  draggable={isAdmin}
                                   onDragStart={(e) => handleCellDragStart(e, c, day, item.startP)}
                                   onDragEnd={() => { setDropTarget(null); setDragInfo(null); }}
                                   className={`tv-v-cell ${isDragging ? 'tv-v-cell-drag' : ''}`}
@@ -742,7 +794,11 @@ export default function TimetablePage() {
                   <span className="tv-legend-dot" style={{ background: TYPE_COLORS.default.badge }} />
                   Other
                 </span>
-                <span className="tv-legend-tip">Tip: drag classes to rearrange freely, then press Save to apply all changes at once</span>
+                <span className="tv-legend-tip">
+                  {isAdmin
+                    ? 'Tip: drag classes to rearrange freely, then press Save to apply all changes at once'
+                    : 'Read-only view — request changes via Chat with Admin'}
+                </span>
               </div>
             </>
           )}

@@ -1,3 +1,4 @@
+const sequelize = require('../db');
 const Course = require('../models/Course');
 const Classroom = require('../models/Classroom');
 const User = require('../models/User');
@@ -34,9 +35,6 @@ async function generateTimetable(config = {}) {
   if (!semester) return { success: false, error: 'Semester not found' };
 
   const label = `${semester.academicYear?.name || ''} - ${semester.name}`;
-
-  // Clear previous timetable for this semester
-  await TimetableSlot.destroy({ where: { semesterId: semester.id } });
 
   // Get course offerings for this semester, filtered by faculty/department if provided
   const offeringWhere = { semesterId: semester.id };
@@ -95,6 +93,7 @@ async function generateTimetable(config = {}) {
 
   const allClashes = [];
   const allPlaced = [];
+  const allEntries = [];
 
   // Generate timetable for each programme-level group
   for (const [groupKey, group] of Object.entries(groups)) {
@@ -207,13 +206,26 @@ async function generateTimetable(config = {}) {
     for (const day of Object.keys(schedule)) {
       for (const timeIdx of Object.keys(schedule[day])) {
         for (const entry of schedule[day][timeIdx]) {
-          await TimetableSlot.create(entry);
+          allEntries.push(entry);
         }
       }
     }
 
     allPlaced.push(...groupPlaced);
     allClashes.push(...groupClashes);
+  }
+
+  // Replace the semester's timetable atomically, and only after every group has
+  // been fully resolved. A failed/crashed generation must never wipe the slots
+  // that already exist for this semester.
+  const tx = await sequelize.transaction();
+  try {
+    await TimetableSlot.destroy({ where: { semesterId: semester.id }, transaction: tx });
+    await TimetableSlot.bulkCreate(allEntries, { transaction: tx });
+    await tx.commit();
+  } catch (err) {
+    await tx.rollback();
+    throw err;
   }
 
   return {

@@ -23,6 +23,7 @@ export default function ChatPage() {
   const [text, setText] = useState('');
   const [socket, setSocket] = useState(null);
   const [lecturers, setLecturers] = useState([]);
+  const [admins, setAdmins] = useState([]);
   const [lecturerSearch, setLecturerSearch] = useState('');
   const [onlineIds, setOnlineIds] = useState([]);
   const [chatWith, setChatWith] = useState(null);
@@ -45,6 +46,7 @@ export default function ChatPage() {
 
   useEffect(() => {
     lecturersAPI.list().then((res) => setLecturers(res.data.filter((l) => l.id !== user?.id))).catch(() => {});
+    lecturersAPI.admins().then((res) => setAdmins(res.data.filter((a) => a.id !== user?.id))).catch(() => {});
 
     const s = io(SOCKET_URL);
     setSocket(s);
@@ -195,6 +197,38 @@ export default function ChatPage() {
               <div style={{ fontSize: '0.7rem', color: '#999' }}>{r.desc}</div>
             </div>
           ))}
+          {admins.length > 0 && (
+            <>
+              <div style={{ padding: '0.5rem 1rem 0.25rem', fontSize: '0.75rem', color: '#aaa', textTransform: 'uppercase' }}>Administration</div>
+              {admins.map((adm) => (
+                <div
+                  key={adm.id}
+                  onClick={() => setChatWith(adm)}
+                  style={{
+                    padding: '0.75rem 1rem', cursor: 'pointer', borderBottom: '1px solid #f5f5f5',
+                    background: chatWith?.id === adm.id ? '#e8f4fd' : 'transparent'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <span style={{
+                      width: 8, height: 8, borderRadius: '50%', display: 'inline-block',
+                      background: isOnline(adm.id) ? '#51cf66' : '#ccc', flexShrink: 0
+                    }} />
+                    <span style={{ fontSize: '0.9rem' }}>{adm.name}</span>
+                    <span style={{
+                      fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.04em',
+                      background: '#e7f5ff', color: '#1971c2', borderRadius: 4, padding: '0.1rem 0.35rem'
+                    }}>
+                      Admin
+                    </span>
+                  </div>
+                  <div style={{ fontSize: '0.7rem', color: '#999', marginLeft: '1rem' }}>
+                    {isOnline(adm.id) ? 'Online' : 'Offline'}
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
           <div style={{ padding: '0.5rem 1rem 0.25rem', fontSize: '0.75rem', color: '#aaa', textTransform: 'uppercase' }}>Lecturers</div>
           <div className="chat-search">
             <Search size={13} className="chat-search-icon" />

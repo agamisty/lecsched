@@ -107,6 +107,7 @@ export const curriculumAPI = {
 
 export const lecturersAPI = {
   list: () => api.get('/lecturers'),
+  admins: () => api.get('/lecturers/admins'),
   create: (data) => api.post('/lecturers', data),
   update: (id, data) => api.put(`/lecturers/${id}`, data),
   delete: (id) => api.delete(`/lecturers/${id}`),

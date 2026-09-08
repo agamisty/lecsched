@@ -28,30 +28,41 @@ function Protected({ children }) {
   return children;
 }
 
+function AdminOnly({ children }) {
+  const { user } = useAuth();
+  if (user?.role !== 'admin') return <Navigate to="/viewer" replace />;
+  return children;
+}
+
+function Home() {
+  const { user } = useAuth();
+  return user?.role === 'admin' ? <Dashboard /> : <Navigate to="/viewer" replace />;
+}
+
 export default function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      <Route path="/" element={<Protected><Dashboard /></Protected>} />
-      <Route path="/faculties" element={<Protected><FacultiesPage /></Protected>} />
-      <Route path="/departments" element={<Protected><DepartmentsPage /></Protected>} />
-      <Route path="/programs" element={<Protected><ProgramsPage /></Protected>} />
-      <Route path="/academic-years" element={<Protected><AcademicYearsPage /></Protected>} />
-      <Route path="/semesters" element={<Protected><SemestersPage /></Protected>} />
-      <Route path="/courses" element={<Protected><CoursesPage /></Protected>} />
-      <Route path="/curriculum" element={<Protected><CurriculumPage /></Protected>} />
-      <Route path="/academic-levels" element={<Protected><AcademicLevelsPage /></Protected>} />
-      <Route path="/lecturers" element={<Protected><LecturersPage /></Protected>} />
-      <Route path="/buildings" element={<Protected><BuildingsPage /></Protected>} />
-      <Route path="/floors" element={<Protected><FloorsPage /></Protected>} />
-      <Route path="/classrooms" element={<Protected><ClassroomsPage /></Protected>} />
-      <Route path="/time-slots" element={<Protected><TimeSlotsPage /></Protected>} />
-      <Route path="/generator" element={<Protected><GeneratorPage /></Protected>} />
+      <Route path="/" element={<Protected><Home /></Protected>} />
+      <Route path="/faculties" element={<Protected><AdminOnly><FacultiesPage /></AdminOnly></Protected>} />
+      <Route path="/departments" element={<Protected><AdminOnly><DepartmentsPage /></AdminOnly></Protected>} />
+      <Route path="/programs" element={<Protected><AdminOnly><ProgramsPage /></AdminOnly></Protected>} />
+      <Route path="/academic-years" element={<Protected><AdminOnly><AcademicYearsPage /></AdminOnly></Protected>} />
+      <Route path="/semesters" element={<Protected><AdminOnly><SemestersPage /></AdminOnly></Protected>} />
+      <Route path="/courses" element={<Protected><AdminOnly><CoursesPage /></AdminOnly></Protected>} />
+      <Route path="/curriculum" element={<Protected><AdminOnly><CurriculumPage /></AdminOnly></Protected>} />
+      <Route path="/academic-levels" element={<Protected><AdminOnly><AcademicLevelsPage /></AdminOnly></Protected>} />
+      <Route path="/lecturers" element={<Protected><AdminOnly><LecturersPage /></AdminOnly></Protected>} />
+      <Route path="/buildings" element={<Protected><AdminOnly><BuildingsPage /></AdminOnly></Protected>} />
+      <Route path="/floors" element={<Protected><AdminOnly><FloorsPage /></AdminOnly></Protected>} />
+      <Route path="/classrooms" element={<Protected><AdminOnly><ClassroomsPage /></AdminOnly></Protected>} />
+      <Route path="/time-slots" element={<Protected><AdminOnly><TimeSlotsPage /></AdminOnly></Protected>} />
+      <Route path="/generator" element={<Protected><AdminOnly><GeneratorPage /></AdminOnly></Protected>} />
       <Route path="/viewer" element={<Protected><TimetablePage /></Protected>} />
-      <Route path="/reports" element={<Protected><ReportsPage /></Protected>} />
+      <Route path="/reports" element={<Protected><AdminOnly><ReportsPage /></AdminOnly></Protected>} />
       <Route path="/settings" element={<Protected><SettingsPage /></Protected>} />
       <Route path="/chat" element={<Protected><ChatPage /></Protected>} />
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate to="/viewer" replace />} />
     </Routes>
   );
 }

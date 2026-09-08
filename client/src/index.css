@@ -230,6 +230,45 @@ a {
   border-bottom: 1px solid var(--border-light);
 }
 
+.sidebar-user {
+  padding: 0.75rem 1rem 0.5rem;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.sidebar-user-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-role-pill {
+  align-self: flex-start;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: var(--bg-hover);
+  color: var(--text-secondary);
+}
+
+.sidebar-role-pill.admin {
+  background: var(--accent);
+  color: #fff;
+}
+
+.sidebar-collapsed .sidebar-user {
+  padding: 0.5rem 0.4rem;
+  align-items: center;
+}
+
 .atgs-brand {
   display: flex;
   align-items: center;
@@ -1137,6 +1176,7 @@ td {
 }
 .cw-sidebar-item:hover { background: var(--bg-hover); }
 .cw-sidebar-item.active { background: var(--accent-bg); color: var(--accent); font-weight: 600; }
+.cw-admin-tag { color: var(--accent); margin-left: auto; flex-shrink: 0; }
 .cw-dot {
   width: 7px;
   height: 7px;
@@ -1473,6 +1513,75 @@ td {
   margin-top: 0.3rem;
 }
 .forgot-link a { font-size: 0.8rem; color: var(--accent); cursor: pointer; }
+.login-role-toggle {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1.1rem;
+  background: var(--bg-hover);
+  border-radius: 10px;
+  padding: 0.25rem;
+}
+.login-role-toggle button {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.login-role-toggle button.active {
+  background: var(--accent);
+  color: #fff;
+}
+.login-demo {
+  margin-top: 0.9rem;
+  background: var(--bg-hover);
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+}
+.login-demo-title {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+}
+.login-demo-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.45rem;
+}
+.login-demo-row button {
+  flex: 1;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.login-demo-row button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.login-demo-cred {
+  margin-top: 0.55rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+.login-demo-cred code {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.05rem 0.35rem;
+  font-size: 0.72rem;
+}
 .login-secondary {
   display: flex;
   gap: 0.75rem;

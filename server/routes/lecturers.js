@@ -57,6 +57,14 @@ router.put('/:id', auth, adminOnly, async (req, res) => {
   }
 });
 
+router.get('/admins', auth, async (req, res) => {
+  const admins = await User.findAll({
+    where: { role: 'admin' },
+    attributes: { exclude: ['password'] }
+  });
+  res.json(admins);
+});
+
 router.get('/courses', auth, async (req, res) => {
   const courses = await Course.findAll({
     where: { lecturerId: req.user.id },

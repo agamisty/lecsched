@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
-import { MessageCircle, X, Send, ChevronDown, Reply, Edit3, Trash2, Search, Check } from 'lucide-react';
+import { MessageCircle, X, Send, ChevronDown, Reply, Edit3, Trash2, Search, Check, Shield } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { messagesAPI, lecturersAPI } from '../services/api';
 import toast from 'react-hot-toast';
@@ -25,6 +25,7 @@ export default function ChatWidget() {
   const [room, setRoom] = useState('general');
   const [chatWith, setChatWith] = useState(null);
   const [lecturers, setLecturers] = useState([]);
+  const [admins, setAdmins] = useState([]);
   const [lecturerSearch, setLecturerSearch] = useState('');
   const [onlineIds, setOnlineIds] = useState([]);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -48,6 +49,9 @@ export default function ChatWidget() {
   useEffect(() => {
     lecturersAPI.list()
       .then((res) => setLecturers(res.data.filter((l) => l.id !== user?.id)))
+      .catch(() => {});
+    lecturersAPI.admins()
+      .then((res) => setAdmins(res.data.filter((a) => a.id !== user?.id)))
       .catch(() => {});
   }, [user]);
 
@@ -228,6 +232,21 @@ export default function ChatWidget() {
                     onClick={() => switchToRoom(r.id)}
                   >
                     {r.label}
+                  </div>
+                ))}
+              </div>
+              <div className="cw-sidebar-section">
+                <div className="cw-sidebar-label">Administration</div>
+                {admins.length === 0 && <div className="cw-search-empty">No admin online</div>}
+                {admins.map((adm) => (
+                  <div
+                    key={adm.id}
+                    className={`cw-sidebar-item${chatWith?.id === adm.id ? ' active' : ''}`}
+                    onClick={() => switchToLecturer(adm)}
+                  >
+                    <span className={`cw-dot${isOnline(adm.id) ? ' online' : ''}`} />
+                    {adm.name}
+                    <Shield size={11} className="cw-admin-tag" />
                   </div>
                 ))}
               </div>

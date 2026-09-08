@@ -10,14 +10,30 @@ export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [role, setRole] = useState('admin');
+
+  const demoAccounts = {
+    admin: { email: 'admin@lecsched.app', password: 'pass123', label: 'Administrator / Examiner' },
+    lecturer: { email: 'staff.opv@lecsched.app', password: 'pass123', label: 'Lecturer (staff account)' },
+  };
+
+  const switchRole = (r) => {
+    setRole(r);
+    setForm({ email: '', password: '' });
+  };
+
+  const fillDemo = (r) => {
+    setRole(r);
+    setForm({ ...demoAccounts[r] });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await login(form.email, form.password);
-      navigate('/');
-      toast.success('Logged in');
+      const data = await login(form.email, form.password);
+      navigate(data.user?.role === 'admin' ? '/' : '/viewer');
+      toast.success(data.user?.role === 'admin' ? 'Logged in as Administrator' : 'Logged in as Lecturer');
     } catch (err) {
       toast.error(err.response?.data?.error || 'Something went wrong');
     } finally {
@@ -34,13 +50,21 @@ export default function Login() {
             <Logo style={{ width: '90%', maxWidth: 500 }} />
           </div>
         </div>
+        <div className="login-role-toggle">
+          <button type="button" className={role === 'admin' ? 'active' : ''} onClick={() => switchRole('admin')}>
+            Administrator
+          </button>
+          <button type="button" className={role === 'lecturer' ? 'active' : ''} onClick={() => switchRole('lecturer')}>
+            Lecturer
+          </button>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Administrator Email</label>
+            <label>{role === 'admin' ? 'Administrator Email' : 'Lecturer Email'}</label>
             <input
               type="email"
               required
-              placeholder="admin@university.edu"
+              placeholder={role === 'admin' ? 'admin@university.edu' : 'staff.<dept>@lecsched.app'}
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
@@ -60,8 +84,15 @@ export default function Login() {
               </button>
             </div>
           </div>
-          <div className="forgot-link">
-            <a>Forgot password?</a>
+          <div className="login-demo">
+            <span className="login-demo-title">Demo accounts</span>
+            <div className="login-demo-row">
+              <button type="button" onClick={() => fillDemo('admin')}>Fill administrator</button>
+              <button type="button" onClick={() => fillDemo('lecturer')}>Fill lecturer</button>
+            </div>
+            <div className="login-demo-cred">
+              {demoAccounts[role].label}: <code>{demoAccounts[role].email}</code> / <code>{demoAccounts[role].password}</code>
+            </div>
           </div>
           <button
             type="submit"
@@ -69,7 +100,7 @@ export default function Login() {
             style={{ width: '100%', justifyContent: 'center', padding: '0.75rem', marginTop: '1rem' }}
             disabled={loading}
           >
-            {loading ? 'Signing in...' : 'Sign In to Portal'}
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
         <div className="login-secondary">
