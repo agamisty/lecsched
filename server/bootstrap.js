@@ -8,8 +8,6 @@ async function bootUp() {
     console.log('seed-real: SEED_REAL=1 detected, running seed');
     const seedReal = require('./seed-real');
     await seedReal.run();
-  } else {
-    console.log('seed-real: SEED_REAL not set (' + process.env.SEED_REAL + ')');
   }
 }
 
