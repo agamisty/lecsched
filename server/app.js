@@ -17,6 +17,21 @@ app.get('/api/health', (req, res) => {
   res.json({ ok: true });
 });
 
+app.get('/api/healthz', async (req, res) => {
+  try {
+    const sequelize = require('./db');
+    const t = ['Programs', 'AcademicLevels', 'Classrooms', 'Courses', 'Users', 'CourseOfferings', 'TimetableSlots', 'LecturerSchedules', 'GenerationHistories'];
+    const out = {};
+    for (const name of t) {
+      const [[r]] = await sequelize.query(`SELECT COUNT(*)::int AS c FROM "${name}"`);
+      out[name] = r.c;
+    }
+    res.json({ counts: out });
+  } catch (e) {
+    res.status(500).json({ error: String(e) });
+  }
+});
+
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/faculties', require('./routes/faculties'));
 app.use('/api/departments', require('./routes/departments'));
