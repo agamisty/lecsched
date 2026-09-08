@@ -20,7 +20,9 @@ app.use(async (req, res, next) => {
     next();
   } catch (e) {
     console.error('boot failed', e);
-    res.status(500).json({ error: 'boot failed: ' + String(e) });
+    const sql = e && e.original && e.original.sql ? e.original.sql : (e && e.sql);
+    const lineage = e && e.stack ? e.stack.split('\n').slice(0, 8).join(' | ') : '';
+    res.status(500).json({ error: 'boot failed: ' + String(e.message || e) + ' || SQL: ' + (sql || '?') + ' || ' + lineage });
   }
 });
 

@@ -61,6 +61,16 @@ async function conc(queries, n) {
   await Promise.all(workers);
 }
 
+// batch a table's row tuples into a few multi-row INSERTs (much faster on serverless)
+async function insertRows(table, cols, rows, chunk = 200) {
+  const qcols = cols.map((c) => `"${c}"`).join(',');
+  const qs = [];
+  for (let i = 0; i < rows.length; i += chunk) {
+    qs.push(`INSERT INTO "${table}" (${qcols}) VALUES ${rows.slice(i, i + chunk).join(',')}`);
+  }
+  await conc(qs, 10);
+}
+
 async function run() {
   // Idempotency guard: a fixed marker row (id 0) in GenerationHistories makes
   // concurrent cold starts / redeploys skip (only one instance seeds).
@@ -94,6 +104,24 @@ async function run() {
   }
 
   await ensureDefaultTimeSlots();
+  // make sure the tables/columns the seed writes to exist, no matter what the
+  // live schema drifted to (Postgres 9.6+ supports ADD COLUMN IF NOT EXISTS)
+  const ensureCols = [
+    ['Departments', ['facultyId', 'INTEGER'], ['headId', 'INTEGER']],
+    ['Programs', ['departmentId', 'INTEGER'], ['duration', 'INTEGER']],
+    ['Courses', ['departmentId', 'INTEGER'], ['programId', 'INTEGER'], ['creditHours', 'INTEGER']],
+    ['AcademicLevels', ['programId', 'INTEGER'], ['level', 'INTEGER']],
+    ['TimetableSlots', ['lecturerId', 'INTEGER'], ['classroomId', 'INTEGER'], ['academicYearId', 'INTEGER'], ['semesterId', 'INTEGER'], ['programId', 'INTEGER'], ['academicLevelId', 'INTEGER'], ['courseOfferingId', 'INTEGER']],
+    ['CourseOfferings', ['lecturerId', 'INTEGER'], ['semesterId', 'INTEGER'], ['numStudents', 'INTEGER']],
+    ['LecturerSchedules', ['lecturerId', 'INTEGER']],
+  ];
+  for (const [table, ...cols] of ensureCols) {
+    for (const [col, type] of cols) {
+      try {
+        await sequelize.query(`ALTER TABLE "${table}" ADD COLUMN IF NOT EXISTS "${col}" ${type}`);
+      } catch (_) { /* table may not exist yet; model sync in bootstrap handles it */ }
+    }
+  }
   try {
   // ─────────────── FACULTY ───────────────
   await sequelize.query(
@@ -102,17 +130,25 @@ async function run() {
   console.log('Faculty seeded (1)');
 
   // ─────────────── DEPARTMENTS ───────────────
+  {
+    const [dcols] = await sequelize.query(
+      `SELECT column_name, data_type FROM information_schema.columns WHERE table_name = 'Departments' ORDER BY ordinal_position`
+    );
+    console.log('Departments columns:', JSON.stringify(dcols));
+    const names = dcols.map((r) => r.column_name).join(',');
+    if (!dcols.some((r) => r.column_name === 'facultyId' || r.column_name === 'facultyid')) {
+      throw new Error(`Departments table missing facultyId column. Existing: ${names}`);
+    }
+  }
   const deptIdByCode = {};
-  let qs = [];
+  const deptRows = [];
   for (let i = 0; i < DEPARTMENTS.length; i++) {
     const d = DEPARTMENTS[i];
     const id = i + 1;
     deptIdByCode[d.code] = id;
-    qs.push(
-      `INSERT INTO "Departments" ("id","name","code","facultyId","description","createdAt","updatedAt") VALUES (${id},${sqlStr(d.name)},${sqlStr(d.code)},1,'Department of ${d.name}','${now}','${now}')`
-    );
+    deptRows.push(`(${id},${sqlStr(d.name)},${sqlStr(d.code)},1,'Department of ${d.name}','${now}','${now}')`);
   }
-  await conc(qs, 10);
+  await insertRows('Departments', ['id','name','code','facultyId','description','createdAt','updatedAt'], deptRows);
   console.log(`Departments seeded (${DEPARTMENTS.length})`);
 
   // ─────────────── ACADEMIC YEARS & SEMESTERS ───────────────
@@ -135,7 +171,7 @@ async function run() {
   const programIdByName = {};
   const usedCodes = new Set();
   const programs = DATASET.programs || [];
-  qs = [];
+  const programRows = [];
   for (let i = 0; i < programs.length; i++) {
     const pr = programs[i];
     const id = i + 1;
@@ -145,27 +181,23 @@ async function run() {
     while (usedCodes.has(code)) code = `${pr.type}-${pr.dept || 'SRV'}-${n++}`;
     usedCodes.add(code);
     programIdByName[pr.name] = id;
-    qs.push(
-      `INSERT INTO "Programs" ("id","name","code","type","departmentId","duration","description","createdAt","updatedAt") VALUES (${id},${sqlStr(pr.name)},${sqlStr(code)},${sqlStr(pr.type)},${deptId},${DURATION[pr.type] || 4},${sqlStr(`Programme from College of Science timetable (${pr.pages.length} class groups)`)} ,'${now}','${now}')`
-    );
+    programRows.push(`(${id},${sqlStr(pr.name)},${sqlStr(code)},${sqlStr(pr.type)},${deptId},${DURATION[pr.type] || 4},${sqlStr(`Programme from College of Science timetable (${pr.pages.length} class groups)`)} ,'${now}','${now}')`);
   }
-  await conc(qs, 10);
+  await insertRows('Programs', ['id','name','code','type','departmentId','duration','description','createdAt','updatedAt'], programRows);
   console.log(`Programs seeded (${programs.length})`);
 
   // ─────────────── ACADEMIC LEVELS ───────────────
   const levelIdByKey = {};
   const levels = DATASET.levels || [];
-  qs = [];
+  const levelRows = [];
   for (let i = 0; i < levels.length; i++) {
     const l = levels[i];
     const id = i + 1;
     const pid = programIdByName[l.program];
     levelIdByKey[`${l.program}|${l.level}|${l.name}`] = id;
-    qs.push(
-      `INSERT INTO "AcademicLevels" ("id","programId","level","name","createdAt","updatedAt") VALUES (${id},${pid},${l.level},${sqlStr(l.name)},'${now}','${now}')`
-    );
+    levelRows.push(`(${id},${pid},${l.level},${sqlStr(l.name)},'${now}','${now}')`);
   }
-  await conc(qs, 10);
+  await insertRows('AcademicLevels', ['id','programId','level','name','createdAt','updatedAt'], levelRows);
   console.log(`Academic Levels seeded (${levels.length})`);
 
   // page -> academicLevelId + programId + dept (for slots)
@@ -181,36 +213,30 @@ async function run() {
 
   // ─────────────── CLASSROOMS ───────────────
   const classroomIdByName = {};
+  const classroomRows = [];
   let cid = 1;
-  qs = [];
   for (const c of DATASET.classrooms) {
     classroomIdByName[c.name] = cid;
-    qs.push(
-      `INSERT INTO "Classrooms" ("id","name","capacity","building","floor","type","status","createdAt","updatedAt") VALUES (${cid},${sqlStr(c.name)},${c.capacity},${sqlStr('')},${sqlStr('')},${sqlStr(c.type)},'Available','${now}','${now}')`
-    );
+    classroomRows.push(`(${cid},${sqlStr(c.name)},${c.capacity},${sqlStr('')},${sqlStr('')},${sqlStr(c.type)},'Available','${now}','${now}')`);
     cid++;
   }
   const tbaId = cid++;
   classroomIdByName['TBA'] = tbaId;
-  qs.push(
-    `INSERT INTO "Classrooms" ("id","name","capacity","building","floor","type","status","createdAt","updatedAt") VALUES (${tbaId},'TBA',0,'','','TBA','Available','${now}','${now}')`
-  );
-  await conc(qs, 10);
+  classroomRows.push(`(${tbaId},'TBA',0,'','','TBA','Available','${now}','${now}')`);
+  await insertRows('Classrooms', ['id','name','capacity','building','floor','type','status','createdAt','updatedAt'], classroomRows);
   console.log(`Classrooms seeded (${Object.keys(classroomIdByName).length})`);
 
   // ─────────────── COURSES ───────────────
   const courseIdByCode = {};
-  qs = [];
+  const courseRows = [];
   for (let i = 0; i < DATASET.courses.length; i++) {
     const cr = DATASET.courses[i];
     const id = i + 1;
     const deptId = cr.dept ? deptIdByCode[cr.dept] : null;
     courseIdByCode[cr.code] = id;
-    qs.push(
-      `INSERT INTO "Courses" ("id","code","name","creditHours","departmentId","programId","type","createdAt","updatedAt") VALUES (${id},${sqlStr(cr.code)},${sqlStr(cr.code)},3,${sqlNum(deptId)},NULL,'lecture','${now}','${now}')`
-    );
+    courseRows.push(`(${id},${sqlStr(cr.code)},${sqlStr(cr.code)},3,${sqlNum(deptId)},NULL,'lecture','${now}','${now}')`);
   }
-  await conc(qs, 10);
+  await insertRows('Courses', ['id','code','name','creditHours','departmentId','programId','type','createdAt','updatedAt'], courseRows);
   console.log(`Courses seeded (${DATASET.courses.length})`);
 
   // ─────────────── LECTURER USERS ───────────────
@@ -221,30 +247,45 @@ async function run() {
       .replace(/[^A-Za-zÀ-ÿ .,'’\-]+$/g, '')
       .trim();
   const lecturerIdByKey = {};
-  const idByEmail = {};
-  for (const lec of DATASET.lecturers) {
-    const email = `lecturer.${slug(lec.key)}@lecsched.app`;
-    if (idByEmail[email] != null) {
-      lecturerIdByKey[lec.key] = idByEmail[email];
-      continue;
+  let insertedLec = 0;
+  {
+    const lecturerRows = [];
+    const emailByKey = [];
+    for (const lec of DATASET.lecturers) {
+      const email = `lecturer.${slug(lec.key)}@lecsched.app`;
+      if (lecturerRows.some((r) => r.email === email)) continue;
+      lecturerRows.push({ email, sql: `(${sqlStr(cleanName(lec.name))},'${email}','${hashedPw}','lecturer','','[]','','${now}','${now}')` });
+      emailByKey.push(email);
     }
-    const res = await sequelize.query(
-      `INSERT INTO "Users" ("name","email","password","role","department","departments","avatar","createdAt","updatedAt") VALUES (${sqlStr(cleanName(lec.name))},'${email}', '${hashedPw}','lecturer','', '[]','','${now}','${now}') RETURNING "id"`
-    );
-    const id = res[0][0].id;
-    idByEmail[email] = id;
-    lecturerIdByKey[lec.key] = id;
+    if (lecturerRows.length) {
+      const res = await sequelize.query(
+        `INSERT INTO "Users" ("name","email","password","role","department","departments","avatar","createdAt","updatedAt") VALUES ${lecturerRows.map((r) => r.sql).join(',')} RETURNING "id"`
+      );
+      const idByEmail = {};
+      for (let i = 0; i < res[0].length; i++) idByEmail[emailByKey[i]] = res[0][i].id;
+      for (const lec of DATASET.lecturers) {
+        lecturerIdByKey[lec.key] = idByEmail[`lecturer.${slug(lec.key)}@lecsched.app`];
+      }
+      insertedLec = res[0].length;
+    }
   }
   // per-department staff fallback lecturers
   const staffIdByDept = {};
+  const staffRows = [];
+  const staffCodes = [];
   for (const d of DEPARTMENTS) {
-    const email = `staff.${d.code.toLowerCase()}@lecsched.app`;
-    const res = await sequelize.query(
-      `INSERT INTO "Users" ("name","email","password","role","department","departments","avatar","createdAt","updatedAt") VALUES (${sqlStr(`${d.name} Staff`)},'${email}','${hashedPw}','lecturer',${sqlStr(d.name)},'[]','','${now}','${now}') RETURNING "id"`
+    staffCodes.push(d.code);
+    staffRows.push(
+      `(${sqlStr(`${d.name} Staff`)},'staff.${d.code.toLowerCase()}@lecsched.app','${hashedPw}','lecturer',${sqlStr(d.name)},'[]','','${now}','${now}')`
     );
-    staffIdByDept[d.code] = res[0][0].id;
   }
-  console.log(`Lecturers seeded (${DATASET.lecturers.length} + ${DEPARTMENTS.length} dept staff)`);
+  if (staffRows.length) {
+    const sres = await sequelize.query(
+      `INSERT INTO "Users" ("name","email","password","role","department","departments","avatar","createdAt","updatedAt") VALUES ${staffRows.join(',')} RETURNING "id"`
+    );
+    for (let i = 0; i < sres[0].length; i++) staffIdByDept[staffCodes[i]] = sres[0][i].id;
+  }
+  console.log(`Lecturers seeded (${insertedLec} + ${staffRows.length} dept staff)`);
 
   // helper: lecturer id for a slot (real name first, else class dept staff)
   const lectKey = (nm) => {
@@ -263,8 +304,8 @@ async function run() {
 
   // ─────────────── COURSE OFFERINGS (Semester 2 = current) ───────────────
   const offeringByKey = {}; // `${academicLevelId}:${courseId}` -> id
+  const offeringRows = [];
   let offeringSeq = 0;
-  qs = [];
   for (const slot of DATASET.slots) {
     const info = pageInfo[slot.page];
     const courseId = courseIdByCode[slot.course];
@@ -273,22 +314,22 @@ async function run() {
       offeringSeq++;
       const lecId = lecForSlot(slot, slot.page);
       offeringByKey[key] = offeringSeq;
-      qs.push(
-        `INSERT INTO "CourseOfferings" ("id","courseId","academicLevelId","semesterId","lecturerId","numStudents","createdAt","updatedAt") VALUES (${offeringSeq},${courseId},${info.academicLevelId},2,${sqlNum(lecId)},0,'${now}','${now}')`
+      offeringRows.push(
+        `(${offeringSeq},${courseId},${info.academicLevelId},2,${sqlNum(lecId)},0,'${now}','${now}')`
       );
     }
   }
-  await conc(qs, 15);
+  await insertRows('CourseOfferings', ['id','courseId','academicLevelId','semesterId','lecturerId','numStudents','createdAt','updatedAt'], offeringRows);
   console.log(`Course Offerings seeded (${offeringSeq})`);
 
   // ─────────────── TIMETABLE SLOTS ───────────────
+  const slotRows = [];
   let sid = 0;
   const labelCounter = {};
   const nameForLabel = (lab) => {
     labelCounter[lab] = (labelCounter[lab] || 0) + 1;
     return lab || 'Main';
   };
-  qs = [];
   for (const slot of DATASET.slots) {
     const info = pageInfo[slot.page];
     if (!info || info.academicLevelId == null) {
@@ -308,27 +349,25 @@ async function run() {
     }
     const lecturerId = lecForSlot(slot, slot.page);
     sid++;
-    qs.push(
-      `INSERT INTO "TimetableSlots" ("id","courseOfferingId","courseId","lecturerId","classroomId","academicYearId","semesterId","programId","academicLevelId","day","startTime","endTime","timetableLabel","createdAt","updatedAt") VALUES (${sid},${offeringId},${courseId},${lecturerId},${classroomId},1,2,${sqlNum(info.programId)},${info.academicLevelId},${sqlStr(slot.day)},'${slot.time[0]}','${slot.time[1]}',${sqlStr(nameForLabel(slot.label))},'${now}','${now}')`
+    slotRows.push(
+      `(${sid},${offeringId},${courseId},${lecturerId},${classroomId},1,2,${sqlNum(info.programId)},${info.academicLevelId},${sqlStr(slot.day)},'${slot.time[0]}','${slot.time[1]}',${sqlStr(nameForLabel(slot.label))},'${now}','${now}')`
     );
   }
-  await conc(qs, 15);
+  await insertRows('TimetableSlots', ['id','courseOfferingId','courseId','lecturerId','classroomId','academicYearId','semesterId','programId','academicLevelId','day','startTime','endTime','timetableLabel','createdAt','updatedAt'], slotRows);
   console.log(`Timetable Slots seeded (${sid})`);
 
   // ─────────────── LECTURER SCHEDULES (availability) ───────────────
   const allLecIds = Object.values(lecturerIdByKey).concat(Object.values(staffIdByDept));
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+  const scheduleRows = [];
   let scSeq = 0;
-  qs = [];
   for (const lecId of allLecIds) {
     for (const day of days) {
       scSeq++;
-      qs.push(
-        `INSERT INTO "LecturerSchedules" ("id","lecturerId","day","startTime","endTime","createdAt","updatedAt") VALUES (${scSeq},${lecId},'${day}','08:00','19:00','${now}','${now}')`
-      );
+      scheduleRows.push(`(${scSeq},${lecId},'${day}','08:00','19:00','${now}','${now}')`);
     }
   }
-  await conc(qs, 15);
+  await insertRows('LecturerSchedules', ['id','lecturerId','day','startTime','endTime','createdAt','updatedAt'], scheduleRows);
   console.log(`Lecturer Schedules seeded (${scSeq})`);
 
   // ─────────────── GENERATION HISTORY ───────────────

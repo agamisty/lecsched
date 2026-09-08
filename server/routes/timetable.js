@@ -5,6 +5,7 @@ const TimeSlot = require('../models/TimeSlot');
 const Course = require('../models/Course');
 const User = require('../models/User');
 const Classroom = require('../models/Classroom');
+const Department = require('../models/Department');
 const Program = require('../models/Program');
 const AcademicLevel = require('../models/AcademicLevel');
 const Semester = require('../models/Semester');
@@ -17,9 +18,23 @@ const GenerationHistory = require('../models/GenerationHistory');
 
 const router = express.Router();
 
+async function lecturerScope(where, req) {
+  // lecturers only see the classes they are involved in
+  if (!req.user || req.user.role !== 'lecturer') return where;
+  if (req.user.department && String(req.user.department).trim()) {
+    // department staff (fallback) account: show the whole department's classes
+    const dept = await Department.findOne({ where: { name: req.user.department } });
+    const progIds = dept
+      ? (await Program.findAll({ where: { departmentId: dept.id }, attributes: ['id'] })).map((p) => p.id)
+      : [];
+    return { ...where, programId: { [Op.in]: progIds } };
+  }
+  return { ...where, lecturerId: req.user.id };
+}
+
 router.get('/', auth, async (req, res) => {
   try {
-    const where = {};
+    const where = await lecturerScope({}, req);
     if (req.query.semesterId) where.semesterId = req.query.semesterId;
     if (req.query.programId) where.programId = req.query.programId;
     if (req.query.academicLevelId) where.academicLevelId = req.query.academicLevelId;
@@ -265,7 +280,7 @@ router.delete('/clear', auth, adminOnly, async (req, res) => {
 
 router.get('/pdf', auth, async (req, res) => {
   try {
-    const where = {};
+    const where = await lecturerScope({}, req);
     if (req.query.semesterId) where.semesterId = req.query.semesterId;
     if (req.query.programId) where.programId = req.query.programId;
     if (req.query.academicLevelId) where.academicLevelId = req.query.academicLevelId;

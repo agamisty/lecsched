@@ -501,10 +501,12 @@ export default function TimetablePage() {
           </h1>
           <p className="tv-subtitle">
             {totalSlots > 0
-              ? `${totalSlots} scheduled classes across ${groupKeys.length} group${groupKeys.length !== 1 ? 's' : ''}`
+              ? isAdmin
+                ? `${totalSlots} scheduled classes across ${groupKeys.length} group${groupKeys.length !== 1 ? 's' : ''}`
+                : `${totalSlots} classes you teach across ${groupKeys.length} group${groupKeys.length !== 1 ? 's' : ''}`
               : isAdmin
                 ? 'No timetable data — generate one from the Generator page'
-                : 'No timetable data yet'}
+                : 'No classes assigned to you yet'}
           </p>
           <div className="tv-header-meta">
             <span className="tv-status-badge">
@@ -646,7 +648,7 @@ export default function TimetablePage() {
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
                 {isAdmin
                   ? 'Go to Generator to create one, or adjust your filters.'
-                  : 'No timetable has been published yet. Check back soon.'}
+                  : 'No classes assigned to you yet. If you expect to teach some, reach out via Chat with Admin.'}
               </p>
             </div>
           ) : (

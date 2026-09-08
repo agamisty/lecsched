@@ -28,7 +28,13 @@ async function cleanupLegacyAdmin() {
 }
 
 async function bootUp() {
-  await sequelize.sync({ alter: true });
+  try {
+    await sequelize.sync({ alter: true });
+  } catch (e) {
+    // Live schema may have drifted (e.g. missing columns on existing tables).
+    // Don't crash the whole boot — seed/repair step adds missing columns.
+    console.error('sync(alter) failed, continuing:', e.message);
+  }
   await ensureDefaultTimeSlots();
   await ensureDefaultAdmin();
   await cleanupLegacyAdmin();
