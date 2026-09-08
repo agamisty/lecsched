@@ -332,16 +332,13 @@ export default function TimetablePage() {
       if (selProgram) params.programId = selProgram;
       if (selLevel) params.academicLevelId = selLevel;
       const res = await timetableAPI.pdf(params);
-      const blob = new Blob([res.data], { type: 'application/pdf' });
+      const blob = new Blob([res.data], { type: 'text/html' });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `timetable-${(activeGroup || 'all').replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
-      a.click();
-      URL.revokeObjectURL(url);
-      toast.success('PDF exported');
+      window.open(url, '_blank');
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+      toast.success('Timetable opened in a new tab — use Print / Save as PDF');
     } catch (err) {
-      toast.error('Failed to export PDF');
+      toast.error('Failed to export timetable');
     }
   };
 
@@ -383,7 +380,7 @@ export default function TimetablePage() {
           </button>
           <button className="btn btn-primary btn-sm" onClick={handleExportPDF}>
             <FileDown size={14} />
-            Export PDF
+            Export / Print
           </button>
           <button className="btn btn-ghost btn-sm" onClick={handleExportASCII}>
             <FileText size={14} />

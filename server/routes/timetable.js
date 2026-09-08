@@ -12,7 +12,6 @@ const CourseOffering = require('../models/CourseOffering');
 const { generateTimetable } = require('../scheduler/algorithm');
 const { auth } = require('../middleware/auth');
 const { DAYS } = require('../config');
-const PDFDocument = require('pdfkit');
 const GenerationHistory = require('../models/GenerationHistory');
 
 const router = express.Router();
@@ -142,21 +141,24 @@ router.get('/pdf', auth, async (req, res) => {
     });
 
     const DAYS_LIST = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+    const DAY_LABEL = { Mon: 'Mo', Tue: 'Tu', Wed: 'We', Thu: 'Th', Fri: 'Fr' };
     const PERIODS = [
-      { label: 'P1', start: '08:00', end: '08:55' },
-      { label: 'P2', start: '09:00', end: '09:55' },
-      { label: 'P3', start: '10:30', end: '11:25' },
-      { label: 'P4', start: '11:30', end: '12:25' },
-      { label: 'P5', start: '13:00', end: '13:55' },
-      { label: 'P6', start: '14:00', end: '14:55' },
-      { label: 'P7', start: '15:00', end: '15:55' },
-      { label: 'P8', start: '16:00', end: '16:55' },
-      { label: 'P9', start: '17:00', end: '17:55' },
-      { label: 'P10', start: '18:00', end: '18:55' },
+      { start: '08:00', end: '08:55' },
+      { start: '09:00', end: '09:55' },
+      { start: '10:30', end: '11:25' },
+      { start: '11:30', end: '12:25' },
+      { start: '13:00', end: '13:55' },
+      { start: '14:00', end: '14:55' },
+      { start: '15:00', end: '15:55' },
+      { start: '16:00', end: '16:55' },
+      { start: '17:00', end: '17:55' },
+      { start: '18:00', end: '18:55' },
     ];
 
     const timeToPeriod = {};
     PERIODS.forEach((p, i) => { timeToPeriod[p.start] = i; });
+
+    const esc = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
     const grouped = {};
     for (const slot of slots) {
@@ -167,73 +169,81 @@ router.get('/pdf', auth, async (req, res) => {
       grouped[key].push(slot);
     }
 
-    const doc = new PDFDocument({ layout: 'landscape', margin: 30 });
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename="timetable.pdf"');
-    doc.pipe(res);
+    const CSS = `* { box-sizing: border-box; }
+:root { font-family: Arial, Helvetica, sans-serif; color: #080808; background: #fff; }
+body { margin: 0; background: white; }
+.page { width: 1125px; margin: 0 auto; padding: 0 0 10px; page-break-after: always; }
+.page:last-child { page-break-after: auto; }
+h1 { margin: 0 0 17px; text-align: center; font-size: 43px; line-height: 1; font-weight: 400; }
+.timetable { display: grid; grid-template-columns: 86px repeat(10, 1fr); grid-template-rows: 68px repeat(5, 124px); border: 2px solid #222; }
+.corner { border-right: 1px solid #222; border-bottom: 1px solid #222; }
+.time-head { position: relative; border-right: 1px solid #222; border-bottom: 1px solid #222; text-align: center; padding-top: 7px; }
+.time-head strong { display: block; font-size: 20px; font-weight: 400; }
+.time-head span { display: block; margin-top: 7px; font-size: 8px; white-space: nowrap; transform: scaleX(.9); }
+.day-row { grid-column: 1 / -1; display: grid; grid-template-columns: 86px 1fr; min-width: 0; }
+.day-label { display: flex; align-items: center; justify-content: center; border-right: 1px solid #222; border-bottom: 1px solid #222; font-size: 44px; font-weight: 400; }
+.slots { position: relative; display: grid; grid-template-columns: repeat(10, 1fr); min-width: 0; border-bottom: 1px solid #222; }
+.slot { border-right: 1px solid #c9c9c9; }
+.slot:last-child { border-right: 0; }
+.event { position: relative; z-index: 2; grid-row: 1; min-width: 0; margin: 0; padding: 7px 9px 6px; border-right: 1px solid #222; background: rgba(255,255,255,.98); overflow: hidden; }
+.room { font-size: 11px; line-height: 1; margin-bottom: 24px; }
+.course { font-size: 30px; line-height: 1.05; font-weight: 400; text-align: center; white-space: normal; }
+.lecturer { position: absolute; left: 9px; right: 9px; bottom: 7px; font-size: 10px; line-height: 1.05; white-space: nowrap; }
+footer { display: flex; justify-content: space-between; font-size: 12px; padding-top: 1px; }
+@media print {
+  .page { margin: 0 auto; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+@media (max-width: 900px) {
+  .page { width: 1125px; transform-origin: top left; }
+  body { overflow-x: auto; }
+}`;
+
+    let html = `<!doctype html><html><head><meta charset="utf-8"><title>Timetable Preview</title><style>${CSS}</style></head><body>`;
 
     for (const [groupName, groupSlots] of Object.entries(grouped)) {
-      const grid = {};
-      DAYS_LIST.forEach((d) => { grid[d] = new Array(10).fill(null); });
+      const progName = groupName.replace(/\s*-\s*Level\s+.*$/, '');
+      const levelM = groupName.match(/Level\s+(\d+)/);
+      const levelNum = levelM ? parseInt(levelM[1], 10) : 0;
+      const nick = levelNum > 0 && levelNum % 100 === 0 ? String(levelNum / 100) : String(levelNum);
+      const title = `${progName}${nick ? '-' + nick : ''}`;
+
+      const byDay = {};
+      for (const d of DAYS_LIST) byDay[d] = [];
       for (const s of groupSlots) {
-        const idx = timeToPeriod[s.startTime];
-        if (idx !== undefined && grid[s.day]) {
-          grid[s.day][idx] = s;
+        if (byDay[s.day]) byDay[s.day].push(s);
+      }
+
+      html += `<div class="page"><h1>${esc(title)}</h1><section class="timetable"><div class="corner"></div>`;
+      PERIODS.forEach((p, i) => {
+        html += `<div class="time-head"><strong>${i + 1}</strong><span>${p.start} - ${p.end}</span></div>`;
+      });
+
+      for (const d of DAYS_LIST) {
+        html += `<div class="day-row"><div class="day-label">${DAY_LABEL[d]}</div><div class="slots">`;
+        for (let i = 0; i < PERIODS.length; i++) html += '<div class="slot"></div>';
+        for (const s of byDay[d]) {
+          const startIdx = timeToPeriod[s.startTime];
+          const endIdx = timeToPeriod[s.endTime];
+          const from = startIdx !== undefined ? startIdx : 0;
+          const to = endIdx !== undefined ? endIdx : from;
+          const span = Math.max(1, to - from + 1);
+          const code = esc(s.Course?.code || s.courseCode || '');
+          const room = esc(s.Classroom?.name || '');
+          const lec = esc(s.User?.name || s.lecturerName || '');
+          html += `<article class="event" style="grid-column:${from + 1}/span ${span}"><div class="room">${room}</div><div class="course">${code}</div><div class="lecturer">${lec}</div></article>`;
         }
+        html += '</div></div>';
       }
 
-      doc.fontSize(16).font('Helvetica-Bold').text(groupName, { align: 'center' });
-      doc.moveDown(0.3);
-
-      const colW = 105;
-      const periodW = 50;
-      const timeW = 65;
-      const startX = doc.x;
-      const startY = doc.y;
-      const rowH = 28;
-
-      doc.fontSize(8).font('Helvetica-Bold');
-      let x = startX;
-      doc.text('Period', x, startY, { width: periodW, align: 'center' }); x += periodW;
-      doc.text('Time', x, startY, { width: timeW, align: 'center' }); x += timeW;
-      for (const day of DAYS_LIST) {
-        doc.text(day, x, startY, { width: colW, align: 'center' });
-        x += colW;
-      }
-
-      doc.moveTo(startX, startY + 14).lineTo(x, startY + 14).stroke();
-      doc.font('Helvetica').fontSize(7);
-
-      for (let pi = 0; pi < 10; pi++) {
-        const y = startY + 14 + pi * rowH;
-        const p = PERIODS[pi];
-        let cx = startX;
-
-        doc.text(p.label, cx, y + 6, { width: periodW, align: 'center' }); cx += periodW;
-        doc.text(`${p.start}-${p.end}`, cx, y + 6, { width: timeW, align: 'center' }); cx += timeW;
-
-        for (const day of DAYS_LIST) {
-          const cell = grid[day][pi];
-          if (cell) {
-            const code = cell.Course?.code || '';
-            const room = cell.Classroom?.name || '';
-            doc.font('Helvetica-Bold').text(code, cx + 2, y + 2, { width: colW - 4, align: 'center' });
-            doc.font('Helvetica').text(room, cx + 2, y + 13, { width: colW - 4, align: 'center' });
-          }
-          cx += colW;
-        }
-
-        doc.moveTo(startX, y + rowH).lineTo(startX + periodW + timeW + 5 * colW, y + rowH).strokeColor('#ccc').stroke();
-        doc.strokeColor('#000');
-      }
-
-      doc.moveDown(2);
-      if (Object.keys(grouped).indexOf(groupName) < Object.keys(grouped).length - 1) {
-        doc.addPage();
-      }
+      html += '</section><footer><span>College Of Science Second Semester academic Timetable</span><span>aSC Timetables</span></footer></div>';
     }
 
-    doc.end();
+    html += '</body></html>';
+
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Content-Disposition', 'attachment; filename="timetable.html"');
+    res.send(html);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
