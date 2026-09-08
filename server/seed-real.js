@@ -68,14 +68,16 @@ async function run() {
     `SELECT COUNT(*)::int AS c FROM "GenerationHistories" WHERE "id" = 0`
   );
   if (g > 0) {
-    const [[{ c: s }]] = await sequelize.query(
-      `SELECT COUNT(*)::int AS c FROM "TimetableSlots"`
+    const [[row]] = await sequelize.query(
+      `SELECT COUNT(*)::int AS c, MAX("createdAt") AS created FROM "GenerationHistories" WHERE "id" = 0`
     );
-    if (s > 0) {
+    const addedMs = new Date(row.created).getTime();
+    const fresh = Date.now() - addedMs < 5 * 60 * 1000;
+    if (row.c > 0 && fresh) {
       console.log('seed-real: already seeded (slots present), skipping');
       return;
     }
-    // stale marker from a crashed attempt -> clear and retry
+    // stale marker (crashed/aborted attempt older than 5 min) -> clear and retry
     await sequelize.query(`DELETE FROM "GenerationHistories" WHERE "id" = 0`);
   }
 
