@@ -26,6 +26,7 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useChat } from '../context/ChatContext';
 import Logo from './Logo';
 import ChatWidget from './ChatWidget';
 
@@ -72,6 +73,7 @@ const NAV_SECTIONS = [
 
 export default function Layout({ children }) {
   const { user, logout } = useAuth();
+  const { totalUnread } = useChat();
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
@@ -140,8 +142,9 @@ export default function Layout({ children }) {
                 </button>
               )}
               {openSections[idx] && section.items.map(({ to, label, icon: Icon, end }) => (
-                <NavLink key={to} to={to} end={end} onClick={closeMobileNav} className={({ isActive }) => (isActive ? 'active' : '')}>
+                <NavLink key={to} to={to} end={end} onClick={closeMobileNav} className={({ isActive }) => (isActive ? 'active' : '') + (to === '/chat' && totalUnread > 0 ? ' has-notif' : '')}>
                   <Icon size={16} strokeWidth={2} />
+                  {to === '/chat' && totalUnread > 0 && <span className="chat-nav-dot" />}
                   {!collapsed && <span>{label}</span>}
                 </NavLink>
               ))}

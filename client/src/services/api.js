@@ -108,6 +108,7 @@ export const curriculumAPI = {
 export const lecturersAPI = {
   list: () => api.get('/lecturers'),
   admins: () => api.get('/lecturers/admins'),
+  demoAccounts: () => api.get('/lecturers/demo-accounts'),
   create: (data) => api.post('/lecturers', data),
   update: (id, data) => api.put(`/lecturers/${id}`, data),
   delete: (id) => api.delete(`/lecturers/${id}`),
@@ -139,6 +140,8 @@ export const timeslotsAPI = {
 
 export const messagesAPI = {
   list: (config) => api.get('/messages', config),
+  send: (data) => api.post('/messages', data),
+  conversations: () => api.get('/messages/conversations'),
   edit: (id, data) => api.put(`/messages/${id}`, data),
   remove: (id) => api.delete(`/messages/${id}`),
 };

@@ -3,6 +3,7 @@ import { io } from 'socket.io-client';
 import { Reply, Edit3, Trash2, Search, Check, X } from 'lucide-react';
 import Layout from '../components/Layout';
 import { useAuth } from '../context/AuthContext';
+import { useChat } from '../context/ChatContext';
 import { messagesAPI, lecturersAPI } from '../services/api';
 import toast from 'react-hot-toast';
 
@@ -19,19 +20,25 @@ const truncate = (t, n = 80) => {
 
 export default function ChatPage() {
   const { user } = useAuth();
+  const { setTotalUnread } = useChat();
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');
   const [socket, setSocket] = useState(null);
   const [lecturers, setLecturers] = useState([]);
   const [admins, setAdmins] = useState([]);
+  const [conversations, setConversations] = useState([]);
+  const [unreadMap, setUnreadMap] = useState({});
   const [lecturerSearch, setLecturerSearch] = useState('');
   const [onlineIds, setOnlineIds] = useState([]);
   const [chatWith, setChatWith] = useState(null);
   const [room, setRoom] = useState('general');
+  const [typingName, setTypingName] = useState(null);
   const [replyTo, setReplyTo] = useState(null);
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState('');
   const bottomRef = useRef(null);
+  const typingTimer = useRef(null);
+  const lastTypingAt = useRef(0);
 
   const belongsToThread = (msg) => {
     if (chatWith) {
@@ -44,9 +51,15 @@ export default function ChatPage() {
     return true;
   };
 
+  const belongsToTyping = (p) => {
+    if (p.isPrivate) return chatWith?.id === p.userId;
+    return !chatWith && p.room === room;
+  };
+
   useEffect(() => {
     lecturersAPI.list().then((res) => setLecturers(res.data.filter((l) => l.id !== user?.id))).catch(() => {});
     lecturersAPI.admins().then((res) => setAdmins(res.data.filter((a) => a.id !== user?.id))).catch(() => {});
+    messagesAPI.conversations().then((res) => setConversations(res.data)).catch(() => {});
 
     const s = io(SOCKET_URL);
     setSocket(s);
@@ -54,6 +67,20 @@ export default function ChatPage() {
     s.on('connect', () => s.emit('join', { userId: user?.id, room: 'general' }));
 
     s.on('new-message', (msg) => {
+      if (msg.isPrivate) {
+        const otherId = msg.userId === user?.id ? msg.recipientId : msg.userId;
+        if (otherId) {
+          const otherName = msg.userId === user?.id ? msg.recipientName : msg.userName;
+          setConversations((prev) => [
+            { otherId, otherName: otherName || 'Unknown', lastFromMe: msg.userId === user?.id, lastText: msg.text, lastAt: msg.createdAt },
+            ...prev.filter((c) => c.otherId !== otherId),
+          ]);
+        }
+        if (msg.recipientId === user?.id && chatWith?.id !== msg.userId) {
+          setUnreadMap((prev) => ({ ...prev, [msg.userId]: (prev[msg.userId] || 0) + 1 }));
+          toast(`${otherName || msg.userName}: ${truncate(msg.text, 40)}`);
+        }
+      }
       setMessages((prev) => {
         if (!belongsToThread(msg)) return prev;
         const exists = prev.find((m) => m.id === msg.id);
@@ -72,9 +99,24 @@ export default function ChatPage() {
       setMessages((prev) => prev.filter((m) => m.id !== id));
     });
 
+    s.on('user-typing', (p) => {
+      if (!belongsToTyping(p)) return;
+      setTypingName(p.name || 'Someone');
+      clearTimeout(typingTimer.current);
+      typingTimer.current = setTimeout(() => setTypingName(null), 3000);
+    });
+
+    s.on('user-stop-typing', (p) => {
+      if (!belongsToTyping(p)) return;
+      setTypingName(null);
+    });
+
     s.on('online-users', (ids) => setOnlineIds(ids));
 
-    return () => s.disconnect();
+    return () => {
+      clearTimeout(typingTimer.current);
+      s.disconnect();
+    };
   }, [user, chatWith, room]);
 
   useEffect(() => {
@@ -84,42 +126,103 @@ export default function ChatPage() {
   }, [room, socket, user]);
 
   useEffect(() => {
-    if (chatWith) {
-      messagesAPI.list({ params: { type: 'private', with: chatWith.id } })
-        .then((res) => setMessages(res.data))
-        .catch(() => {});
-    } else {
-      messagesAPI.list({ params: { room } })
-        .then((res) => setMessages(res.data))
-        .catch(() => {});
-    }
     setReplyTo(null);
     setEditingId(null);
     setEditText('');
+    setTypingName(null);
   }, [chatWith, room]);
+
+  useEffect(() => {
+    setTotalUnread(Object.values(unreadMap).reduce((a, b) => a + b, 0));
+  }, [unreadMap, setTotalUnread]);
+
+  useEffect(() => {
+    if (!user?.id) return;
+    const refresh = () => {
+      if (document.hidden) return;
+      messagesAPI.conversations().then((res) => setConversations(res.data)).catch(() => {});
+      const apiCall = chatWith
+        ? messagesAPI.list({ params: { type: 'private', with: chatWith.id } })
+        : messagesAPI.list({ params: { room } });
+      apiCall.then((res) => setMessages(res.data)).catch(() => {});
+    };
+    refresh();
+    const t = setInterval(refresh, 3000);
+    return () => clearInterval(t);
+  }, [chatWith, room, user]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const sendMessage = (e) => {
-    e.preventDefault();
-    if (!text.trim()) return;
-
-    const base = { userId: user?.id, userName: user?.name, text: text.trim() };
-    if (replyTo) {
-      base.replyToId = replyTo.id;
-      base.replyUserName = replyTo.userName;
-      base.replyText = replyTo.text;
-    }
-
-    if (chatWith) {
-      socket?.emit('private-message', { ...base, recipientId: chatWith.id, recipientName: chatWith.name });
+  const emitTyping = (t) => {
+    if (!socket) return;
+    if (t.trim()) {
+      const now = Date.now();
+      if (now - lastTypingAt.current > 1500) {
+        lastTypingAt.current = now;
+        socket.emit('typing', { to: chatWith?.id != null ? chatWith.id : null, room: chatWith ? undefined : room, isPrivate: !!chatWith, name: user?.name });
+      }
     } else {
-      socket?.emit('send-message', { ...base, room });
+      socket.emit('stop-typing', { to: chatWith?.id != null ? chatWith.id : null, room: chatWith ? undefined : room, isPrivate: !!chatWith });
+    }
+  };
+
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    if (!text.trim() || !user?.id) return;
+
+    const body = { text: text.trim() };
+    if (replyTo) {
+      body.replyToId = replyTo.id;
+      body.replyUserName = replyTo.userName;
+      body.replyText = replyTo.text;
+    }
+    if (chatWith) {
+      body.recipientId = chatWith.id;
+      body.recipientName = chatWith.name;
+    } else {
+      body.room = room;
     }
     setText('');
     setReplyTo(null);
+    emitTyping('');
+
+    const preview = {
+      id: -Date.now(),
+      userId: user.id,
+      userName: user.name,
+      text: body.text,
+      recipientId: body.recipientId || null,
+      recipientName: body.recipientName || null,
+      isPrivate: !!body.recipientId,
+      room: body.recipientId ? 'private' : (body.room || 'general'),
+      replyToId: body.replyToId || null,
+      replyUserName: body.replyUserName || null,
+      replyText: body.replyText || null,
+      edited: false,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    setMessages((prev) => [...prev, preview]);
+    if (preview.isPrivate) {
+      setConversations((prev) => [
+        { otherId: preview.recipientId, otherName: preview.recipientName || 'Unknown', lastFromMe: true, lastText: preview.text, lastAt: preview.createdAt },
+        ...prev.filter((c) => c.otherId !== preview.recipientId),
+      ]);
+    }
+
+    try {
+      const saved = (await messagesAPI.send(body)).data;
+      setMessages((prev) => {
+        const withoutPreview = prev.filter((m) => m.id !== preview.id);
+        if (withoutPreview.some((m) => m.id === saved.id)) return withoutPreview;
+        return [...withoutPreview, saved];
+      });
+    } catch (err) {
+      setMessages((prev) => prev.filter((m) => m.id !== preview.id));
+      toast.error(err.response?.data?.error || 'Could not send message');
+    }
   };
 
   const startReply = (msg) => {
@@ -164,6 +267,11 @@ export default function ChatPage() {
 
   const isOnline = (id) => onlineIds.includes(id);
 
+  const openChat = (contact) => {
+    setChatWith(contact);
+    setUnreadMap((prev) => { const n = { ...prev }; delete n[contact.id]; return n; });
+  };
+
   const q = lecturerSearch.trim().toLowerCase();
   const filteredLecturers = q
     ? lecturers.filter((l) =>
@@ -197,13 +305,42 @@ export default function ChatPage() {
               <div style={{ fontSize: '0.7rem', color: '#999' }}>{r.desc}</div>
             </div>
           ))}
+          {conversations.length > 0 && (
+            <>
+              <div style={{ padding: '0.5rem 1rem 0.25rem', fontSize: '0.75rem', color: '#aaa', textTransform: 'uppercase' }}>Conversations</div>
+              {conversations.map((c) => {
+                const unreadCount = unreadMap[c.otherId] || 0;
+                const active = chatWith?.id === c.otherId;
+                return (
+                  <div
+                    key={c.otherId}
+                    onClick={() => openChat({ id: c.otherId, name: c.otherName })}
+                    style={{
+                      padding: '0.6rem 1rem', cursor: 'pointer', borderBottom: '1px solid #f5f5f5',
+                      background: active ? '#e8f4fd' : 'transparent'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ fontSize: '0.9rem', fontWeight: active ? 600 : 400 }}>{c.otherName}</span>
+                      {unreadCount > 0 && (
+                        <span className="chat-convo-badge">{unreadCount}</span>
+                      )}
+                    </div>
+                    <div style={{ fontSize: '0.7rem', color: '#999', marginLeft: '0.25rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {c.lastFromMe ? `You: ${truncate(c.lastText, 30)}` : truncate(c.lastText, 34)}
+                    </div>
+                  </div>
+                );
+              })}
+            </>
+          )}
           {admins.length > 0 && (
             <>
               <div style={{ padding: '0.5rem 1rem 0.25rem', fontSize: '0.75rem', color: '#aaa', textTransform: 'uppercase' }}>Administration</div>
               {admins.map((adm) => (
                 <div
                   key={adm.id}
-                  onClick={() => setChatWith(adm)}
+                  onClick={() => openChat(adm)}
                   style={{
                     padding: '0.75rem 1rem', cursor: 'pointer', borderBottom: '1px solid #f5f5f5',
                     background: chatWith?.id === adm.id ? '#e8f4fd' : 'transparent'
@@ -248,9 +385,9 @@ export default function ChatPage() {
               <div className="chat-search-empty">No lecturers found</div>
             )}
             {filteredLecturers.map((lec) => (
-              <div
-                key={lec.id}
-                onClick={() => setChatWith(lec)}
+<div
+                  key={lec.id}
+                  onClick={() => openChat(lec)}
                 style={{
                   padding: '0.75rem 1rem', cursor: 'pointer', borderBottom: '1px solid #f5f5f5',
                   background: chatWith?.id === lec.id ? '#e8f4fd' : 'transparent'
@@ -334,6 +471,7 @@ export default function ChatPage() {
             <div ref={bottomRef} />
           </div>
           <div className="chat-input-zone">
+            {typingName && <div className="chat-typing">{typingName} is typing…</div>}
             {replyTo && (
               <div className="chat-reply-chip">
                 <Reply size={11} />
@@ -344,7 +482,7 @@ export default function ChatPage() {
             <form className="chat-input-bar" onSubmit={sendMessage}>
               <input
                 value={text}
-                onChange={(e) => setText(e.target.value)}
+                onChange={(e) => { setText(e.target.value); emitTyping(e.target.value); }}
                 placeholder={chatWith ? `Message ${chatWith.name}...` : `Message ${room === 'postgraduate' ? 'postgraduate room' : 'everyone'}...`}
               />
               <button type="submit" className="btn btn-primary">Send</button>

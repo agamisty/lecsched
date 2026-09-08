@@ -6,6 +6,61 @@ const { getIO } = require('../socket/bus');
 
 const router = express.Router();
 
+router.post('/', auth, async (req, res) => {
+  try {
+    const { text, recipientId, recipientName, room, replyToId, replyUserName, replyText } = req.body || {};
+    if (!text || !String(text).trim()) {
+      return res.status(400).json({ error: 'Message cannot be empty' });
+    }
+    const privateMsg = !!recipientId;
+    const msg = await Message.create({
+      userId: req.user.id,
+      userName: req.user.name || 'Unknown',
+      text: String(text).trim(),
+      recipientId: recipientId || null,
+      recipientName: recipientName || null,
+      isPrivate: privateMsg,
+      room: privateMsg ? 'private' : (room || 'general'),
+      replyToId: replyToId || null,
+      replyUserName: replyUserName || null,
+      replyText: replyText || null
+    });
+    const io = getIO();
+    if (io && io.emitNewMessage) io.emitNewMessage(msg);
+    res.status(201).json(msg);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get('/conversations', auth, async (req, res) => {
+  const msgs = await Message.findAll({
+    where: {
+      isPrivate: true,
+      [Op.or]: [{ userId: req.user.id }, { recipientId: req.user.id }]
+    },
+    order: [['createdAt', 'ASC']]
+  });
+  const map = new Map();
+  for (const m of msgs) {
+    const otherId = m.userId === req.user.id ? m.recipientId : m.userId;
+    if (!otherId) continue;
+    const otherName = m.userId === req.user.id ? m.recipientName : m.userName;
+    const prev = map.get(otherId);
+    if (!prev || new Date(m.createdAt) > new Date(prev.lastAt)) {
+      map.set(otherId, {
+        otherId,
+        otherName: otherName || 'Unknown',
+        lastFromMe: m.userId === req.user.id,
+        lastText: m.text,
+        lastAt: m.createdAt
+      });
+    }
+  }
+  const convos = [...map.values()].sort((a, b) => new Date(b.lastAt) - new Date(a.lastAt));
+  res.json(convos);
+});
+
 router.get('/', auth, async (req, res) => {
   const { type, with: otherId, room } = req.query;
   let where = {};

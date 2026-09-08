@@ -326,6 +326,22 @@ a {
   background: var(--accent);
 }
 
+.sidebar-nav li a.has-notif { position: relative; }
+.chat-nav-dot {
+  position: absolute;
+  top: 50%;
+  right: 0.7rem;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #339af0;
+  box-shadow: 0 0 0 2px var(--bg-card);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+.sidebar-nav li a.active .chat-nav-dot { box-shadow: 0 0 0 2px var(--accent); }
+
 .sidebar-bottom {
   padding: 0.75rem 0.65rem 1rem;
   border-top: 1px solid var(--border-light);
@@ -923,6 +939,13 @@ td {
   margin-top: 0.2rem;
 }
 
+.chat-input-zone .chat-typing {
+  padding: 0.4rem 1rem 0;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
 .chat-input-bar {
   display: flex;
   padding: 0.75rem;
@@ -1094,6 +1117,21 @@ td {
   align-items: center;
   justify-content: center;
   pointer-events: none;
+}
+.chat-convo-badge,
+.cw-convo-badge {
+  background: #e03131;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 0.35rem;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .cw-panel {
@@ -1351,6 +1389,12 @@ td {
 }
 
 .cw-input-zone { flex-shrink: 0; }
+.cw-typing {
+  padding: 0.4rem 0.75rem 0;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
 .cw-reply-chip {
   display: flex;
   align-items: center;

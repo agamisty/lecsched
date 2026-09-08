@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
+import { useLocation } from 'react-router-dom';
 import { MessageCircle, X, Send, ChevronDown, Reply, Edit3, Trash2, Search, Check, Shield } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useChat } from '../context/ChatContext';
 import { messagesAPI, lecturersAPI } from '../services/api';
 import toast from 'react-hot-toast';
 
@@ -18,6 +20,9 @@ const truncate = (t, n = 80) => {
 
 export default function ChatWidget() {
   const { user } = useAuth();
+  const { setTotalUnread } = useChat();
+  const location = useLocation();
+  const onChatPage = location.pathname === '/chat';
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');
@@ -26,14 +31,21 @@ export default function ChatWidget() {
   const [chatWith, setChatWith] = useState(null);
   const [lecturers, setLecturers] = useState([]);
   const [admins, setAdmins] = useState([]);
+  const [conversations, setConversations] = useState([]);
+  const [unreadMap, setUnreadMap] = useState({});
   const [lecturerSearch, setLecturerSearch] = useState('');
   const [onlineIds, setOnlineIds] = useState([]);
   const [showSidebar, setShowSidebar] = useState(false);
   const [unread, setUnread] = useState(0);
+  const [typingName, setTypingName] = useState(null);
   const [replyTo, setReplyTo] = useState(null);
   const [editingId, setEditingId] = useState(null);
   const [editText, setEditText] = useState('');
   const bottomRef = useRef(null);
+  const typingTimer = useRef(null);
+  const lastTypingAt = useRef(0);
+
+  const unreadTotal = unread + Object.values(unreadMap).reduce((a, b) => a + b, 0);
 
   const belongsToThread = (msg) => {
     if (chatWith) {
@@ -46,12 +58,20 @@ export default function ChatWidget() {
     return true;
   };
 
+  const belongsToTyping = (p) => {
+    if (p.isPrivate) return chatWith?.id === p.userId;
+    return !chatWith && p.room === room;
+  };
+
   useEffect(() => {
     lecturersAPI.list()
       .then((res) => setLecturers(res.data.filter((l) => l.id !== user?.id)))
       .catch(() => {});
     lecturersAPI.admins()
       .then((res) => setAdmins(res.data.filter((a) => a.id !== user?.id)))
+      .catch(() => {});
+    messagesAPI.conversations()
+      .then((res) => setConversations(res.data))
       .catch(() => {});
   }, [user]);
 
@@ -62,12 +82,41 @@ export default function ChatWidget() {
     s.on('connect', () => s.emit('join', { userId: user?.id, room: 'general' }));
 
     s.on('new-message', (msg) => {
+      if (onChatPage) return;
+      if (msg.isPrivate) {
+        const otherId = msg.userId === user?.id ? msg.recipientId : msg.userId;
+        if (otherId) {
+          const otherName = msg.userId === user?.id ? msg.recipientName : msg.userName;
+          setConversations((prev) => [
+            { otherId, otherName: otherName || 'Unknown', lastFromMe: msg.userId === user?.id, lastText: msg.text, lastAt: msg.createdAt },
+            ...prev.filter((c) => c.otherId !== otherId),
+          ]);
+        }
+        if (msg.recipientId === user?.id && chatWith?.id !== msg.userId) {
+          const otherName = msg.userId === user?.id ? msg.recipientName : msg.userName;
+          setUnreadMap((prev) => ({ ...prev, [msg.userId]: (prev[msg.userId] || 0) + 1 }));
+          toast(`${otherName || 'Unknown'}: ${truncate(msg.text, 40)}`);
+        }
+      } else if (!open) {
+        setUnread((u) => u + 1);
+      }
       setMessages((prev) => {
         if (!belongsToThread(msg)) return prev;
         const exists = prev.find((m) => m.id === msg.id);
         return exists ? prev : [...prev, msg];
       });
-      if (!open) setUnread((u) => u + 1);
+    });
+
+    s.on('user-typing', (p) => {
+      if (!belongsToTyping(p)) return;
+      setTypingName(p.name || 'Someone');
+      clearTimeout(typingTimer.current);
+      typingTimer.current = setTimeout(() => setTypingName(null), 3000);
+    });
+
+    s.on('user-stop-typing', (p) => {
+      if (!belongsToTyping(p)) return;
+      setTypingName(null);
     });
 
     s.on('message-updated', (updated) => {
@@ -83,20 +132,35 @@ export default function ChatWidget() {
 
     s.on('online-users', (ids) => setOnlineIds(ids));
 
-    return () => s.disconnect();
-  }, [user, chatWith, room, open]);
+    return () => {
+      clearTimeout(typingTimer.current);
+      s.disconnect();
+    };
+  }, [user, chatWith, room, open, onChatPage]);
 
   useEffect(() => {
     if (socket && user?.id) socket.emit('switch-room', room);
   }, [room, socket, user]);
 
   useEffect(() => {
-    if (!socket) return;
-    const apiCall = chatWith
-      ? messagesAPI.list({ params: { type: 'private', with: chatWith.id } })
-      : messagesAPI.list({ params: { room } });
-    apiCall.then((res) => setMessages(res.data)).catch(() => {});
-  }, [chatWith, room, socket]);
+    if (onChatPage) return;
+    setTotalUnread(unreadTotal);
+  }, [unreadTotal, onChatPage, setTotalUnread]);
+
+  useEffect(() => {
+    if (!socket || !open) return;
+    const refresh = () => {
+      if (document.hidden) return;
+      messagesAPI.conversations().then((res) => setConversations(res.data)).catch(() => {});
+      const apiCall = chatWith
+        ? messagesAPI.list({ params: { type: 'private', with: chatWith.id } })
+        : messagesAPI.list({ params: { room } });
+      apiCall.then((res) => setMessages(res.data)).catch(() => {});
+    };
+    refresh();
+    const t = setInterval(refresh, 3000);
+    return () => clearInterval(t);
+  }, [chatWith, room, socket, open]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -106,22 +170,73 @@ export default function ChatWidget() {
     if (open) setUnread(0);
   }, [open]);
 
-  const sendMessage = (e) => {
+  const emitTyping = (t) => {
+    if (!socket) return;
+    if (t.trim()) {
+      const now = Date.now();
+      if (now - lastTypingAt.current > 1500) {
+        lastTypingAt.current = now;
+        socket.emit('typing', { to: chatWith?.id != null ? chatWith.id : null, room: chatWith ? undefined : room, isPrivate: !!chatWith, name: user?.name });
+      }
+    } else {
+      socket.emit('stop-typing', { to: chatWith?.id != null ? chatWith.id : null, room: chatWith ? undefined : room, isPrivate: !!chatWith });
+    }
+  };
+
+  const sendMessage = async (e) => {
     e.preventDefault();
-    if (!text.trim() || !socket) return;
-    const base = { userId: user?.id, userName: user?.name, text: text.trim() };
+    if (!text.trim() || !user?.id) return;
+    const body = { text: text.trim() };
     if (replyTo) {
-      base.replyToId = replyTo.id;
-      base.replyUserName = replyTo.userName;
-      base.replyText = replyTo.text;
+      body.replyToId = replyTo.id;
+      body.replyUserName = replyTo.userName;
+      body.replyText = replyTo.text;
     }
     if (chatWith) {
-      socket.emit('private-message', { ...base, recipientId: chatWith.id, recipientName: chatWith.name });
+      body.recipientId = chatWith.id;
+      body.recipientName = chatWith.name;
     } else {
-      socket.emit('send-message', { ...base, room });
+      body.room = room;
     }
     setText('');
     setReplyTo(null);
+    emitTyping('');
+
+    const preview = {
+      id: -Date.now(),
+      userId: user.id,
+      userName: user.name,
+      text: body.text,
+      recipientId: body.recipientId || null,
+      recipientName: body.recipientName || null,
+      isPrivate: !!body.recipientId,
+      room: body.recipientId ? 'private' : (body.room || 'general'),
+      replyToId: body.replyToId || null,
+      replyUserName: body.replyUserName || null,
+      replyText: body.replyText || null,
+      edited: false,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    setMessages((prev) => [...prev, preview]);
+    if (preview.isPrivate) {
+      setConversations((prev) => [
+        { otherId: preview.recipientId, otherName: preview.recipientName || 'Unknown', lastFromMe: true, lastText: preview.text, lastAt: preview.createdAt },
+        ...prev.filter((c) => c.otherId !== preview.recipientId),
+      ]);
+    }
+
+    try {
+      const saved = (await messagesAPI.send(body)).data;
+      setMessages((prev) => {
+        const withoutPreview = prev.filter((m) => m.id !== preview.id);
+        if (withoutPreview.some((m) => m.id === saved.id)) return withoutPreview;
+        return [...withoutPreview, saved];
+      });
+    } catch (err) {
+      setMessages((prev) => prev.filter((m) => m.id !== preview.id));
+      toast.error(err.response?.data?.error || 'Could not send message');
+    }
   };
 
   const startReply = (msg) => {
@@ -170,6 +285,8 @@ export default function ChatWidget() {
     setShowSidebar(false);
     setReplyTo(null);
     cancelEdit();
+    setUnread(0);
+    setTypingName(null);
   };
 
   const switchToLecturer = (lec) => {
@@ -177,6 +294,8 @@ export default function ChatWidget() {
     setShowSidebar(false);
     setReplyTo(null);
     cancelEdit();
+    setTypingName(null);
+    setUnreadMap((prev) => { const n = { ...prev }; delete n[lec.id]; return n; });
   };
 
   const isOnline = (id) => onlineIds.includes(id);
@@ -190,6 +309,8 @@ export default function ChatWidget() {
       )
     : lecturers;
 
+  if (onChatPage) return <></>;
+
   return (
     <>
       <button
@@ -198,7 +319,7 @@ export default function ChatWidget() {
         aria-label="Open chat"
       >
         {open ? <X size={22} /> : <MessageCircle size={22} />}
-        {!open && unread > 0 && <span className="cw-badge">{unread > 9 ? '9+' : unread}</span>}
+        {!open && unreadTotal > 0 && <span className="cw-badge">{unreadTotal > 9 ? '9+' : unreadTotal}</span>}
       </button>
 
       {open && (
@@ -235,6 +356,31 @@ export default function ChatWidget() {
                   </div>
                 ))}
               </div>
+              {conversations.length > 0 && (
+                <div className="cw-sidebar-section">
+                  <div className="cw-sidebar-label">Conversations</div>
+                  {conversations.map((c) => {
+                    const unreadCount = unreadMap[c.otherId] || 0;
+                    return (
+                      <div
+                        key={c.otherId}
+                        className={`cw-sidebar-item${chatWith?.id === c.otherId ? ' active' : ''}`}
+                        onClick={() => switchToLecturer({ id: c.otherId, name: c.otherName })}
+                      >
+                        <span style={{ flex: 1, minWidth: 0 }}>
+                          <span style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {c.otherName}
+                          </span>
+                          <span style={{ display: 'block', fontSize: '0.68rem', color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            {c.lastFromMe ? `You: ${truncate(c.lastText, 24)}` : truncate(c.lastText, 28)}
+                          </span>
+                        </span>
+                        {unreadCount > 0 && <span className="cw-convo-badge">{unreadCount}</span>}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
               <div className="cw-sidebar-section">
                 <div className="cw-sidebar-label">Administration</div>
                 {admins.length === 0 && <div className="cw-search-empty">No admin online</div>}
@@ -338,6 +484,7 @@ export default function ChatWidget() {
           </div>
 
           <div className="cw-input-zone">
+            {typingName && <div className="cw-typing">{typingName} is typing…</div>}
             {replyTo && (
               <div className="cw-reply-chip">
                 <Reply size={11} />
@@ -348,7 +495,7 @@ export default function ChatWidget() {
             <form className="cw-input" onSubmit={sendMessage}>
               <input
                 value={text}
-                onChange={(e) => setText(e.target.value)}
+                onChange={(e) => { setText(e.target.value); emitTyping(e.target.value); }}
                 placeholder={chatWith ? `Message ${chatWith.name}...` : 'Type a message...'}
               />
               <button type="submit" className="cw-send" aria-label="Send">

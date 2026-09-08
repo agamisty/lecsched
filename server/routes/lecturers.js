@@ -7,6 +7,17 @@ const { auth, adminOnly } = require('../middleware/auth');
 
 const router = express.Router();
 
+// public list used only by the login screen's "pick a lecturer" helper
+router.get('/demo-accounts', async (req, res) => {
+  const lecturers = await User.findAll({
+    where: { role: 'lecturer' },
+    attributes: ['id', 'name', 'email', 'department'],
+    order: [['name', 'ASC']],
+    limit: 600
+  });
+  res.json(lecturers);
+});
+
 router.get('/', auth, async (req, res) => {
   const lecturers = await User.findAll({
     where: { role: 'lecturer' },

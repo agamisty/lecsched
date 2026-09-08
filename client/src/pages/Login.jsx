@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
+import { lecturersAPI } from '../services/api';
 import Logo from '../components/Logo';
 
 export default function Login() {
@@ -11,6 +12,13 @@ export default function Login() {
   const [showPw, setShowPw] = useState(false);
   const [loading, setLoading] = useState(false);
   const [role, setRole] = useState('admin');
+  const [lecturerAccounts, setLecturerAccounts] = useState([]);
+
+  useEffect(() => {
+    lecturersAPI.demoAccounts()
+      .then((res) => setLecturerAccounts(res.data || []))
+      .catch(() => {});
+  }, []);
 
   const demoAccounts = {
     admin: { email: 'admin@lecsched.app', password: 'pass123', label: 'Administrator / Examiner' },
@@ -25,6 +33,11 @@ export default function Login() {
   const fillDemo = (r) => {
     setRole(r);
     setForm({ ...demoAccounts[r] });
+  };
+
+  const pickLecturer = (id) => {
+    const acct = lecturerAccounts.find((a) => a.id === Number(id));
+    if (acct) setForm({ email: acct.email, password: 'pass123' });
   };
 
   const handleSubmit = async (e) => {
@@ -64,11 +77,28 @@ export default function Login() {
             <input
               type="email"
               required
-              placeholder={role === 'admin' ? 'admin@university.edu' : 'staff.<dept>@lecsched.app'}
+              placeholder={role === 'admin' ? 'admin@university.edu' : 'lecturer.<key>@lecsched.app'}
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
           </div>
+          {role === 'lecturer' && (
+            <div className="form-group">
+              <label>Or pick a lecturer account</label>
+              <select
+                className="form-select"
+                value=""
+                onChange={(e) => pickLecturer(e.target.value)}
+              >
+                <option value="">— Choose a lecturer —</option>
+                {lecturerAccounts.map((a) => (
+                  <option key={a.id} value={a.id}>
+                    {a.name} · {a.email}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
           <div className="form-group">
             <label>Password</label>
             <div className="login-pw-field">
@@ -91,7 +121,9 @@ export default function Login() {
               <button type="button" onClick={() => fillDemo('lecturer')}>Fill lecturer</button>
             </div>
             <div className="login-demo-cred">
-              {demoAccounts[role].label}: <code>{demoAccounts[role].email}</code> / <code>{demoAccounts[role].password}</code>
+              {role === 'lecturer'
+                ? <>All lecturer accounts use password <code>pass123</code></>
+                : <>{demoAccounts[role].label}: <code>{demoAccounts[role].email}</code> / <code>{demoAccounts[role].password}</code></>}
             </div>
           </div>
           <button

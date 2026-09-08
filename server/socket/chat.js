@@ -22,6 +22,21 @@ function setupChat(io) {
     };
   }
 
+  // lets REST routes broadcast the freshly created message to the audience the
+  // same way socket sends do (best-effort: only same-instance sockets are reachable)
+  io.emitNewMessage = (msg) => {
+    const payload = msgPayload(msg);
+    if (msg.isPrivate) {
+      const entries = onlineUsers[msg.recipientId];
+      if (entries) {
+        for (const e of entries) io.to(e.socketId).emit('new-message', payload);
+      }
+    } else {
+      io.to(msg.room || 'general').emit('new-message', payload);
+    }
+    return payload;
+  };
+
   // lets REST routes broadcast edit/delete updates to the message's audience
   io.chatBroadcast = (msg, event, payload) => {
     if (!msg) return;
@@ -92,7 +107,7 @@ function setupChat(io) {
           replyUserName: data.replyUserName || null,
           replyText: data.replyText || null
         });
-        io.to(room).emit('new-message', msgPayload(msg));
+        io.emitNewMessage(msg);
       } catch (err) {
         console.error('Chat error:', err);
       }
@@ -113,17 +128,46 @@ function setupChat(io) {
           replyText: data.replyText || null
         });
 
-        const payload = msgPayload(msg);
+        const payload = io.emitNewMessage(msg);
 
-        const entries = onlineUsers[data.recipientId];
-        if (entries) {
-          for (const e of entries) {
-            io.to(e.socketId).emit('new-message', payload);
-          }
-        }
         socket.emit('new-message', payload);
       } catch (err) {
         console.error('Private message error:', err);
+      }
+    });
+
+    socket.on('typing', ({ to, room, isPrivate, name }) => {
+      const payload = {
+        userId: socket.data.userId || null,
+        name: name || 'Someone',
+        isPrivate: !!isPrivate,
+        room: isPrivate ? 'private' : (room || 'general'),
+        to: to != null ? to : null
+      };
+      if (isPrivate && to != null) {
+        const entries = onlineUsers[to];
+        if (entries) {
+          for (const e of entries) io.to(e.socketId).emit('user-typing', payload);
+        }
+      } else {
+        socket.to(room || 'general').emit('user-typing', payload);
+      }
+    });
+
+    socket.on('stop-typing', ({ to, room, isPrivate }) => {
+      const payload = {
+        userId: socket.data.userId || null,
+        isPrivate: !!isPrivate,
+        room: isPrivate ? 'private' : (room || 'general'),
+        to: to != null ? to : null
+      };
+      if (isPrivate && to != null) {
+        const entries = onlineUsers[to];
+        if (entries) {
+          for (const e of entries) io.to(e.socketId).emit('user-stop-typing', payload);
+        }
+      } else {
+        socket.to(room || 'general').emit('user-stop-typing', payload);
       }
     });
 
