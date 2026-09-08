@@ -302,11 +302,67 @@ async function run() {
     return staffIdByDept[p.dept] || null;
   };
 
+  // ─────────────── MERGE 1-HOUR PERIODS INTO 2-HOUR PAIRS ───────────────
+  // Classes occupy periods in fixed pairs: P1-P2, P3-P4, P5-P6, P7-P8, P9-P10.
+  // The PDF grid stores each 1-hour period as its own row; a 2-hour class is two
+  // rows of the same course on the same day that sit in one pair (index 0-1, 2-3,
+  // 4-5, 6-7, 8-9). Merge such pairs into a single slot: start = first row start,
+  // end = second row end. Never combine across different pairs (e.g. P2-P3).
+  const PERIOD_STARTS = ['08:00','09:00','10:30','11:30','13:00','14:00','15:00','16:00','17:00','18:00'];
+  const START_INDEX = {};
+  PERIOD_STARTS.forEach((s, i) => { START_INDEX[s] = i; });
+  function inSamePair(ia, ib) {
+    return Math.floor(ia / 2) === Math.floor(ib / 2);
+  }
+
+  // group raw slots by page/day/course, then merge each group's 2-hour pairs
+  const slotGroups = {};
+  for (const slot of DATASET.slots) {
+    const info = pageInfo[slot.page];
+    if (!info || info.academicLevelId == null) continue;
+    if (!courseIdByCode[slot.course]) continue;
+    const key = `${slot.page}|${slot.day}|${slot.course}`;
+    (slotGroups[key] = slotGroups[key] || []).push(slot);
+  }
+  const mergedSlots = [];
+  for (const key of Object.keys(slotGroups)) {
+    const group = slotGroups[key].slice().sort((a, b) => START_INDEX[a.time[0]] - START_INDEX[b.time[0]]);
+    for (let g = 0; g < group.length; g++) {
+      const slot = group[g];
+      const ia = START_INDEX[slot.time[0]];
+      const partner = group.find((x) => START_INDEX[x.time[0]] === ia + 1);
+      if (ia % 2 === 0 && partner && inSamePair(ia, ia + 1)) {
+        // even row with an odd partner in the same pair -> one 2-hour slot
+        mergedSlots.push({
+          page: slot.page,
+          day: slot.day,
+          time: [slot.time[0], partner.time[1]],
+          course: slot.course,
+          rooms: (slot.rooms && slot.rooms.length) ? slot.rooms : (partner.rooms || []),
+          lecturers: slot.lecturers || partner.lecturers || [],
+          label: slot.label,
+        });
+        g++;
+      } else {
+        mergedSlots.push({
+          page: slot.page,
+          day: slot.day,
+          time: [...slot.time],
+          course: slot.course,
+          rooms: slot.rooms || [],
+          lecturers: slot.lecturers || [],
+          label: slot.label,
+        });
+      }
+    }
+  }
+  console.log(`Slots after 2-hour pair merge: ${DATASET.slots.length} -> ${mergedSlots.length}`);
+
   // ─────────────── COURSE OFFERINGS (Semester 2 = current) ───────────────
   const offeringByKey = {}; // `${academicLevelId}:${courseId}` -> id
   const offeringRows = [];
   let offeringSeq = 0;
-  for (const slot of DATASET.slots) {
+  for (const slot of mergedSlots) {
     const info = pageInfo[slot.page];
     const courseId = courseIdByCode[slot.course];
     const key = `${info.academicLevelId}:${courseId}`;
@@ -330,7 +386,7 @@ async function run() {
     labelCounter[lab] = (labelCounter[lab] || 0) + 1;
     return lab || 'Main';
   };
-  for (const slot of DATASET.slots) {
+  for (const slot of mergedSlots) {
     const info = pageInfo[slot.page];
     if (!info || info.academicLevelId == null) {
       console.error(`!! missing class info for page ${slot.page}`);
