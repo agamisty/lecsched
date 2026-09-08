@@ -89,6 +89,10 @@ function buildGrid(slots) {
 
     if (idx >= 0 && idx < 10) {
       grid[day][idx] = {
+        id: slot.id,
+        day: slot.day,
+        startTime: slot.startTime,
+        endTime: slot.endTime,
         courseCode: slot.courseCode,
         courseName: slot.courseName,
         courseType: slot.courseType,
@@ -220,6 +224,9 @@ export default function TimetablePage() {
   const [activeGroup, setActiveGroup] = useState('');
   const [totalSlots, setTotalSlots] = useState(0);
 
+  const [dragInfo, setDragInfo] = useState(null);
+  const [dropTarget, setDropTarget] = useState(null);
+
   useEffect(() => {
     academicYearsAPI.list().then((r) => {
       setYears(r.data.years || r.data || []);
@@ -339,6 +346,60 @@ export default function TimetablePage() {
       toast.success('Timetable opened in a new tab — use Print / Save as PDF');
     } catch (err) {
       toast.error('Failed to export timetable');
+    }
+  };
+
+  const periodFromX = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const col = Math.floor((e.clientX - rect.left) / (rect.width / 10));
+    return Math.max(0, Math.min(9, col));
+  };
+
+  const handleCellDragStart = (e, cell, day, startP) => {
+    e.dataTransfer.setData('text/plain', String(cell.id));
+    e.dataTransfer.effectAllowed = 'move';
+    setDragInfo({ id: cell.id, span: cell.span || 1, day, startPeriod: startP + 1, code: cell.courseCode });
+  };
+
+  const handleRowDragOver = (e, day) => {
+    if (!dragInfo) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    const col = periodFromX(e);
+    setDropTarget({ day, period: col + 1 });
+  };
+
+  const handleRowDrop = async (e, day) => {
+    e.preventDefault();
+    const info = dragInfo;
+    setDropTarget(null);
+    setDragInfo(null);
+    if (!info) return;
+    if (day === info.day) {
+      toast.error('Drop it on a different day or time slot');
+      return;
+    }
+    const col = periodFromX(e);
+    if (col + info.span > 10) {
+      toast.error('Not enough room on the timetable at that time');
+      return;
+    }
+    const startTime = PERIODS[col].start;
+    const endTime = PERIODS[col + info.span - 1].end;
+    try {
+      const res = await timetableAPI.update(info.id, { day, startTime, endTime });
+      toast.success(`${info.code} moved to ${day} ${startTime}–${endTime}`);
+      const warnings = res.data.warnings || [];
+      if (warnings.length > 0) {
+        const desc = warnings.map((w) => {
+          const where = w.programme ? ` (${w.programme}${w.level ? ` L${w.level}` : ''})` : '';
+          return `${w.type === 'room' ? 'Room clash' : 'Lecturer clash'} with ${w.courseCode}${where} ${w.time}`;
+        });
+        toast.warning(desc.join(' · '), { duration: 6000 });
+      }
+      loadTimetable();
+    } catch (err) {
+      toast.error(err.response?.data?.error || 'Failed to move class');
     }
   };
 
@@ -535,16 +596,27 @@ export default function TimetablePage() {
                         }
                       }
 
+                      const over = dropTarget && dragInfo && dropTarget.day === day;
+                      const hoverPeriod = over ? dropTarget.period : null;
+
                       return (
-                        <div key={day} className="tv-v-row">
+                        <div key={day} className={`tv-v-row ${over ? 'tv-v-dragover' : ''}`}>
                           <div className="tv-v-day-label">{day}</div>
-                          <div className="tv-v-row-cells">
+                          <div
+                            className="tv-v-row-cells"
+                            onDragOver={(e) => handleRowDragOver(e, day)}
+                            onDrop={(e) => handleRowDrop(e, day)}
+                          >
                             {rendered.map((item) => {
                               if (item.type === 'free') {
+                                const active =
+                                  hoverPeriod !== null &&
+                                  hoverPeriod >= item.startP + 1 &&
+                                  hoverPeriod <= item.startP + item.span;
                                 return (
                                   <div
                                     key={`${day}-free-${item.startP}`}
-                                    className="tv-v-cell tv-v-cell-empty"
+                                    className={`tv-v-cell tv-v-cell-empty ${active ? 'tv-v-cell-drop' : ''}`}
                                     style={{ flex: item.span }}
                                   >
                                     <span className="tv-v-free">—</span>
@@ -553,10 +625,14 @@ export default function TimetablePage() {
                               }
                               const c = item.cell;
                               const tc = getTypeColor(c.courseType);
+                              const isDragging = dragInfo && dragInfo.id === c.id;
                               return (
                                 <div
                                   key={`${day}-${item.startP}`}
-                                  className="tv-v-cell"
+                                  draggable
+                                  onDragStart={(e) => handleCellDragStart(e, c, day, item.startP)}
+                                  onDragEnd={() => { setDropTarget(null); setDragInfo(null); }}
+                                  className={`tv-v-cell ${isDragging ? 'tv-v-cell-drag' : ''}`}
                                   style={{
                                     flex: item.span,
                                     background: tc.bg,
@@ -613,6 +689,7 @@ export default function TimetablePage() {
                   <span className="tv-legend-dot" style={{ background: TYPE_COLORS.default.badge }} />
                   Other
                 </span>
+                <span className="tv-legend-tip">Tip: drag any class card to move it to another day / time</span>
               </div>
             </>
           )}

@@ -14,7 +14,7 @@ export default function Logo({ variant = 'full', style, className = '' }) {
       <div className="atgs-icon">
         <Activity size={22} strokeWidth={2.5} />
       </div>
-      <span className="atgs-text">ATGS</span>
+      <span className="atgs-text">LECSCHED</span>
     </div>
   );
 }
