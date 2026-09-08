@@ -9,7 +9,11 @@ const Message = sequelize.define('Message', {
   recipientId: { type: DataTypes.INTEGER, allowNull: true },
   recipientName: { type: DataTypes.STRING, allowNull: true },
   isPrivate: { type: DataTypes.BOOLEAN, defaultValue: false },
-  room: { type: DataTypes.STRING, defaultValue: 'general' }
+  room: { type: DataTypes.STRING, defaultValue: 'general' },
+  edited: { type: DataTypes.BOOLEAN, defaultValue: false },
+  replyToId: { type: DataTypes.INTEGER, allowNull: true },
+  replyUserName: { type: DataTypes.STRING, allowNull: true },
+  replyText: { type: DataTypes.TEXT, allowNull: true }
 });
 
 module.exports = Message;

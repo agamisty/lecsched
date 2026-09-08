@@ -136,6 +136,8 @@ export const timeslotsAPI = {
 
 export const messagesAPI = {
   list: (config) => api.get('/messages', config),
+  edit: (id, data) => api.put(`/messages/${id}`, data),
+  remove: (id) => api.delete(`/messages/${id}`),
 };
 
 export const scheduleAPI = {

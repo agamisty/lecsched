@@ -2,6 +2,7 @@ const express = require('express');
 const { Op } = require('sequelize');
 const Message = require('../models/Message');
 const { auth } = require('../middleware/auth');
+const { getIO } = require('../socket/bus');
 
 const router = express.Router();
 
@@ -30,6 +31,43 @@ router.get('/', auth, async (req, res) => {
     limit: 100
   });
   res.json(messages);
+});
+
+router.put('/:id', auth, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const message = await Message.findByPk(id);
+    if (!message) return res.status(404).json({ error: 'Message not found' });
+    if (message.userId !== req.user.id) {
+      return res.status(403).json({ error: 'You can only edit your own messages' });
+    }
+    if (!req.body.text || !String(req.body.text).trim()) {
+      return res.status(400).json({ error: 'Message cannot be empty' });
+    }
+    await message.update({ text: String(req.body.text).trim(), edited: true });
+    const io = getIO();
+    if (io && io.chatBroadcast) io.chatBroadcast(message, 'message-updated', message);
+    res.json(message);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const message = await Message.findByPk(id);
+    if (!message) return res.status(404).json({ error: 'Message not found' });
+    if (message.userId !== req.user.id) {
+      return res.status(403).json({ error: 'You can only delete your own messages' });
+    }
+    const io = getIO();
+    if (io && io.chatBroadcast) io.chatBroadcast(message, 'message-deleted', { id: message.id });
+    await message.destroy();
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 module.exports = router;

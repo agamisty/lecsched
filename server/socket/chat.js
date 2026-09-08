@@ -3,6 +3,41 @@ const Message = require('../models/Message');
 function setupChat(io) {
   const onlineUsers = {};
 
+  function msgPayload(msg) {
+    return {
+      id: msg.id,
+      userId: msg.userId,
+      userName: msg.userName,
+      text: msg.text,
+      recipientId: msg.recipientId,
+      recipientName: msg.recipientName,
+      isPrivate: msg.isPrivate,
+      room: msg.room,
+      edited: !!msg.edited,
+      replyToId: msg.replyToId,
+      replyUserName: msg.replyUserName,
+      replyText: msg.replyText,
+      createdAt: msg.createdAt,
+      updatedAt: msg.updatedAt
+    };
+  }
+
+  // lets REST routes broadcast edit/delete updates to the message's audience
+  io.chatBroadcast = (msg, event, payload) => {
+    if (!msg) return;
+    if (msg.isPrivate) {
+      const ids = [msg.userId, msg.recipientId].filter(Boolean);
+      for (const id of ids) {
+        const entries = onlineUsers[id];
+        if (entries) {
+          for (const e of entries) io.to(e.socketId).emit(event, payload);
+        }
+      }
+    } else {
+      io.to(msg.room || 'general').emit(event, payload);
+    }
+  };
+
   function emitOnline() {
     for (const r of ['general', 'postgraduate']) {
       const ids = Object.entries(onlineUsers)
@@ -52,17 +87,12 @@ function setupChat(io) {
           userName: data.userName,
           text: data.text,
           isPrivate: false,
-          room
-        });
-        io.to(room).emit('new-message', {
-          id: msg.id,
-          userId: msg.userId,
-          userName: msg.userName,
-          text: msg.text,
-          isPrivate: false,
           room,
-          createdAt: msg.createdAt
+          replyToId: data.replyToId || null,
+          replyUserName: data.replyUserName || null,
+          replyText: data.replyText || null
         });
+        io.to(room).emit('new-message', msgPayload(msg));
       } catch (err) {
         console.error('Chat error:', err);
       }
@@ -77,19 +107,13 @@ function setupChat(io) {
           recipientId: data.recipientId,
           recipientName: data.recipientName,
           isPrivate: true,
-          room: 'private'
+          room: 'private',
+          replyToId: data.replyToId || null,
+          replyUserName: data.replyUserName || null,
+          replyText: data.replyText || null
         });
 
-        const payload = {
-          id: msg.id,
-          userId: msg.userId,
-          userName: msg.userName,
-          text: msg.text,
-          recipientId: msg.recipientId,
-          recipientName: msg.recipientName,
-          isPrivate: true,
-          createdAt: msg.createdAt
-        };
+        const payload = msgPayload(msg);
 
         const entries = onlineUsers[data.recipientId];
         if (entries) {
