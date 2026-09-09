@@ -145,11 +145,33 @@ export default function ChatWidget() {
       setMessages((prev) => prev.filter((m) => m.id !== id));
     });
 
-    s.on('online-users', (ids) => setOnlineIds(ids));
+    s.on('online-users', (ids) => setOnlineIds((prev) => [...new Set([...prev, ...ids])]));
 
     return () => {
       clearTimeout(typingTimer.current);
       s.disconnect();
+    };
+  }, [user]);
+
+  useEffect(() => {
+    if (!user?.id) return;
+    const heartbeat = () => messagesAPI.heartbeat().catch(() => {});
+    const poll = () => messagesAPI.online().then((res) => setOnlineIds(res.data.online || [])).catch(() => {});
+    heartbeat();
+    poll();
+    const hb = setInterval(heartbeat, 15000);
+    const po = setInterval(poll, 3000);
+    const onVis = () => {
+      if (!document.hidden) {
+        heartbeat();
+        poll();
+      }
+    };
+    document.addEventListener('visibilitychange', onVis);
+    return () => {
+      clearInterval(hb);
+      clearInterval(po);
+      document.removeEventListener('visibilitychange', onVis);
     };
   }, [user]);
 

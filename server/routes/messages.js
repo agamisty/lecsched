@@ -1,10 +1,32 @@
 const express = require('express');
 const { Op } = require('sequelize');
 const Message = require('../models/Message');
+const User = require('../models/User');
 const { auth } = require('../middleware/auth');
 const { getIO } = require('../socket/bus');
 
 const router = express.Router();
+
+const ONLINE_WINDOW_MS = 30000;
+
+router.post('/heartbeat', auth, async (req, res) => {
+  try {
+    await User.update({ lastSeenAt: new Date() }, { where: { id: req.user.id } });
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get('/online', auth, async (req, res) => {
+  const cutoff = new Date(Date.now() - ONLINE_WINDOW_MS);
+  const users = await User.findAll({
+    where: { lastSeenAt: { [Op.gte]: cutoff } },
+    attributes: ['id', 'name', 'role', 'lastSeenAt'],
+    order: [['lastSeenAt', 'DESC']]
+  });
+  res.json({ online: users.map((u) => u.id) });
+});
 
 router.post('/', auth, async (req, res) => {
   try {

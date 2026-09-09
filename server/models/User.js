@@ -9,7 +9,8 @@ const User = sequelize.define('User', {
   role: { type: DataTypes.ENUM('admin', 'lecturer'), defaultValue: 'lecturer' },
   department: { type: DataTypes.STRING, defaultValue: '' },
   departments: { type: DataTypes.JSON, defaultValue: [] },
-  avatar: { type: DataTypes.TEXT, defaultValue: '' }
+  avatar: { type: DataTypes.TEXT, defaultValue: '' },
+  lastSeenAt: { type: DataTypes.DATE, allowNull: true }
 });
 
 module.exports = User;

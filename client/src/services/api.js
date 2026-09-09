@@ -144,6 +144,8 @@ export const messagesAPI = {
   conversations: () => api.get('/messages/conversations'),
   unread: () => api.get('/messages/unread'),
   markRead: (data) => api.post('/messages/read', data),
+  heartbeat: () => api.post('/messages/heartbeat'),
+  online: () => api.get('/messages/online'),
   edit: (id, data) => api.put(`/messages/${id}`, data),
   remove: (id) => api.delete(`/messages/${id}`),
 };
