@@ -372,10 +372,17 @@ export default function ChatPage() {
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{
+                        width: 8, height: 8, borderRadius: '50%', display: 'inline-block',
+                        background: isOnline(c.otherId) ? '#51cf66' : '#ccc', flexShrink: 0
+                      }} />
                       <span style={{ fontSize: '0.9rem', fontWeight: active ? 600 : 400 }}>{c.otherName}</span>
                       {unreadCount > 0 && (
                         <span className="chat-convo-badge">{unreadCount}</span>
                       )}
+                    </div>
+                    <div style={{ fontSize: '0.7rem', color: '#999', marginLeft: '1rem' }}>
+                      {isOnline(c.otherId) ? 'Online' : 'Offline'}
                     </div>
                     <div style={{ fontSize: '0.7rem', color: '#999', marginLeft: '0.25rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                       {c.lastFromMe ? `You: ${truncate(c.lastText, 30)}` : truncate(c.lastText, 34)}

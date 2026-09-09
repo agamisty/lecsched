@@ -413,8 +413,11 @@ export default function ChatWidget() {
                         onClick={() => switchToLecturer({ id: c.otherId, name: c.otherName })}
                       >
                         <span style={{ flex: 1, minWidth: 0 }}>
-                          <span style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                            {c.otherName}
+                          <span style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                            <span className={`cw-dot${isOnline(c.otherId) ? ' online' : ''}`} />
+                            <span style={{ display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                              {c.otherName}
+                            </span>
                           </span>
                           <span style={{ display: 'block', fontSize: '0.68rem', color: '#999', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                             {c.lastFromMe ? `You: ${truncate(c.lastText, 24)}` : truncate(c.lastText, 28)}
