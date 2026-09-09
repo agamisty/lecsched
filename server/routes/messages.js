@@ -34,6 +34,46 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
+router.get('/unread', auth, async (req, res) => {
+  try {
+    const unread = await Message.findAll({
+      where: { isPrivate: true, recipientId: req.user.id, readAt: null },
+      order: [['createdAt', 'ASC']]
+    });
+    const senders = new Map();
+    for (const m of unread) {
+      const cur = senders.get(m.userId) || { userId: m.userId, userName: m.userName, count: 0 };
+      cur.count += 1;
+      senders.set(m.userId, cur);
+    }
+    const list = [...senders.values()];
+    res.json({ senders: list, distinctSenders: list.length, totalUnread: unread.length });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.post('/read', auth, async (req, res) => {
+  try {
+    const { with: otherId } = req.body || {};
+    if (!otherId) return res.status(400).json({ error: 'with is required' });
+    await Message.update(
+      { readAt: new Date() },
+      {
+        where: {
+          isPrivate: true,
+          recipientId: req.user.id,
+          userId: parseInt(otherId),
+          readAt: null
+        }
+      }
+    );
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 router.get('/conversations', auth, async (req, res) => {
   const msgs = await Message.findAll({
     where: {

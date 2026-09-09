@@ -18,6 +18,7 @@ function setupChat(io) {
       replyToId: msg.replyToId,
       replyUserName: msg.replyUserName,
       replyText: msg.replyText,
+      readAt: msg.readAt,
       createdAt: msg.createdAt,
       updatedAt: msg.updatedAt
     };

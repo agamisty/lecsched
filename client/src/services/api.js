@@ -142,6 +142,8 @@ export const messagesAPI = {
   list: (config) => api.get('/messages', config),
   send: (data) => api.post('/messages', data),
   conversations: () => api.get('/messages/conversations'),
+  unread: () => api.get('/messages/unread'),
+  markRead: (data) => api.post('/messages/read', data),
   edit: (id, data) => api.put(`/messages/${id}`, data),
   remove: (id) => api.delete(`/messages/${id}`),
 };

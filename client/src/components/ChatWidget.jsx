@@ -44,23 +44,38 @@ export default function ChatWidget() {
   const bottomRef = useRef(null);
   const typingTimer = useRef(null);
   const lastTypingAt = useRef(0);
+  const chatWithRef = useRef(chatWith);
+  const roomRef = useRef(room);
+  const openRef = useRef(open);
+  const onChatPageRef = useRef(onChatPage);
 
-  const unreadTotal = unread + Object.values(unreadMap).reduce((a, b) => a + b, 0);
+  useEffect(() => {
+    chatWithRef.current = chatWith;
+    roomRef.current = room;
+    openRef.current = open;
+    onChatPageRef.current = onChatPage;
+  });
+
+  const unreadTotal = unread + Object.keys(unreadMap).filter((k) => unreadMap[k] > 0).length;
 
   const belongsToThread = (msg) => {
-    if (chatWith) {
+    const cw = chatWithRef.current;
+    const r = roomRef.current;
+    if (cw) {
       if (!msg.isPrivate) return false;
       const otherId = msg.userId === user?.id ? msg.recipientId : msg.userId;
-      return otherId === chatWith.id;
+      return otherId === cw.id;
     }
     if (msg.isPrivate) return false;
-    if (msg.room && msg.room !== room) return false;
+    if (msg.room && msg.room !== r) return false;
     return true;
   };
 
   const belongsToTyping = (p) => {
-    if (p.isPrivate) return chatWith?.id === p.userId;
-    return !chatWith && p.room === room;
+    const cw = chatWithRef.current;
+    const r = roomRef.current;
+    if (p.isPrivate) return cw?.id === p.userId;
+    return !cw && p.room === r;
   };
 
   useEffect(() => {
@@ -82,7 +97,7 @@ export default function ChatWidget() {
     s.on('connect', () => s.emit('join', { userId: user?.id, room: 'general' }));
 
     s.on('new-message', (msg) => {
-      if (onChatPage) return;
+      if (onChatPageRef.current) return;
       if (msg.isPrivate) {
         const otherId = msg.userId === user?.id ? msg.recipientId : msg.userId;
         if (otherId) {
@@ -92,12 +107,12 @@ export default function ChatWidget() {
             ...prev.filter((c) => c.otherId !== otherId),
           ]);
         }
-        if (msg.recipientId === user?.id && chatWith?.id !== msg.userId) {
+        if (msg.recipientId === user?.id && chatWithRef.current?.id !== msg.userId) {
           const otherName = msg.userId === user?.id ? msg.recipientName : msg.userName;
           setUnreadMap((prev) => ({ ...prev, [msg.userId]: (prev[msg.userId] || 0) + 1 }));
           toast(`${otherName || 'Unknown'}: ${truncate(msg.text, 40)}`);
         }
-      } else if (!open) {
+      } else if (!openRef.current) {
         setUnread((u) => u + 1);
       }
       setMessages((prev) => {
@@ -136,7 +151,7 @@ export default function ChatWidget() {
       clearTimeout(typingTimer.current);
       s.disconnect();
     };
-  }, [user, chatWith, room, open, onChatPage]);
+  }, [user]);
 
   useEffect(() => {
     if (socket && user?.id) socket.emit('switch-room', room);
@@ -156,11 +171,39 @@ export default function ChatWidget() {
         ? messagesAPI.list({ params: { type: 'private', with: chatWith.id } })
         : messagesAPI.list({ params: { room } });
       apiCall.then((res) => setMessages(res.data)).catch(() => {});
+      if (chatWith) {
+        messagesAPI.markRead({ with: chatWith.id }).then(() => {
+          setUnreadMap((prev) => {
+            if (!(chatWith.id in prev)) return prev;
+            const n = { ...prev };
+            delete n[chatWith.id];
+            return n;
+          });
+        }).catch(() => {});
+      }
     };
     refresh();
     const t = setInterval(refresh, 700);
     return () => clearInterval(t);
   }, [chatWith, room, socket, open]);
+
+  useEffect(() => {
+    if (onChatPage) return;
+    const refreshUnread = () => {
+      if (document.hidden) return;
+      messagesAPI.unread().then((res) => {
+        const senders = res.data.senders || [];
+        setUnreadMap((prev) => {
+          const next = {};
+          for (const s of senders) next[s.userId] = s.count;
+          return next;
+        });
+      }).catch(() => {});
+    };
+    refreshUnread();
+    const t = setInterval(refreshUnread, 1200);
+    return () => clearInterval(t);
+  }, [onChatPage, user?.id]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -296,6 +339,7 @@ export default function ChatWidget() {
     setReplyTo(null);
     cancelEdit();
     setTypingName(null);
+    messagesAPI.markRead({ with: lec.id }).catch(() => {});
     setUnreadMap((prev) => { const n = { ...prev }; delete n[lec.id]; return n; });
   };
 

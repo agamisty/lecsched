@@ -144,7 +144,7 @@ export default function Layout({ children }) {
               {openSections[idx] && section.items.map(({ to, label, icon: Icon, end }) => (
                 <NavLink key={to} to={to} end={end} onClick={closeMobileNav} className={({ isActive }) => (isActive ? 'active' : '') + (to === '/chat' && totalUnread > 0 ? ' has-notif' : '')}>
                   <Icon size={16} strokeWidth={2} />
-                  {to === '/chat' && totalUnread > 0 && <span className="chat-nav-dot" />}
+                  {to === '/chat' && totalUnread > 0 && <span className="chat-nav-badge">{totalUnread > 9 ? '9+' : totalUnread}</span>}
                   {!collapsed && <span>{label}</span>}
                 </NavLink>
               ))}

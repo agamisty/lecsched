@@ -39,8 +39,15 @@ export default function ChatPage() {
   const bottomRef = useRef(null);
   const typingTimer = useRef(null);
   const lastTypingAt = useRef(0);
+  const chatWithRef = useRef(chatWith);
+  const roomRef = useRef(room);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches);
   const [contactsOpen, setContactsOpen] = useState(true);
+
+  useEffect(() => {
+    chatWithRef.current = chatWith;
+    roomRef.current = room;
+  });
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)');
@@ -50,19 +57,23 @@ export default function ChatPage() {
   }, []);
 
   const belongsToThread = (msg) => {
-    if (chatWith) {
+    const cw = chatWithRef.current;
+    const r = roomRef.current;
+    if (cw) {
       if (!msg.isPrivate) return false;
       const otherId = msg.userId === user?.id ? msg.recipientId : msg.userId;
-      return otherId === chatWith.id;
+      return otherId === cw.id;
     }
     if (msg.isPrivate) return false;
-    if (msg.room && msg.room !== room) return false;
+    if (msg.room && msg.room !== r) return false;
     return true;
   };
 
   const belongsToTyping = (p) => {
-    if (p.isPrivate) return chatWith?.id === p.userId;
-    return !chatWith && p.room === room;
+    const cw = chatWithRef.current;
+    const r = roomRef.current;
+    if (p.isPrivate) return cw?.id === p.userId;
+    return !cw && p.room === r;
   };
 
   useEffect(() => {
@@ -85,7 +96,7 @@ export default function ChatPage() {
             ...prev.filter((c) => c.otherId !== otherId),
           ]);
         }
-        if (msg.recipientId === user?.id && chatWith?.id !== msg.userId) {
+        if (msg.recipientId === user?.id && chatWithRef.current?.id !== msg.userId) {
           setUnreadMap((prev) => ({ ...prev, [msg.userId]: (prev[msg.userId] || 0) + 1 }));
           toast(`${otherName || msg.userName}: ${truncate(msg.text, 40)}`);
         }
@@ -126,7 +137,7 @@ export default function ChatPage() {
       clearTimeout(typingTimer.current);
       s.disconnect();
     };
-  }, [user, chatWith, room]);
+  }, [user]);
 
   useEffect(() => {
     if (socket && user?.id) {
@@ -142,7 +153,7 @@ export default function ChatPage() {
   }, [chatWith, room]);
 
   useEffect(() => {
-    setTotalUnread(Object.values(unreadMap).reduce((a, b) => a + b, 0));
+    setTotalUnread(Object.keys(unreadMap).filter((k) => unreadMap[k] > 0).length);
   }, [unreadMap, setTotalUnread]);
 
   useEffect(() => {
@@ -154,11 +165,39 @@ export default function ChatPage() {
         ? messagesAPI.list({ params: { type: 'private', with: chatWith.id } })
         : messagesAPI.list({ params: { room } });
       apiCall.then((res) => setMessages(res.data)).catch(() => {});
+      if (chatWith) {
+        messagesAPI.markRead({ with: chatWith.id }).then(() => {
+          setUnreadMap((prev) => {
+            if (!(chatWith.id in prev)) return prev;
+            const n = { ...prev };
+            delete n[chatWith.id];
+            return n;
+          });
+        }).catch(() => {});
+      }
     };
     refresh();
     const t = setInterval(refresh, 700);
     return () => clearInterval(t);
   }, [chatWith, room, user]);
+
+  useEffect(() => {
+    if (!user?.id) return;
+    const refreshUnread = () => {
+      if (document.hidden) return;
+      messagesAPI.unread().then((res) => {
+        const senders = res.data.senders || [];
+        setUnreadMap((prev) => {
+          const next = {};
+          for (const s of senders) next[s.userId] = s.count;
+          return next;
+        });
+      }).catch(() => {});
+    };
+    refreshUnread();
+    const t = setInterval(refreshUnread, 1200);
+    return () => clearInterval(t);
+  }, [user?.id]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -279,6 +318,7 @@ export default function ChatPage() {
 
   const openChat = (contact) => {
     setChatWith(contact);
+    messagesAPI.markRead({ with: contact.id }).catch(() => {});
     setUnreadMap((prev) => { const n = { ...prev }; delete n[contact.id]; return n; });
     if (isMobile) setContactsOpen(false);
   };

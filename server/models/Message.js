@@ -14,7 +14,8 @@ const Message = sequelize.define('Message', {
   edited: { type: DataTypes.BOOLEAN, defaultValue: false },
   replyToId: { type: DataTypes.INTEGER, allowNull: true },
   replyUserName: { type: DataTypes.STRING, allowNull: true },
-  replyText: { type: DataTypes.TEXT, allowNull: true }
+  replyText: { type: DataTypes.TEXT, allowNull: true },
+  readAt: { type: DataTypes.DATE, allowNull: true }
 });
 
 module.exports = Message;
